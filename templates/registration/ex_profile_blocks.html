@@ -1,0 +1,70 @@
+<div class="row g-2 h-100 d-flex justify-content-center align-items-center" >
+    {% if messages %}                                      
+        {% for message in messages %}        
+        <div class="alert alert-warning" role="alert">
+            <span>
+                <strong>Alert:</strong> {{ message }}.
+            </span>
+        </div>
+        {% endfor %}  
+    {% endif %}
+    {% if form.errors %}
+        <div class="d-flex justify-content-center alert alert-warning">{{form.errors}}</div>
+    {% endif %}
+    {% for profile in expert_profiles %}   
+        <div class="col-lg-6 d-flex text-start target-element m-auto" >        
+            <div class="card flex-fill" style="background: linear-gradient(var(--bs-primary-bg-subtle), white);">
+                <div class="text-end d-flex justify-content-end">
+                    <form method="post" class="m-1">
+                        {% csrf_token %}
+                        <input type="hidden" name="_method" value="EDIT">
+                        <button 
+                            type="submit" 
+                            class="btn btn-danger" 
+                            hx-post="{% url 'accounts:edit_expert_profile' profile.id %}" 
+                            hx-target="#expert_profiles_form" 
+                            hx-swap="innerHTML">
+                            <svg class="bi bi-pencil-square " xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                            </svg>                            
+                        </button>
+                    </form>
+                    <form method="post" class="m-1">
+                        {% csrf_token %}
+                        <input type="hidden" name="_method" value="DELETE"/>
+                        <button 
+                            type="submit" 
+                            class="btn btn-danger" 
+                            hx-post="{% url 'accounts:delete_expert_profile' profile.id %}" 
+                            hx-confirm="Are you sure you wish to delete your expertise profile? It can not be undeone."
+                            hx-target="#expert_profiles" 
+                            hx-swap="innerHTML">
+                            <svg class="bi bi-trash" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
+                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
+                            </svg>                            
+                        </button>
+                    </form>
+                </div>           
+                <div class="card-body">
+                    <h4 class="card-title font-aldrich border-bottom">{{ profile.title.upper }}</h4>
+                    <h5 class="card-subtitle font-aldrich">{{profile.expert_type.title}} || Experience {{profile.experience_years}} Years</h5>
+                    <h6 class="text-muted card-subtitle mb-2">Status: {{profile.status|safe}} </h6>   
+                    <div class="card-text p-2">
+                        <ul class="list-inline">
+                            {% for skill in profile.skills.all %}
+                            <li class="list-inline-item">{{skill}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>   
+                    <a 
+                    hx-get="{% url 'accounts:submit_approval_request' profile.id %}" 
+                    hx-target="#approval_request_block" 
+                    hx-swap="innerHTML" class="btn btn-primary" >Submit Approval Request</a>                  
+                </div>
+            </div>
+        </div>
+     
+    {% endfor %}            
+</div>

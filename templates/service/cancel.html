@@ -1,0 +1,86 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load core %}
+{% block adsencecode %} {% endblock %}
+{% block extra_head %}
+
+{% endblock %}   
+
+{% block hero %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Start: Hero Banner -->
+<section class="bg-sh-4th"><b class="text-nowrap text-uppercase text-start d-xl-flex justify-content-start align-items-start align-content-start justify-content-xl-start absolute-bold-16vw">cancelled</b>
+    <div class="container-fluid h-100">
+        <div class="alert alert-success" role="alert"><span><strong>Alert</strong> text.</span></div>
+        <div class="row text-center d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start pt8pb3">
+                <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                    <h3 class="text-uppercase fw-bold text-center mb-3 h25vw target-element">order</h3>
+                    <h3 class="text-uppercase fw-bold mb-3 h95vw">cancelled</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: Hero Banner -->
+<section class="pt5pb5">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-xl-8">
+                <h2 class="display-1 text-center border-0 font-aldrich fs6vw">No Issues!</h2><a class="btn btn-warning btn-lg d-flex flex-fill justify-content-center m-auto font-aldrich fs-1 target-element" role="button" target="_blank" rel="nofollow">Resume Order Here</a>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center align-items-center align-content-center">
+            <div class="col-12 col-xl-8">
+                <div class="card mt-5">
+                    <div class="card-body font-aldrich">
+                        <h4 class="card-title">If Everything Ok ......</h4>
+                        <div class="row gx-2 gy-2 d-flex justify-content-center align-items-center">
+                            <div class="col-12">
+                                <div class="card"><button class="btn btn-success btn-lg font-aldrich fs-1 target-element" type="button">START FROM PAYMENT</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% comment %} <div class="error-area ptb--200 ptb_sm--60 ptb_md--80">
+    <div class="container">
+        <div class="row align-item-center">
+            <div class="col-lg-12">
+                <div class="error-inner">
+                    <h1>ORDER CANCELLED!</h1>
+                    <h2 class="title">NO ISSUE!</h2>
+                    <p class="description"> You may continue form this url if you want to edit your provided information</p>
+                    {% if order.price.is_service %}
+                    <a class="btn-default" href="{% url 'shop:collect_requirements' order.id  order.price.service.pk  order.price.pk  %}">Continue From Order Information</a>
+                    {% endif %}
+                    {% if order.price.is_quotation %}
+                    <a class="btn-default" href="{% url 'shop:collect_requirements' order.id  order.price.quotation.pk  order.price.pk  %}">Continue From Order Information</a>
+                    {% endif %}
+                    {% if order.gateway_payment_url %}
+                    <p class="description"> Also you may start from payment page directly by clicking here:</p>
+                    <a class="btn-default" href="{{order.gateway_payment_url}}">Go to direct payment</a>
+                    {% endif %}                    
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+{% endblock %}
+
+
+{% comment %} {% block footer %}
+    {% include 'layouts/footer.html' %}
+{% endblock %} {% endcomment %}
+
+
+

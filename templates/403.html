@@ -1,0 +1,34 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+ {% block content %}
+
+ <section class="bg-sh-4th"><b class="text-nowrap text-uppercase text-start d-xl-flex justify-content-start align-items-start align-content-start justify-content-xl-start absolute-bold-18vw">403</b>
+    <div class="container-fluid h-100">
+        {% if messages %}                                      
+            {% for message in messages %}        
+            <div class="alert alert-warning" role="alert">
+                <span>
+                    <strong>Alert:</strong> {{ message }}.
+                </span>
+            </div>
+            {% endfor %}  
+        {% endif %}
+        
+        <div class="row text-center d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start pt8pb3">
+                <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                    <h3 class="text-uppercase fw-bold text-center mb-3 h25vw">403</h3>
+                    <h3 class="text-uppercase fw-bold mb-3 h55vw">Access Denied</h3>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 d-sm-flex d-md-flex m-auto justify-content-md-start border-2 border-top border-primary pt5pt15">
+                <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                    <p class="text-start mb-4" style="color: var(--bs-body-color);font-size: 20px;font-family: Alexandria, sans-serif;">Please try after&nbsp;&nbsp;<a href="#">login</a>&nbsp;if you not or you may use <a href="#">contact</a>&nbsp;form to let it us know.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

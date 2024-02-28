@@ -1,0 +1,13 @@
+.fit-cover {
+  object-fit: cover;
+}
+
+.h200p {
+  height: 200px;
+}
+
+.article-title {
+  font-size: 3em;
+  font-family: 'Atomic Age', serif;
+}
+

@@ -1,0 +1,110 @@
+{% extends "layouts/base.html" %}
+{% block robotindex %} <meta name="robots" content="noindex">  {% endblock %}
+{% block adsencecode %} {% endblock %}
+
+{% load static %} 
+
+{% block hero %}
+
+{% endblock %}
+
+
+ {% block content %}
+  <!-- Start: Hero Banner -->
+  <section class="bg-sh-4th"><b class="text-nowrap text-uppercase text-start d-xl-flex justify-content-start align-items-start align-content-start justify-content-xl-start absolute-bold-20vw">success</b>
+    <div class="container-fluid h-100">
+        {% if messages %}                                      
+            {% for message in messages %}        
+            <div class="alert alert-warning" role="alert">
+                <span>
+                    <strong>Alert:</strong> {{ message }}.
+                </span>
+            </div>
+            {% endfor %}  
+        {% endif %}
+        <div class="row text-center d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start pt8pb3">
+                <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                    <h3 class="text-uppercase fw-bold text-center mb-3 h25vw">order #{{order.order_number}}</h3>
+                    <h3 class="text-uppercase fw-bold mb-3 h55vw">placed successfully</h3>
+                    <h4 class="text-primary">Status:<small class="fw-light"> {{ payment_status }} </small></h4>
+
+                    <h4 class="text-primary">Order Amount:<small class="fw-light"> {{order.amount}} BDT</small></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: Hero Banner -->
+<section class="pb5pt10 pt-0">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-xl-8">
+                <h2 class="display-1 text-center fs6vw font-aldrich rounded-3 border-light pt5pb5">Mail Sent</h2>
+                <div class="card mt-3">
+                    <div class="card-body font-alexandria">
+                        <p class="card-text">{{gatway_instruction|safe}}</p>
+                        
+                        {{html_content|safe}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center align-items-center align-content-center">
+            <div class="col-12 col-xl-8">
+                <div class="card mt-3">
+                    <div class="card-body font-alexandria">
+                        <h4 class="card-title">Helpful Navigations</h4>
+                        <div class="row gx-2 gy-2 d-flex justify-content-center align-items-center">
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card"><a class="btn btn-primary btn-lg font-atomic" href="{% url 'accounts:login' %}">LOGIN</a></div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card"><a class="btn btn-primary btn-lg font-atomic" href="{% url 'service:service_list' %}">SERVICES</a></div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card"><a class="btn btn-primary btn-lg font-atomic" href="{% url 'accounts:user_dashboard' %}">DASHBOARD</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ {% endblock %}
+
+
+
+{% comment %} {% block about %}
+
+<div class="error-area ptb--200 ptb_sm--60 ptb_md--80">
+    <div class="container">
+        <div class="row align-item-center">
+            <div class="col-lg-12">
+                <div class="error-inner">
+                    <h1>ORDER PLACED!</h1>
+                    <h2 class="title">Successfully!</h2>
+                    <p class="description"> Placed order reference is {{order.id}}! </p>
+                    <p class="description"> Please check your order email! </p>
+                    
+
+                    <div class="view-more-button"><a class="btn-default" href="{% url 'accounts:login' %}">Login</a></div>                  
+                    <div class="view-more-button"><a class="btn-default" href="{% url 'shop:service_list' %}">Explore Services</a></div>
+                    <div class="view-more-button"><a class="btn-default" href="{% url 'accounts:user_dashboard' %}">Go To Dashboard</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block footer %}
+    {% include 'layouts/footer.html' %}
+{% endblock %} {% endcomment %}
+
+
+

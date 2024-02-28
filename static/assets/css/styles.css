@@ -1,0 +1,509 @@
+.htmx-indicator{
+  opacity:0;
+  transition: opacity 500ms ease-in;
+}
+.htmx-request .htmx-indicator{
+  opacity:1
+}
+.htmx-request.htmx-indicator{
+  opacity:1
+}
+.mouse-follower {
+  position: fixed;
+  background-color: var(--bs-primary-rgb-op);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: all 0.3s ease-out;
+}
+
+.add-blend {
+  mix-blend-mode: exclusion;
+}
+
+.sh-navbar {
+  font-size: 20px;
+  font-family: Aldrich, sans-serif;
+  background: var(--bs-emphasis-color);
+  color: var(--bs-navbar-color);
+  /*overflow: hidden;*/
+}
+
+.sh-cover {
+  text-align: left;
+  background: url("../../assets/img/top_b.png") top left / cover;
+}
+
+.header-row {
+  text-align: left;
+  min-height: 100vh;
+  max-height: 80vh;
+}
+
+.section-bg-light {
+  background: #dcdfda;
+}
+
+.absolute-bold-18vw {
+  font-family: Alexandria, sans-serif;
+  font-size: 18vw;
+  position: absolute;
+  transform: translateX(0%) translateY(-26%);
+  transform-origin: top left;
+  color: var(--bs-body-color);
+  filter: brightness(100%);
+  opacity: 0.1;
+}
+
+.pt-30-pb-5 {
+  padding-top: 30%;
+  padding-bottom: 5%;
+}
+
+.h25vw {
+  color: var(--bs-body-color);
+  font-family: Aldrich, sans-serif;
+  font-size: 2.5vw;
+}
+
+.h55vw {
+  color: var(--bs-body-color);
+  font-family: Alexandria, sans-serif;
+  font-size: 5.5vw;
+}
+
+.p3vw {
+  color: var(--bs-body-color);
+  /*text-align: center;*/
+  font-size: 3vw;
+  font-family: Alexandria, sans-serif;
+}
+
+.a3vw {
+  font-size: 3vw;
+  color: var(--bs-body-color);
+  font-family: 'Atomic Age', serif;
+}
+
+.pt5pt15 {
+  padding-top: 5%;
+  padding-bottom: 15%;
+}
+
+.bg-5th {
+  background: #da9595;
+}
+
+.pb15 {
+  padding-bottom: 15%;
+}
+
+.border-sh-dark {
+  border: 2px solid var(--bs-body-color);
+}
+
+.front-article:hover .hidden-button {
+  position: absolute;
+  transform-origin: center;
+  z-index: 1000;
+  display: block;
+  /*content: "";*/
+  /*background: rgba(255,255,255,0.5);*/
+  /*z-index: 100;*/
+}
+
+.hidden-button {
+  display: none;
+}
+
+.front-article:hover {
+  background: rgba(0,0,0,0.5)!important;
+  z-index: 0;
+  /*opacity: 0.1;*/
+}
+
+.hidden-button {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.hidden-button {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.hidden-button {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.hidden-button {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.card-borderless {
+  border-radius: 0;
+  border-left-width: 0px;
+  overflow: hidden;
+}
+
+.py-8 {
+  /*background: url("https://cdn.bootstrapstudio.io/placeholders/1400x800.png");*/
+  padding-right: 8px;
+  padding-left: 8px;
+  /*margin-right: 5px;*/
+}
+
+.py8 {
+  /*background: url("https://cdn.bootstrapstudio.io/placeholders/1400x800.png");*/
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.bg-sh-4th {
+  background: #dcdfda;
+}
+
+.pb5pt10 {
+  padding-bottom: 5%;
+  padding-top: 10%;
+}
+
+.py5 {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.fs3vw {
+  color: var(--bs-body-bg);
+  font-size: 3.5vw;
+}
+
+.input-color-form {
+  font-family: Aldrich, sans-serif;
+  color: var(--bs-danger);
+  border-bottom-style: solid;
+}
+
+.font-aldrich {
+  font-family: Aldrich, sans-serif;
+}
+
+.pt5pb5 {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.col-null {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 0px;
+  border-color: var(--bs-body-bg);
+}
+
+.fs80 {
+  font-size: 80px;
+}
+
+.h200p {
+  height: 200px;
+}
+
+.article-title {
+  font-size: 3em;
+  font-family: 'Atomic Age', serif;
+  overflow-wrap: anywhere;
+}
+
+.absolute-bold-16vw {
+  font-family: Alexandria, sans-serif;
+  font-size: 16vw;
+  position: absolute;
+  transform: translateX(0%) translateY(-26%);
+  transform-origin: top left;
+  color: var(--bs-body-color);
+  filter: brightness(100%);
+  opacity: 0.09;
+}
+
+.pt8pb3 {
+  padding-top: 8%;
+  padding-bottom: 3%;
+}
+
+.h95vw {
+  color: var(--bs-body-color);
+  font-family: Alexandria, sans-serif;
+  font-size: 9.5vw;
+}
+
+.fs6vw {
+  font-size: 6vw;
+}
+
+.absolute-bold-20vw {
+  font-family: Alexandria, sans-serif;
+  font-size: 20vw;
+  position: absolute;
+  transform: translateX(0%) translateY(-26%);
+  transform-origin: top left;
+  color: var(--bs-body-color);
+  filter: brightness(100%);
+  opacity: 0.09;
+}
+
+.absolute-bold-12vw-vr {
+  font-size: 12vw;
+  font-family: Aldrich, sans-serif;
+  position: absolute;
+  transform: translateX(10%) translateY(0px) rotate(90deg) scale(1);
+  transform-origin: top left;
+  backdrop-filter: opacity(1);
+  -webkit-backdrop-filter: opacity(1);
+  opacity: 0.08;
+}
+
+.absolute-bold-10vw-vr {
+  font-family: Aldrich, sans-serif;
+  position: absolute;
+  transform: translateX(110%) translateY(0px) translateZ(0px) rotate(90deg) skew(0deg);
+  transform-origin: top left;
+  display: block;
+  overflow: hidden;
+  font-size: 10vw;
+  opacity: 0.11;
+  filter: brightness(100%) grayscale(100%);
+}
+
+
+.fs5vw {
+  font-size: 5vw;
+}
+
+.mt5bm5 {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.mt5mb5 {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.opacity7 {
+  opacity: 0.70;
+}
+
+.font-alexandria {
+  font-family: Alexandria, sans-serif;
+}
+
+.absolute-bold-12vw-vr-trx20 {
+  font-size: 12vw;
+  font-family: Aldrich, sans-serif;
+  position: absolute;
+  transform: translateX(20%) translateY(0px) rotate(90deg) scale(1);
+  transform-origin: top left;
+  backdrop-filter: opacity(1);
+  -webkit-backdrop-filter: opacity(1);
+  opacity: 0.08;
+}
+
+.referencing {
+  padding-top: 3%;
+  border-radius: 5px;
+  border-color: var(--bs-body-bg);
+  border-top-style: solid;
+  border-top-color: var(--bs-body-bg);
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  font-size: 24px;
+  font-family: Aldrich, sans-serif;
+}
+
+.absolute-bold-25vw {
+  font-family: Alexandria, sans-serif;
+  font-size: 25vw;
+  position: absolute;
+  transform: translateX(0%) translateY(-26%);
+  transform-origin: top left;
+  color: var(--bs-body-color);
+  filter: brightness(100%);
+  opacity: 0.09;
+}
+
+.pt10pb10 {
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+.absolute-bold-12vw {
+  font-family: Alexandria, sans-serif;
+  font-size: 12vw;
+  position: absolute;
+  transform: translateX(0%) translateY(-26%);
+  transform-origin: top left;
+  color: var(--bs-body-color);
+  filter: brightness(100%);
+  opacity: 0.09;
+}
+
+.mt25mb25 {
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+
+.fs75vw {
+  font-size: 7.5vw;
+}
+
+.form-select-transparent {
+  width: 100%;
+  text-align: center;
+  font-size: 5.5vw;
+  font-family: Aldrich, sans-serif;
+  color: var(--bs-primary);
+}
+
+.font-atomic {
+  font-family: 'Atomic Age', serif;
+}
+
+.mt28p {
+  margin-top: 28px;
+}
+
+.comment-avatar {
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+}
+
+.icon32 {
+  width: 32px;
+  height: 32px;
+}
+
+.pt74p {
+  padding-top: 74px;
+}
+
+.fs2vw {
+  font-size: 2vw;
+}
+
+.pb5 {
+  padding-top: 5%;
+}
+
+.op05 {
+  opacity: 0.5;
+}
+
+.timeline {
+  border-left: 1px solid #6f160a;
+  position: relative;
+  list-style: none;
+}
+
+.timeline .timeline-item {
+  position: relative;
+}
+
+.timeline .timeline-item:after {
+  position: absolute;
+  display: block;
+  top: 0;
+}
+
+.timeline .timeline-item:after {
+  background-color: #6f160a;
+  left: -38px;
+  border-radius: 50%;
+  height: 11px;
+  width: 11px;
+  content: "";
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+  z-index: 1;
+}
+
+
+/* Hide the default radio button */
+.service-price .form-check-input, .reference-service-price .form-check-input {
+  /* display: none; */
+  width: inherit;
+  height: inherit;
+}
+/* Style the custom radio button when selected */
+.service-price .form-check-input:checked + .form-check-label::before, .reference-service-price  .form-check-input:checked + .form-check-label::before {
+  background-color: var(--bs-link-hover-color); /* Background color when selected (green) */
+  color: #fff; /* Color of the checkmark when selected (white) */
+  border-color: var(--bs-dark); /* Border color when selected (green) */
+  content: '\2714'; /* Unicode checkmark character */
+  display: inline-block;
+  width: 1.5em; /* Adjust the size of the checkmark */
+  height: 1.5em; /* Adjust the size of the checkmark */
+  margin-right: 0.3em; /* Spacing between the checkmark and label text */
+  border: 1px solid transparent; /* Border color for the checkmark */
+  border-radius: 50%; /* Make it a circle */
+  text-align: center;
+  line-height: 1.5em; /* Vertically center the checkmark */
+  
+}
+
+.gradient-card {
+  background-position: -100% 0; /* Chase up effect when selected */  
+  
+}
+.gradient-card-selected {
+  background: linear-gradient(90deg, rgba(180,36,39, 0.5), var(--bs-secondary-bg-subtle)); /* Initial gradient */
+  background-size: 200% 100%; /* Set background size for the chase effect */
+  transition: background-position 0.5s ease; /* Transition background position */
+}
+.select2-container--default .select2-selection--multiple {
+  background-color: transparent!important;
+  border: 0px!important;
+
+}
+
+.select2-container .select2-selection--multiple {
+
+  min-height: None;
+
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border: transparent!important;
+  outline: 0;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+ 
+  padding: 0;
+  width: auto!important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: bisque!important;
+  border: 1px solid #aaa!important;
+  border-radius: 4px;
+ 
+}
+
+#news_search_form .form-control-lg {
+    font-size: 1.5rem!important;
+}
+
+#news_search_form .btn-group-lg>.btn, .btn-lg {
+  --bs-btn-font-size: 1.5rem;
+}

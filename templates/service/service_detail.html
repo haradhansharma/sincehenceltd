@@ -1,0 +1,256 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load core %}
+{% block extra_head %}
+
+{% endblock %}   
+
+{% block hero %}
+{% endblock %}
+
+{% block content %}
+
+    <!-- Start: Hero Banner -->
+    <section class="bg-sh-4th"><b class="text-nowrap text-uppercase text-start d-xl-flex justify-content-start align-items-start align-content-start justify-content-xl-start absolute-bold-18vw target-element">service</b>
+        <div class="container-fluid h-100">
+            {% if messages %}                                      
+                {% for message in messages %}        
+                <div class="alert alert-warning" role="alert">
+                    <span>
+                        <strong>Alert:</strong> {{ message }}.
+                    </span>
+                </div>
+                {% endfor %}  
+            {% endif %}
+            <div class="row text-center d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start pt8pb3">
+                    <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                        <h3 class="text-uppercase fw-bold text-center mb-3 h25vw">SERVICE</h3>
+                        <h3 class="text-uppercase fw-bold mb-3 h55vw">{{ service.name }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End: Hero Banner -->
+    <section class="pt5pb5">
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-start">
+                <div class="col-12 col-xl-5">
+                    <div class="row g-0 d-flex justify-content-center align-items-center">
+                        <div class="col-12">
+                            <h3 class="font-aldrich pt5pb5 pb-0">Available Options to choose</h3>
+
+
+                            {% with form=service|get_price_option_form:request %}
+                                <form action="{% url 'service:service_details' service.pk %}" method="POST">
+                                    {% csrf_token %}                 
+                                    {% for price_id, formatted_price in form.price_id.field.choices %}
+                                    <div class="service-price mt25mb25 {% if not forloop.counter|divisibleby:2 %}target-element{% endif %}">
+                                        <div class="card gradient-card p-4">                                                                            
+                                                <input class="{{ form.price_id.field.widget.attrs.class }}" type="radio" name="{{ form.price_id.name }}" id="price_{{ price_id }}" value="{{ price_id }}"{% if forloop.first %} checked {% endif %}>
+                                                <label class="form-check-label text-start fs-6" for="price_{{ price_id }}">
+                                                    {{ formatted_price|safe }}
+                                                </label>                                       
+                                    
+                                        </div>
+                                    </div>                                
+                                    {% endfor %}                                                 
+                                    {{ email_collection_form }}
+                      
+                                                                
+                              
+                                    
+                                    <div class="row gy-2 m-auto">
+                                        
+                                        <div class="col-12">                                           
+                                            <input class="btn btn-primary btn-lg d-flex flex-fill justify-content-center align-items-center align-content-stretch flex-nowrap font-aldrich w-100" type="submit" value="Start Order">  
+                                        </div>
+                                        <div class="col-12">
+                                            <a  href="{% url 'service:quotation_request' service.pk %}" class="btn btn-warning btn-lg d-flex flex-fill justify-content-center align-items-center align-content-stretch flex-nowrap font-aldrich" role="button" >Custom Quotation</a>                                
+                                        </div>
+                                    </div>                            
+                                </form>
+                            {% endwith %}
+                            {% if form.errors %}
+                                <div class="row gy-2 justify-content-evenly align-items-stretch mt-3">
+                                    <div class="alert alert-danger">
+                                        <strong>Errors:</strong>
+                                        <ul>
+                                            {% for field_name, errors in form.errors.items %}
+                                                {% for error in errors %}
+                                                    <li>{{ error }}</li>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>                                
+                                </div>
+                            {% endif %}
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-7">
+                    <h2 class="display-1 text-center target-element font-aldrich fs75vw">About Service</h2>
+                    <div class="card">
+                        <div class="card-body font-alexandria">
+                            <h4 class="card-title">Title</h4>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <h4 class="card-title">Title</h4>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <h4 class="card-title">Title</h4>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        {% comment %} <div class="breadcrumb-area breadcarumb-style-1 ptb--120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-inner text-center">
+                            <h1 class="title theme-gradient h2">{{site_data.title}}</h1>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="rainbow-gradient-circle"></div>
+            <div class="rainbow-gradient-circle theme-pink"></div>
+        </div>
+
+
+        <div class="rainbow-portfolio-details rainbow-section-gap">
+            <div class="container">
+                <div class="row mt-top-10em">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="inner">
+                            <div class="details-list">
+                                <div class="thumbnail alignwide"><img class="radius w-100" src="{{ service.service_images.all.0.picture.url }}" alt="{{service.name}}"></div>
+                                <div class="row mt--40 row--30">
+                                    <h1>{{service.name}}</h1>
+                                    <div class="col-lg-6 mt_md--30 mt_sm--30">
+                                        <div class="content-left">
+
+                                            <h5 class="border-2 border-danger border-bottom">Service Description</h5>
+                                            <div class="description">
+                                                {{service.description|safe}}
+                                            </div>
+
+
+                                            <h5 class="mt-5 border-2 border-danger border-bottom">Service Meta Data</h5>
+                                            <div class="single-list-wrapper">
+                                                {% for meta in service.service_meta_data.all %}
+                                                <div class="border-bottom mb-2 border-warning border-1">
+                                                    <label class="fw-bold">{{ meta.key|remove_dash_hyphen_capital }}:</label>
+                                                    <span>{{meta.data|safe}}</span>
+                                                </div>
+                                                {% endfor %}
+                                            </div>  
+                                            
+                                            
+                                            
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mt_md--30 mt_sm--30">
+                                        <div class="content-right">
+
+                                            <h5 class="border-2 border-danger border-bottom ">Select Plan</h5>
+                                            <form action="{% url 'shop:service_details' service.pk %}" method="POST">
+                                                {% csrf_token %}
+                                  
+                                                <div class="service-price">
+                                                    {% for price_id, formatted_price in form.price_id.field.choices %}
+                                                        <div class="form-check card mb-2 gradient-card pe-4 ps-2">
+                                                            <input class="{{ form.price_id.field.widget.attrs.class }}" type="radio" name="{{ form.price_id.name }}" id="price_{{ price_id }}" value="{{ price_id }}">
+                                                            <label class="form-check-label card-body" for="price_{{ price_id }}">
+                                                                {{ formatted_price|safe }}
+                                                            </label>
+                                                        </div>
+                                                    {% endfor %}                                                 
+                                                </div>
+                                                <div class="d-grid gap-2">
+                                                    <input class="btn btn-outline-secondary mt-0" type="submit" value="Ordering Details">
+                                                    <a class="btn btn-lg btn-outline-secondary mt-0" href="{% url 'shop:quotation_request' service.pk %}">Get Tailored Quotation</a>
+                                                </div>
+                                            </form>
+
+                                            {% if form.errors %}
+                                            <div class="alert alert-danger">
+                                                <strong>Errors:</strong>
+                                                <ul>
+                                                    {% for field_name, errors in form.errors.items %}
+                                                        {% for error in errors %}
+                                                            <li>{{ error }}</li>
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            {% endif %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="single-list">
+                                <h4 class="title mb-3 mt--40 border-2 border-danger border-bottom">List of Features</h4>                              
+
+                                <ul class="plan-offer-list list-unstyled">
+                                    {% for feature in service.service_features.all %}
+                                        <li>
+                                            <i class="feather-check"></i> {{ feature.data|safe }}
+                                        </li>
+                                    {% endfor %}
+                                    
+                                </ul>
+                            </div>
+
+
+                            <div class="portfolio-gallery mt--40">
+                                {% for image in service.service_images.all %}   
+                                    {% if not forloop.first %}
+                                        <div class="gallery mt--30">
+                                            <div class="thumbnail"><img class="radius w-100" src="{{image.picture.url}}" alt="{{service.name}}"></div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+         {% endcomment %}
+
+        {% endblock %}
+        {% block extra_body %}   
+            <script>
+                $(document).ready(function () {
+                    $('.service-price .form-check-input').change(function () {
+                        $('.service-price .form-check.card').removeClass('gradient-card-selected');
+                        $(this).closest('.service-price .form-check.card').addClass('gradient-card-selected');
+                    });
+                });
+            </script>
+        {% endblock %}
+

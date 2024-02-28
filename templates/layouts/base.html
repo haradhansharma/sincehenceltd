@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+{% load static %}
+{% load tz %}
+{% now "Y" as current_year %}
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <meta name="yandex-verification" content="0c14ceb45c140ed9" />
+
+    {% block robotindex %}{% endblock %}
+    {% block adsencecode %} {% endblock %}
+
+    {% include 'includes/meta.html' %}
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{site_data.favicon}}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}"> 
+    <link rel="stylesheet" href="{% static 'assets/css/Aldrich.css' %}"> 
+    <link rel="stylesheet" href="{% static 'assets/css/Alexandria.css' %}"> 
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}"> 
+    <link rel="stylesheet" href="{% static 'assets/css/Atomic%20Age.css' %}"> 
+    <link rel="stylesheet" href="{% static 'assets/css/bs-theme-overrides.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Navbar-Centered-Links-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Projects-Grid-images.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/select2.min.css' %}" type="text/css"/>
+    
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}"> 
+
+    
+
+
+    {% block extra_head %}
+    {% endblock %}   
+</head>
+
+<body>
+
+    
+
+
+
+    {% block navbar %}
+    {% include 'layouts/navbar.html' %}
+    {% endblock %}
+
+    {% block hero %}
+    {% include 'layouts/hero.html' %}
+    {% endblock %}
+
+    {% block content %}
+    <section class="section-bg-light"><b class="text-nowrap text-uppercase text-start d-xl-flex justify-content-start align-items-start align-content-start justify-content-xl-start target-element absolute-bold-18vw">ABOUT US</b>
+        <div class="container-fluid h-100">
+            <div class="row text-center d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start pt-30-pb-5">
+                    <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                        <h3 class="text-uppercase fw-bold text-center mb-3 h25vw">EMPOWRING</h3>
+                        <h3 class="text-uppercase fw-bold mb-3 target-element h55vw">INNOVATIVE | QUALITY-DRIVEN </h3>
+                        <p class="text-center mb-4 p3vw"> We shine through our commitment to customer happiness, innovation, and ethical business values.</p><a class="a3vw" href="#">About Us</a>
+                    </div>
+                </div>
+                <div class="col-12 text-center d-sm-flex d-md-flex justify-content-center align-self-center m-auto justify-content-md-start justify-content-xl-center align-items-xl-center pt5pt15"><img class="img-fluid d-xl-flex justify-content-center align-items-center align-content-center justify-content-xl-center text-center" src="{% static 'assets/img/time_less_sh.png' %}"></div>
+            </div>
+        </div>
+    </section><!-- End: Hero Banner -->
+    <!-- Start: Hero Banner -->
+    <section class="bg-dark"><b class="text-nowrap text-uppercase text-start text-secondary d-xl-flex justify-content-start align-items-start align-content-start justify-content-xl-start absolute-bold-18vw">mission</b>
+        <div class="container-fluid h-100">
+            <div class="row text-center d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start pt-30-pb-5">
+                    <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                        <h3 class="text-uppercase fw-bold text-center text-white mb-3 h25vw"><strong><span style="color: var(--color-heading); background-color: rgb(53, 0, 4);">engage</span></strong></h3>
+                        <h3 class="text-uppercase fw-bold text-white mb-3 h55vw target-element">enrich | foster</h3>
+                        <p class="text-center text-white mb-4 p3vw"> Timeless Elegance Meets Modern Convenience</p><a class="link-light a3vw" href="#">Our Mission</a>
+                    </div>
+                </div>
+                <div class="col-12 text-center d-sm-flex d-md-flex justify-content-center align-self-center m-auto justify-content-md-start justify-content-xl-center align-items-xl-center pt5pt15"><img class="img-fluid d-xl-flex justify-content-center align-items-center align-content-center justify-content-xl-center text-center" src="{% static 'assets/img/time_less_sh.png' %}"></div>
+            </div>
+        </div>
+    </section><!-- End: Hero Banner -->
+    <!-- Start: Hero Banner -->
+    <section class="bg-5th"><b class="text-nowrap text-uppercase text-start text-white d-xl-flex justify-content-start align-items-start align-content-start justify-content-xl-start absolute-bold-18vw">services</b>
+        <div class="container-fluid h-100">
+            <div class="row text-center d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start pt-30-pb-5">
+                    <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                        <h3 class="text-uppercase fw-bold text-center text-white mb-3 h25vw">Unparalleled</h3>
+                        <h3 class="text-uppercase fw-bold text-white mb-3 h55vw target-element">Tailored to Your Needs</h3>
+                        <p class="text-center text-white mb-4 p3vw"> From top-tier Amazon sales to expert IT consultancy, data processing, and wholesale trade </p><a class="link-light a3vw" href="#">Our Products</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Start: Projects Grid -->
+        <div class="container py-4 py-xl-5">
+            <div class="row gx-0 gy-0 pb15">
+                <div class="col-12 col-lg-7 d-flex justify-content-center align-items-center border-2 target-element border-sh-dark front-article" style="background: url({% static 'assets/img/time_less_sh.png' %}), var(--bs-primary);"><button class="btn btn-info btn-lg text-uppercase fs-5 fw-semibold hidden-button" type="button">Button</button>
+                    <div class="card bg-transparent">
+                        <div class="card-body p-4">
+                            <h2 class="text-uppercase text-light card-title">Lorem libero donec</h2>
+                            <p class="text-center text-light card-text mb-0">Category sfjhsdfsd f gjsdfj sdf&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5 d-flex justify-content-center align-items-center border-2 target-element border-sh-dark front-article" style="background: url({% static 'assets/img/time_less_sh.png' %}), var(--bs-primary);"><button class="btn btn-info btn-lg text-uppercase fs-5 fw-semibold hidden-button" type="button">Button</button>
+                    <div class="card bg-transparent">
+                        <div class="card-body p-4">
+                            <h2 class="text-uppercase text-light card-title">Lorem libero donec</h2>
+                            <p class="text-center text-light card-text mb-0">Category sfjhsdfsd f gjsdfj sdf&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5 d-flex justify-content-center align-items-center border-2 target-element border-sh-dark front-article" style="background: url({% static 'assets/img/time_less_sh.png' %}), var(--bs-primary);"><button class="btn btn-info btn-lg text-uppercase fs-5 fw-semibold hidden-button" type="button">Button</button>
+                    <div class="card bg-transparent">
+                        <div class="card-body p-4">
+                            <h2 class="text-uppercase text-light card-title">Lorem libero donec</h2>
+                            <p class="text-center text-light card-text mb-0">Category sfjhsdfsd f gjsdfj sdf&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-7 d-flex justify-content-center align-items-center border-2 target-element border-sh-dark front-article" style="background: url({% static 'assets/img/time_less_sh.png' %}), var(--bs-primary);"><button class="btn btn-info btn-lg text-uppercase fs-5 fw-semibold hidden-button" type="button">Button</button>
+                    <div class="card bg-transparent">
+                        <div class="card-body p-4">
+                            <h2 class="text-uppercase text-light card-title">Lorem libero donec</h2>
+                            <p class="text-center text-light card-text mb-0">Category sfjhsdfsd f gjsdfj sdf&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End: Projects Grid -->
+    </section><!-- End: Hero Banner -->
+    <!-- Start: Hero Banner -->
+    <section class="bg-danger"><b class="text-nowrap text-uppercase text-start text-white d-xl-flex justify-content-start align-items-start align-content-start justify-content-xl-start absolute-bold-18vw">articles</b>
+        <div class="container-fluid h-100">
+            <div class="row text-center d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start pt-30-pb-5">
+                    <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                        <h3 class="text-uppercase fw-bold text-center text-white mb-3 h25vw">News Hub</h3>
+                        <h3 class="text-uppercase fw-bold text-white mb-3 target-element h55vw">Stay Informed!</h3>
+                        <p class="text-center text-white mb-4 p3vw"> Stay connected and be the first to know! </p><a class="link-light a3vw" href="#">Latest Articles</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Start: Articles Cards -->
+        <div class="container py-4 py-xl-5">
+            <!-- Start: Articles_Sharma -->
+            <div class="row gx-0 gy-0 pt5pt15 pt-0">
+                <div class="col-12 col-lg-7 d-flex home-article" data-bss-hover-animate="pulse">
+                    <div class="card border-2 border-primary rounded-0"><img class="card-img-top w-100 d-block fit-cover h200p rounded-0 border-0" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" loading="lazy">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-start p-4">
+                            <p class="text-primary card-text mb-0 article-title">Article Title...</p>
+                            <h4 class="text-primary card-title">Nov 22, 2000 || Blog</h4>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                                <div>
+                                    <p class="fw-bold mb-0">Haradhan Sharma</p>
+                                    <p class="text-muted mb-0">Admin</p>
+                                </div>
+                            </div><button class="btn btn-primary align-self-end target-element" type="button">Read Article</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5 d-flex home-article" data-bss-hover-animate="pulse">
+                    <div class="card border-2 border-primary rounded-0"><img class="card-img-top w-100 d-block fit-cover h200p rounded-0 border-0" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" loading="lazy">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-start p-4">
+                            <p class="text-primary card-text mb-0 article-title">Article Title...</p>
+                            <h4 class="text-primary card-title">Nov 22, 2000 || Blog</h4>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                                <div>
+                                    <p class="fw-bold mb-0">Haradhan Sharma</p>
+                                    <p class="text-muted mb-0">Admin</p>
+                                </div>
+                            </div><button class="btn btn-primary align-self-end target-element" type="button">Read Article</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex home-article" data-bss-hover-animate="pulse">
+                    <div class="card border-2 border-primary rounded-0"><img class="card-img-top w-100 d-block fit-cover h200p rounded-0 border-0" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" loading="lazy">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-start p-4">
+                            <p class="text-primary card-text mb-0 article-title">Article Title...</p>
+                            <h4 class="text-primary card-title">Nov 22, 2000 || Blog</h4>
+                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                                <div>
+                                    <p class="fw-bold mb-0">Haradhan Sharma</p>
+                                    <p class="text-muted mb-0">Admin</p>
+                                </div>
+                            </div><button class="btn btn-primary align-self-end target-element" type="button">Read Article</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End: Articles_Sharma -->
+        </div><!-- End: Articles Cards -->
+    </section><!-- End: Hero Banner -->
+    {% endblock %}
+
+    {% block decline_consent %} 
+    <div class="fixed-bottom justify-content-center d-flex">
+        {% if request.COOKIES.sincehence_cookie_consent %}
+              <form method="post" action="{% url 'policy_concent:cookie_consent' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger" name="consent" value="decline">Decline Cookie Consent</button>         
+              </form>
+        {% endif %}
+    </div>
+    {% endblock %}
+
+
+    {% block footer %}
+    {% include 'layouts/footer.html' %}
+    {% endblock %}
+
+    {% block consent %} 
+        {% include 'policy_concent/consent_dialog.html' %}
+    {% endblock %}
+
+
+    {% include 'includes/scripts.html' %}
+
+    
+
+
+    <script>
+        $(document).ready(function() {   
+
+            if ($('#cookie-consent').length) {
+                $('#cookie-consent').modal('show');
+              }
+            
+            
+            $('#currency-select').change(function() {
+                $('#currency-form').submit();                   
+                
+            });
+        });
+    </script>
+
+
+
+    
+    {% block extra_body %}    
+    {% endblock %}
+
+
+    <script nonce="{{ CSP_NONCE }}" type="application/javascript">
+        document.body.addEventListener('htmx:configRequest', (e) => {
+            e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+            })
+    </script>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,374 @@
+{% extends 'layouts/base_dashboard.html' %}
+{% load static %}
+{% block robotindex %} <meta name="robots" content="noindex">  {% endblock %}
+{% block adsencecode %} {% endblock %}
+
+{% block extra_head %}
+
+{% endblock %}    
+
+{% block middle %}
+<!-- Start: sh_top -->
+<section class="bg-sh-4th">
+    <div class="container-fluid h-100">
+        <div class="row text-center d-flex justify-content-center align-items-center h-100 pb5pt10 pb5">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start">
+                <div class="text-start justify-content-start align-items-start align-content-start"><strong class="fs-1 op05 font-aldrich">Account Settings</strong></div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+<!-- Start: sh_top -->
+<section class="bg-sh-4th pt-2">
+    <div class="container-fluid h-100">
+        <div class="card bg-transparent border-0">
+            <div class="row text-center d-flex justify-content-center align-items-center pb-3">
+                <div class="col-12 pb-2">
+
+                    {% if messages %}                                      
+                        {% for message in messages %}        
+                        <div class="alert alert-warning" role="alert">
+                            <span>
+                                <strong>Alert:</strong> {{ message }}.
+                            </span>
+                        </div>
+                        {% endfor %}  
+                    {% endif %}
+
+                    <div class="card text-light bg-light d-flex">
+                        <div class="card-body text-start p-1">
+                            <h4 class="text-primary card-title">Profile Picture Update</h4>
+                            <form method="post" id="avatar_form" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="input-group my-3">
+                                    {{ avatar_form.avatar }}  
+                                    <div class="d-flex justify-content-between align-items-center input-group-text">
+                                        <img {% if user.avatar %} src="{{ user.avatar }}" alt="{{user.get_full_name}}" title="{{user.get_full_name}}" {% endif %} class="d-block" width="200px" height="200px">
+                                    </div>
+                                </div>
+                                <div class="input-group d-flex justify-content-end">
+                                    <input class="btn btn-primary" type="submit" name="avatar_form" value="SAVE">
+                                        
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card text-light bg-light d-flex">
+                        <div class="card-body text-start p-1">
+                            <h4 class="text-primary card-title">Profile Settings</h4>
+                            <form method="post" id="profile_form">
+                                {% csrf_token %}
+                                {{profile_form}}
+                                
+                                <div class="input-group d-flex justify-content-end">
+                                    <input class="btn btn-primary" type="submit" name="profile_form" value="SAVE">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="card text-light bg-light d-flex">
+                        <div class="card-body text-start p-1">
+                            <h4 class="text-primary card-title">Account Settings</h4>
+                            <form method="post" id="user_form">
+                                {% csrf_token %}
+                                {% for field in user_form %}
+                                    <label class="text-dark fs-5" for="{{ field.id_for_label }}">{{ field.label }}</label>   
+                                    <div class="d-flex mb-3">
+                                        {{ field }}      
+                                    </div>
+                                    {% if field.errors %}
+                                        <div class="text-danger">                                              
+                                            {{ field.errors }}                                                  
+                                        </div>
+                                    {% endif %}
+                                    {% if field.help_text %}
+                                        <div class="text-success fs-6">                                              
+                                            {{ field.help_text }}                                                  
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                
+                                <div class="input-group d-flex justify-content-end">
+                                    <input class="btn btn-primary" type="submit" name="user_form" value="SAVE">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+{% endblock %}
+
+
+
+{% comment %} {% block about %}  {% endcomment %}
+
+
+{% comment %} <div class="rainbow-counterup-area rainbow-section-gap">
+    <div class="container">        
+        <div class="row justify-content-center align-items-center">
+            
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="count-box counter-style-2 color-variation text-center">
+                    {% if user.get_profile.avatar %}
+                        <div class="d-block mx-auto mb-4 position-relative ">
+                            <img class="img-fluid rounded-circle shadow" src="{{ user.get_profile.avatar.url }}" alt="{{user.get_full_name}}" title="{{user.get_full_name}}" width="250px" height="250px">   
+                            <a class="position-absolute top-50 end-0 translate-middle rounded-circle bg-light btn" href="{% url 'accounts:delete_avatar' %}">X</a> 
+                        </div>  
+                    {% else %}
+                        <form class="card p-5 mb-5 overflow-hidden" style="width: 300px;" method="post" id="avatar_form" action="" enctype="multipart/form-data" >
+                            {% csrf_token %}
+                            <div class="">
+                                <div class="form-floating">
+                                    {{ avatar_form.avatar }}                   
+                                </div>
+                                <span class="text-error invalid-feedback">{{ avatar_form.avatar.errors  }}</span>
+                            </div>   
+                            <input class="btn btn-primary" name="avatar_form" name="avatar_form" type="submit"  value="Upload">                 
+                        </form> 
+                    {% endif %}                   
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div> {% endcomment %}
+
+<!-- Start Theme Style  -->
+{% comment %} <div>
+    <div class="rainbow-gradient-circle"></div>
+    <div class="rainbow-gradient-circle theme-pink"></div>
+</div> {% endcomment %}
+<!-- End Theme Style  -->
+
+
+{% comment %} <div class="rainbow-advance-tab-area p-4">
+    <div class="container">        
+        <!-- Start tab  -->
+        <div class="advance-tab-four bg-color-blackest theme-shape" data-tabs="true">
+            <div class="row row--30 gy-5">
+                <!-- Start tab Button  -->
+                <div class="col-lg-5 col-md-12 col-sm-12 col-12 mt_md--30 mt_sm--30 d-flex flex-column justify-content-between order-2 order-lg-1">
+                    
+                    <div class="advance-tab-bottom">
+                        <div class="advance-tab-button advance-tab-button-1">
+                            <ul class="nav nav-tabs tab-button-list" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a href="#" class="nav-link tab-button tab-with-icon bg-color-white-off active" id="case-tab" data-bs-toggle="tab" data-bs-target="#case" role="tab" aria-controls="case" aria-selected="true">
+
+                                        <div class="tab">
+                                            <div class="icon">
+                                                <i class="feather-zap"></i>
+                                            </div>
+                                            <div class="content">
+                                                <h4 class="title">Account Information</h4>
+                                                <p class="description">Use Doob template you can build a
+                                                    corporate
+                                                    website a short time.</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item" role="presentation">
+                                    <a href="#" class="nav-link tab-button tab-with-icon bg-color-white-off" id="casetabtwo-tab" data-bs-toggle="tab" data-bs-target="#casetabtwo" role="tab" aria-controls="casetabtwo" aria-selected="false">
+                                        <div class="tab">
+                                            <div class="icon">
+                                                <i class="feather-zap"></i>
+                                            </div>
+                                            <div class="content">
+                                                <h4 class="title">Profile Information</h4>
+                                                <p class="description">Use Doob template you can build a
+                                                    corporate
+                                                    website a short time.</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- End tab Button  -->
+
+                <!-- Start tab Content  -->
+                <div class="col-lg-7 col-md-12 col-sm-12 col-12 order-1 order-lg-2">
+                    <div class="tab-content">
+                        <div class="tab-pane fade advance-tab-content-1 bg-transparent radius active show" id="case" role="tabpanel" aria-labelledby="case-tab">
+                            <form method="post" id="user_form" action="">
+                                <div class="row g-3 justify-content-center align-items-center">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-6 p-2">
+                                            <div class="form-group">
+                                                {{ user_form.username }}
+                                                <label class="mb-2 text-muted"  for="{{ user_form.username.id_for_label }}">{{ user_form.username.label }}</label>
+                                            </div>
+                                            <span class="text-error invalid-feedback">{{ user_form.username.errors }}</span>
+                                        </div>
+                
+                                        <div class="col-md-6 p-2">
+                                            <div class="form-group">
+                                                {{ user_form.first_name }}
+                                                <label class="mb-2 text-muted" for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
+                                            </div>
+                                            <span class="text-error invalid-feedback">{{ user_form.first_name.errors  }}</span>
+                                        </div>
+                
+                                        <div class="col-md-6 p-2">
+                                            <div class="form-group">
+                                                {{ user_form.last_name }}
+                                                <label class="mb-2 text-muted" for="{{ user_form.last_name.id_for_label }}">{{  user_form.last_name.label }}</label>
+                                            </div>
+                                            <span class="text-error invalid-feedback">{{ user_form.last_name.errors  }}</span>
+                                        </div>
+                
+                                        <div class="col-md-6 p-2">
+                                            <div class="form-group">
+                                                {{ user_form.email }}
+                                                <label class="mb-2 text-muted" for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+                                            </div>
+                                            <span class="text-error invalid-feedback">{{ user_form.email.errors }}</span>
+                                        </div>
+                
+                
+                
+                                        <div class="col-md-12 p-2">
+                                            <div class="input-group">
+                                                {{ user_form.phone }}                                
+                                            </div>
+                                            <span class="text-error invalid-feedback">{{ user_form.phone.errors }}</span>
+                                        </div>
+                
+                                        <div class="col-md-6 p-2">
+                                            <div class="form-group">
+                                                {{ user_form.orgonization }}
+                                                <label class="mb-2 text-muted"
+                                                    for="{{ user_form.orgonization.id_for_label }}">{{ user_form.orgonization.label }}</label>
+                                            </div>
+                                            <span class="text-error invalid-feedback">{{ user_form.orgonization.errors  }}</span>
+                                        </div>
+                                    
+                                        {% if user_form.errors %} 
+                                        {% for key, error in user_form.errors.items %}
+                                            <div class="text-danger">                                              
+                                                {{ error }}                                          
+                                            </div>  
+                                        {% endfor %} 
+                                        {% endif %}  
+
+                                        {% if user_form.non_field_errors %} 
+                                        <div class="text-danger">                                              
+                                            {{ user_form.non_field_errors }}                                          
+                                        </div>   
+                                        {% endif %}  
+                
+                                        <div class="col-12 p-2">
+                                            <input class="btn btn-primary w-100 py-3" name="user_form" type="submit"
+                                                value="Update">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade advance-tab-content-1 bg-transparent radius" id="casetabtwo" role="tabpanel" aria-labelledby="casetabtwo-tab">
+                            <form method="post" id="profile_form" action="">
+                                <div class="row g-3 justify-content-center align-items-center">
+                                    {% csrf_token %}                    
+                                    <div class="row">
+                                        <div class="col-md-12 p-2">
+                                            <div class="form-group">
+                                                {{ profile_form.about }}
+                                                <label class="mb-2 text-muted"
+                                                    for="{{ profile_form.about.id_for_label }}">{{ profile_form.about.label }}</label>
+                                            </div>
+                                            <span class="text-error invalid-feedback">{{ profile_form.about.errors }}</span>
+                                        </div>
+                
+                                        <div class="col-md-6 p-2">
+                                            <div class="form-group">
+                                                {{ profile_form.location }}
+                                                <label class="mb-2 text-muted"
+                                                    for="{{ profile_form.location.id_for_label }}">{{ profile_form.location.label }}</label>
+                                            </div>
+                                            <span class="text-error invalid-feedback">{{ profile_form.location.errors  }}</span>
+                                        </div>
+                
+                                        <div class="col-md-6 p-2">
+                                            <div class="form-group">
+                                                {{ profile_form.birthdate }}
+                                                <label class="mb-2 text-muted"
+                                                    for="{{ profile_form.birthdate.id_for_label }}">{{ profile_form.birthdate.label }}</label>
+                                            </div>
+                                            <span class="text-error invalid-feedback">{{ profile_form.birthdate.errors }}</span>
+                                        </div>
+                                        {% if profile_form.errors %} 
+                                        {% for key, error in profile_form.errors.items %}
+                                            <div class="text-danger">                                              
+                                                {{ error }}                                          
+                                            </div>  
+                                        {% endfor %} 
+                                        {% endif %}   
+                                        {% if profile_form.non_field_errors %} 
+                                        <div class="text-danger">                                              
+                                            {{ profile_form.non_field_errors }}                                          
+                                        </div>   
+                                        {% endif %}  
+                
+                                        <div class="col-12 p-2">
+                                            <input class="btn btn-primary w-100 py-3" name="profile_form"
+                                                form="profile_form" type="submit" value="Update">
+                                        </div>
+                                    </div>
+                                </div>                        
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- End tab Content  -->
+            </div>
+        </div>
+        <!-- End tab  -->
+
+        <!-- Start Service Box  -->
+        <div class="row row--20">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 sal-animate" data-sal="slide-up" data-sal-duration="700">
+                <div class="service service__style--1 bg-color-blackest radius mt--40 text-left overflow-hidden">
+                    <div class="content">
+                        <h6 class="subtitle"><span class="theme-gradient">Step 02</span></h6>
+                        <h4 class="title w-600">
+                            <a href="#">Friendly Interface</a>
+                        </h4>
+                        <p class="description b1 color-gray mb--0">There are many variations variations
+                            of passages of Lorem Ipsum available, but the majority have suffered.</p>
+                    </div>
+                    <div class="service-thumbnail-offset bg-primary-gradient mt--40">
+                        <img src="assets/images/advance-tab/tab-7.png" alt="image">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 sal-animate" data-sal="slide-up" data-sal-duration="700">
+                <div class="service service__style--1 bg-color-blackest radius mt--40 text-left overflow-hidden">
+                    <div class="content">
+                        <h6 class="subtitle"><span class="theme-gradient">Step 03</span></h6>
+                        <h4 class="title w-600">
+                            <a href="#">Powerful Settings</a>
+                        </h4>
+                        <p class="description b1 color-gray mb--0">There are many variations of passages of
+                            Lorem Ipsum available, but the majority have suffered.</p>
+                    </div>
+                    <div class="service-thumbnail-offset bg-primary-gradient mt--40">
+                        <img src="assets/images/advance-tab/tab-6.png" alt="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Service Box  -->
+    </div>
+</div> {% endcomment %}
+{% comment %} {% endblock %} {% endcomment %}
+

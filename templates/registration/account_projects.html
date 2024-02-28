@@ -1,0 +1,89 @@
+{% extends 'layouts/base_dashboard.html' %}
+{% load static %}
+{% block robotindex %} <meta name="robots" content="noindex">  {% endblock %}
+{% block adsencecode %} {% endblock %}
+
+{% block extra_head %}
+
+{% endblock %}    
+
+{% block middle %}
+<!-- Start: sh_top -->
+<section class="bg-sh-4th">
+    <div class="container-fluid h-100">
+        <div class="row text-center d-flex justify-content-center align-items-center h-100 pb5pt10 pb5">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start">
+                <div class="text-start justify-content-start align-items-start align-content-start"><strong class="fs-1 op05 font-aldrich">Projects</strong>
+                    <h2>Against Order</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+<!-- Start: sh_top -->
+<section class="bg-sh-4th pt-2">
+    <div class="container-fluid h-100">
+        <div class="card bg-transparent border-0">
+            <div class="row text-center d-flex justify-content-center align-items-center pb-3">
+                <div class="col-12 pb-2">
+                    <div class="alert alert-success" role="alert"><span><strong>Alert</strong> text.</span></div>
+                    <div>
+                        <form class="d-flex justify-content-end align-items-end">
+                            <div class="input-group input-group-sm"><span class="input-group-text">Search By</span><input class="form-control" type="search" name="order_search" placeholder="order number #12345"></div>
+                            <div class="input-group input-group-sm text-end"><button class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-search">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                                    </svg></button></div>
+                        </form>
+                    </div>
+                    <div class="card text-light bg-light d-flex">
+                        <div class="card-body text-start p-1">
+                            <div class="table-responsive fs-6">
+                                <table class="table table-striped-columns table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Order #</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Cell 1</td>
+                                            <td>Cell 1</td>
+                                            <td>Cell 1</td>
+                                            <td>Cell 1</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm d-xl-flex justify-content-xl-end" role="group"><button class="btn btn-primary btn-sm" type="button">view</button></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cell 3</td>
+                                            <td>Cell 3</td>
+                                            <td>Cell 3</td>
+                                            <td>Cell 3</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm d-xl-flex justify-content-xl-end" role="group"><button class="btn btn-primary btn-sm" type="button">view</button></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- Start: pgination_sharma -->
+                            <nav class="p-3 px-0">
+                                <ul class="pagination pagination-sm">
+                                    <li class="page-item"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                </ul>
+                            </nav><!-- End: pgination_sharma -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+{% endblock %}

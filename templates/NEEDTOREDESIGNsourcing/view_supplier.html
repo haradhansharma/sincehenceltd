@@ -1,0 +1,90 @@
+{% load core %}
+<div class="row mb-3">        
+    <div class="col">      
+
+                <div class="card mb-3">
+                    <div class="card-header d-sm-flex justify-content-between align-items-center py-3">
+                        <p class="text-primary m-0 fw-bold">Supplier Details</p>
+                        <p>
+                            <div class="btn-group">
+                            <a class="btn btn-success btn-sm" role="button" hx-get="{% url 'sourcing:edit_supplier' supplier.id %}" hx-target="#hxpanel" hx-swap="innerHTML" >Edit Supplier</a>
+                            <a class="btn btn-danger btn-sm" role="button" hx-get="{% url 'sourcing:delete_supplier' supplier.id %}" hx-target="#hxpanel" hx-swap="innerHTML" >Delete Supplier</a>
+                            </div>
+                            <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" hx-get="{% url 'sourcing:add_product_link' supplier.id %}" hx-target="#hxpanel" hx-swap="innerHTML" ><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Add Product Link</a>
+                        </p>
+                    </div>
+
+                   
+
+
+
+                    <div class="card-body">    
+
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card text-white bg-primary shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Name</p>
+                                            <p class="text-white-50 small m-0">{{ supplier.name }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card text-white bg-success shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Company</p>
+                                            <p class="text-white-50 small m-0">{{ supplier.company }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card text-white bg-info shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Contact Information</p>
+                                            <p class="text-white-50 small m-0">{{ supplier.contact_information }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card text-white bg-warning shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Website</p>
+                                            <p class="text-white-50 small m-0"><a href="{{ supplier.website }}" target="_blank">{{ supplier.website }}</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card text-white bg-danger shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Notes</p>
+                                            <p class="text-white-50 small m-0">{{ supplier.notes }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card text-white bg-secondary shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Secondary</p>
+                                            <p class="text-white-50 small m-0">#858796</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        {% if supplier.has_product_link %}   
+                        {% with link_items=supplier.productlink_set.all %}
+                        {% include 'sourcing/link_list.html' with items=link_items %}
+                        {% endwith %}
+                        {% else %}
+                        <p>No Product Link Found! <a href="" hx-target="#hxpanel" hx-swap="innerHTML" hx-get ="{% url 'sourcing:add_product_link' supplier.id %}">Add Product Link</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+           
+    </div>
+</div>
+
+

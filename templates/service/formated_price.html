@@ -1,0 +1,13 @@
+<!-- rendering by template tag -->
+<div class="card-title fs-3">{{ price_obj.name|upper }} - {{ symbol }}{{ amount }}</div>
+{% if price_obj.price_type == 'one_time' %}
+<div class="interval-text border-top border-bottom">Will be completed by {{ price_obj.interval_count }} {{ price_obj.interval }}</div>
+{% endif %}
+
+{% if price_obj.price_type == 'recurring' %}
+<div class="interval-text border-top border-bottom">Per {{ price_obj.interval_count }} {{ price_obj.interval }} Price</div>
+{% endif %}
+<div class="card-text">{{ price_obj.features|safe }}</div>
+
+
+

@@ -1,0 +1,78 @@
+<div>
+    
+    
+<form id="expertise_form" method="post">
+    {% csrf_token %}
+    {{form.as_p}}   
+    <button class="btn btn-primary btn-lg border rounded-0 flex-fill font-aldrich" 
+    type="submit"
+    hx-post="{{action_url}}" 
+    hx-target="#approval_request_block" 
+    hx-swap="innerHTML"
+    hx-encoding='multipart/form-data'
+
+    hx-indicator="#loading-spinner">
+        {{btn_text}}
+    </button>
+
+    <div id="loading-spinner" class="htmx-indicator">Submitting...</div>
+</form>
+{{error_message}}
+</div>
+<div>
+<ol class="list-group list-group-numbered">
+    {% for req in all_requests %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+
+
+        <!-- Image -->
+        <img src="{{req.suporting_doc.url}}" height="50px" alt="{{req.doc_title}}" data-bs-toggle="modal" data-bs-target="#imageModal{{req.id}}">
+
+        <!-- Modal -->
+        <div class="modal fade" id="imageModal{{req.id}}" tabindex="-1" aria-labelledby="imageModal{{req.id}}Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModal{{req.id}}Label">{{req.doc_title}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{req.suporting_doc.url}}" class="img-fluid" alt="{{req.doc_title}}">
+                    <!-- You can customize the content or add additional information here -->
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+
+        <div class="fw-bold">{{req.doc_title}}</div>
+        {{req.url}}
+        {{req.description}}
+      </div>
+      <div>
+        <div class="badge bg-primary rounded-pill">{{req.str_status}}</div>
+        <form method="post" class="m-1">
+            {% csrf_token %}
+            <input type="hidden" name="_method" value="DELETE"/>
+            <button 
+                type="submit" 
+                class="btn btn-danger" 
+                hx-post="{% url 'accounts:delete_approval_request' req.expert_profile.id req.id %}" 
+                hx-confirm="Are you sure you wish to delete your expertise profile? It can not be undeone."
+                hx-target="#approval_request_block" 
+                hx-swap="innerHTML">
+                <svg class="bi bi-trash" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
+                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
+                </svg>                            
+            </button>
+        </form>
+      </div>
+    </li>
+    {% endfor %}
+    
+  </ol>
+
+

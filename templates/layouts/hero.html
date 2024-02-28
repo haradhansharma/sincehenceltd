@@ -1,0 +1,18 @@
+{% load static %}
+<header class="sh-cover">
+    <!-- Start: 1 Row 1 Column -->
+    <div class="container">
+        {% if messages %}                                      
+            {% for message in messages %}        
+            <div class="alert alert-warning" role="alert">
+                <span>
+                    <strong>Alert:</strong> {{ message }}.
+                </span>
+            </div>
+            {% endfor %}  
+        {% endif %}
+        <div class="row justify-content-center align-items-center header-row">
+            <div class="col-auto col-md-12 align-self-center m-auto"><img class="img-fluid target-element" src="{{ site_data.og_image }}" width="100%" loading="auto" alt="{{ site_data.name }}"></div>
+        </div>
+    </div><!-- End: 1 Row 1 Column -->
+</header><!-- Start: Hero Banner -->

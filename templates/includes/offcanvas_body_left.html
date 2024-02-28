@@ -1,0 +1,36 @@
+{% load static %}
+<div>
+    <hr class="mt-0">
+    <ul class="nav nav-pills flex-column mb-auto">
+        {% for menu in dashnoard_menu %}
+        <li class="nav-item fs2vw">
+            <a class="nav-link link-primary d-flex align-items-lg-center px-2 {% if menu.url == request.path %}active link-light{% endif %}" href="{{menu.url}}" aria-current="page">
+                {{menu.icon|safe}}
+                {{menu.title}}
+            </a>
+        </li>
+        {% endfor %}
+       
+    </ul>
+</div>
+<div>
+    <hr>
+    <div class="dropdown">
+        <a class="dropdown-toggle link-body-emphasis d-flex align-items-center text-decoration-none" aria-expanded="false" data-bs-toggle="dropdown" role="button">
+            <img class="rounded-circle me-2" alt="" width="32" height="32" src="{% if request.user.is_authenticated %}{{request.user.avatar}}{% else %}{% static 'no_image.png' %}{% endif %}" style="object-fit: cover;">
+            <strong>{% if request.user.firstname %}{{request.user.firstname}}{% else %}Set Profile{% endif %}</strong>&nbsp;
+        </a>
+        <div class="dropdown-menu shadow text-small" data-popper-placement="top-start">
+            {% for um in user_menu %} 
+            {% for uml in um.data_set %} 
+            <a class="dropdown-item" href="{{uml.url}}">{{uml.title}}</a>
+            {% endfor %}
+            {% endfor %}
+
+            {% comment %} <a class="dropdown-item" href="#">Account Settings</a>
+            <a class="dropdown-item" href="{% url 'accounts:change_pass' %}">Change Password</a> {% endcomment %}
+            {% comment %} <div class="dropdown-divider"></div> {% endcomment %}
+            {% comment %} <a class="dropdown-item" href="#">Sign out</a> {% endcomment %}
+        </div>
+    </div>
+</div>

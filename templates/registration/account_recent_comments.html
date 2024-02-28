@@ -1,0 +1,64 @@
+{% extends 'layouts/base_dashboard.html' %}
+{% load static %}
+{% load humanizelib %}
+{% block robotindex %} <meta name="robots" content="noindex">  {% endblock %}
+{% block adsencecode %} {% endblock %}
+
+{% block extra_head %}
+
+{% endblock %}    
+
+{% block middle %}
+<!-- Start: sh_top -->
+<section class="bg-sh-4th">
+    <div class="container-fluid h-100">
+        <div class="row text-center d-flex justify-content-center align-items-center h-100 pb5pt10 pb5">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start">
+                <div class="text-start justify-content-start align-items-start align-content-start"><strong class="fs-1 op05 font-aldrich">Recent Activities</strong></div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+<!-- Start: sh_top -->
+<section class="bg-sh-4th pt-2">
+    <div class="container-fluid h-100">
+        <div class="card bg-transparent border-0">
+            <div class="row text-center d-flex justify-content-center align-items-center pb-3">
+                <div class="col-12 pb-2">
+                    
+                    {% if messages %}                                      
+                        {% for message in messages %}        
+                        <div class="alert alert-warning" role="alert">
+                            <span>
+                                <strong>Alert:</strong> {{ message }}.
+                            </span>
+                        </div>
+                        {% endfor %}  
+                    {% endif %}
+
+                    <div class="row text-center d-flex pb-3">
+                        <h4 class="text-primary card-title">All comments</h4>
+                        {% for comments in user_blog_comments_all %}
+                        <div class="col-12 pb-2">
+                            <div class="card">
+                                <div class="card-body text-start">
+                                    <h4 class="card-title fs-5">{% if not comments.parent %}Commented On Post <a href="{{comments.blog.get_absolute_url}}" class="text-decoration-none">{{comments.blog.title}}</a>{% else %}Replied On comment <a class="text-decoration-none" href="{{comments.parent.get_absolute_url}}">{{comments.parent.comments|truncatechars:100}}</a>{% endif %} </h4>
+                                    <h6 class="text-muted card-subtitle mb-2">{{comments.created_at|naturaltime}}</h6>
+                                    <p class="card-text fs-6"><a href="{{comments.get_absolute_url}}" class="text-decoration-none fs-6">{{comments.comments}}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Start: pgination_sharma -->
+                    <nav class="p-3 px-0">
+                        {% include 'includes/pagination.html' with page_obj=user_blog_comments_all pagination_class="pagination-sm" %}
+                    </nav><!-- End: pgination_sharma -->
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+{% endblock %}

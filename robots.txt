@@ -1,0 +1,13 @@
+User-Agent: *
+Disallow: /admin/
+Disallow: /accounts/login/
+Disallow: /accounts/signup/
+Disallow: /accounts/password_reset/
+Disallow: /accounts/password_reset/done/
+Disallow: /accounts/reset/done/
+Disallow: /accounts/change_pass/
+Disallow: /accounts/logout/
+
+
+
+Sitemap: https://www.sincehence.co.uk/sitemap.xml

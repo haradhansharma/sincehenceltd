@@ -1,0 +1,32 @@
+<title>{{ site_data.name }} -{% block head_title %}{{ site_data.title }}{% endblock %}</title> 
+    <meta name="description" content="{{ site_data.description }}">
+    <meta name="author" content="{{ site_data.author }}">
+    <meta name="category" content="company"/>
+    <meta name="theme-color" content="#960609">     
+
+
+    <meta name="twitter:title" content="{{ site_data.name }} - {{ site_data.title }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="{{ site_data.og_image }}">
+    <meta property="twitter:description" content="{{ site_data.description }}">
+    <meta property="twitter:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:site" content="@sincehence" />
+    <meta name="twitter:creator" content="@sincehence" /> 
+
+
+    <meta property="og:image" content="{{ site_data.og_image }}">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="{{ site_data.description }}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    
+    
+    <link rel="icon" type="image/svg+xml" sizes="150x150" href="{{ site_data.mask_icon }}">
+    <link rel="icon" type="image/svg+xml" sizes="150x150" href="{{ site_data.mask_icon }}" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" sizes="150x150" href="{{ site_data.mask_icon }}">
+    <link rel="icon" type="image/svg+xml" sizes="150x150" href="{{ site_data.mask_icon }}">
+    <link rel="icon" type="image/png" sizes="2596x615" href="{{ site_data.site_logo }}">
+    
+
+    <link rel="manifest" href="{% url 'webmanifest' %}">

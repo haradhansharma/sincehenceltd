@@ -1,0 +1,34 @@
+{% load static %}
+{% load core %}
+
+
+<div class="col-12 col-lg-{% calculate_col_ratios forloop.counter ratio_string %} d-flex home-article" data-bss-hover-animate="pulse">
+    <div class="card border-3 {{border}} rounded-0 flex-fill">
+        <img class="card-img-top w-100 d-block fit-cover h200p rounded-0 border-0" src="{{ news.feature.url }}" loading="lazy" />
+        <div class="card-body d-flex flex-column justify-content-center align-items-start p-4">
+            <p class="text-primary card-text mb-0 article-title">{{ news.title|truncatechars:13 }}</p>
+            <h5 class="text-secondary card-title border-2 border-primary border-top border-bottom">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-c-square" viewBox="0 0 16 16">
+                    <path d="M8.146 4.992c-1.212 0-1.927.92-1.927 2.502v1.06c0 1.571.703 2.462 1.927 2.462.979 0 1.641-.586 1.729-1.418h1.295v.093c-.1 1.448-1.354 2.467-3.03 2.467-2.091 0-3.269-1.336-3.269-3.603V7.482c0-2.261 1.201-3.638 3.27-3.638 1.681 0 2.935 1.054 3.029 2.572v.088H9.875c-.088-.879-.768-1.512-1.729-1.512Z"/>
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2Zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2Z"/>
+                    </svg>
+                     {{ news.creator.get_full_name }} 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                    <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                    </svg>
+                     {{ news.created_at.date }} </h5>
+            <p class="fs-5 card-text">{{ news.body|safe|truncatechars:130 }}</p>
+            <div class="border-top border-bottom border-2 border-primary pb-1 mb-2">
+                {% for cat in news.categories.all %}
+                
+                <a href="{{ cat.get_absolute_url }}" class="badge bg-secondary me-2">{{ cat.title }}</a>
+                {% endfor %}
+                
+            </div>
+            <a class="btn btn-primary align-self-end target-element" href="{{ news.get_absolute_url }}">Read Article</a>
+        </div>
+    </div>
+</div>
+
+

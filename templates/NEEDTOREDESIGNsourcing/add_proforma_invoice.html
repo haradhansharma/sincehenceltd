@@ -1,0 +1,17 @@
+<div class="row mb-3">        
+    <div class="col">     
+        <div class="card mb-3">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 fw-bold">Add Performa Invoice</p>
+            </div>
+            <div class="card-body">    
+
+    <form hx-post="{% url 'sourcing:add_proforma_invoice' product_link.supplier.id product_link.id %}" hx-target="#hxpanel" hx-swap="innerHTML" hx-encoding ="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-success"  type="submit">Add Performa Invoice</button>
+    </form>
+</div>
+</div>
+</div>
+</div>

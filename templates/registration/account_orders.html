@@ -1,0 +1,94 @@
+{% extends 'layouts/base_dashboard.html' %}
+{% load static %}
+{% block robotindex %} <meta name="robots" content="noindex">  {% endblock %}
+{% block adsencecode %} {% endblock %}
+
+{% block extra_head %} 
+
+{% endblock %}    
+
+{% block middle %}
+<!-- Start: sh_top -->
+<section class="bg-sh-4th">
+    <div class="container-fluid h-100">
+        <div class="row text-center d-flex justify-content-center align-items-center h-100 pb5pt10 pb5">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start">
+                <div class="text-start justify-content-start align-items-start align-content-start"><strong class="fs-1 op05 font-aldrich">Orders</strong>
+                    <h2>Successfully Placed</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+<!-- Start: sh_top -->
+<section class="bg-sh-4th pt-2">
+    <div class="container-fluid h-100">
+        <div class="card bg-transparent border-0">
+            <div class="row text-center d-flex justify-content-center align-items-center pb-3">
+                <div class="col-12 pb-2">
+                    {% if messages %}                                      
+                        {% for message in messages %}        
+                        <div class="alert alert-warning" role="alert">
+                            <span>
+                                <strong>Alert:</strong> {{ message }}.
+                            </span>
+                        </div>
+                        {% endfor %}  
+                    {% endif %}
+                    {% if orders %}
+                    <div class="card text-light bg-light d-flex">
+                        <div class="card-body text-start p-1">
+                            <div class="table-responsive fs-6">
+                                <table class="table table-striped-columns table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Order#</th>
+                                            <th>Info</th>
+                                            <th>Status</th>
+
+                                            <th>Amount</th>
+                                            <th>Pending</th>
+                                            <th>Checking</th> 
+                                            <th>Reject</th>
+
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for order in orders %}
+                                        <tr>
+                                            <td>{{order.order_number}}</td>
+                                            <td>{{order.price.price_for_obj}}</td>
+                                            <td>{{order.status}}</td>
+                                            <td>{{order.amount}}</td>
+
+                                            <td>{{order.pending_amount}}</td>
+                                            <td>{{order.trans_checking_amount}}</td>
+                                            <td>{{order.trans_reject_amount}}</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm d-xl-flex justify-content-xl-end" role="group">
+                                                    {% comment %} {% if order.order_project %} {% endcomment %}
+                                                    <a class="btn btn-primary btn-sm" href="{{order.get_absolute_url}}">view</a>
+                                                    {% comment %} {% endif %} {% endcomment %}
+                                                    <a class="btn btn-dark btn-sm" href="">pdf</a>
+                                                    <a class="btn btn-warning btn-sm" href="">project</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div><!-- Start: pgination_sharma -->
+                            {% include 'includes/pagination.html' with page_obj=orders pagination_class="pagination-sm" %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div>Nothing to show</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+{% endblock %}

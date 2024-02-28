@@ -1,0 +1,105 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load core %}
+
+ {% block content %}
+ <!-- Start: About us sections -->
+    <section class="section-bg-light"><b class="text-nowrap text-uppercase text-start d-xl-flex  target-element absolute-bold-18vw">ABOUT US</b>
+        <div class="container-fluid h-100">
+            <div class="row text-center d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 text-center d-flex m-auto pt-30-pb-5">
+                    <div class="text-center d-block m-auto">
+                        <h3 class="text-uppercase fw-bold text-center mb-3 h25vw">EMPOWRING</h3>
+                        <h3 class="text-uppercase fw-bold mb-3 target-element h55vw">INNOVATIVE | QUALITY-DRIVEN </h3>
+                        <p class="text-center mb-4 p3vw"> We shine through our commitment to customer happiness, innovation, and ethical business values.</p>
+                        <a class="a3vw" href="{{about_us_link}}">About Us</a>
+                    </div>
+                </div>
+                <div class="col-12 text-center d-flex justify-content-center m-auto pt5pt15">
+                    <img class="img-fluid text-center" src="{% static 'assets/img/time_less_sh.png' %}" alt="SinceHence Timeless" loading="auto">
+                </div>
+            </div>
+        </div>
+    </section><!-- End: About us sections -->
+
+
+    <!-- Start: Mission Section -->
+    <section class="bg-dark"><b class="text-nowrap text-uppercase text-start text-secondary d-flex  absolute-bold-18vw">mission</b>
+        <div class="container-fluid h-100">
+            <div class="row text-center d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 text-center d-flex m-auto pt-30-pb-5">
+                    <div class="text-center d-block align-content-center m-auto">
+                        <h3 class="text-uppercase fw-bold text-center text-white mb-3 h25vw"><strong>
+                            <span class="text-light">engage</span></strong></h3>
+                        <h3 class="text-uppercase fw-bold text-white mb-3 h55vw target-element">enrich | foster</h3>
+                        <p class="text-center text-white mb-4 p3vw"> Timeless Elegance Meets Modern Convenience</p>
+                        <a class="link-light a3vw" href="{{about_us_link}}">Our Mission</a>
+                    </div>
+                </div>
+                <div class="col-12 text-center d-flex justify-content-center align-self-center m-auto pt5pt15">
+                    <img class="img-fluid d-flex justify-content-center align-items-center text-center" src="{% static 'assets/img/elegence.png' %}"></div>
+            </div>
+        </div>
+    </section><!-- End: Mission Section -->
+    <!-- Start: Service Section -->
+    <section class="bg-5th"><b class="text-nowrap text-uppercase text-start text-white d-flex  absolute-bold-18vw">services</b>
+        <div class="container-fluid h-100">
+            <div class="row text-center d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 text-center d-flex m-auto pt-30-pb-5">
+                    <div class="text-center d-block align-content-center m-auto">
+                        <h3 class="text-uppercase fw-bold text-center text-white mb-3 h25vw">Unparalleled</h3>
+                        <h3 class="text-uppercase fw-bold text-white mb-3 h55vw target-element">Tailored to Your Needs</h3>
+                        <p class="text-center text-white mb-4 p3vw"> From top-tier Amazon sales to expert IT consultancy, data processing, and wholesale trade </p>
+                        <a class="link-light a3vw" href="{% url 'service:service_list' %}">Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start: Service Section  -->
+        <div class="container py-4 py-xl-5">
+            <div class="row gx-0 gy-0 pb15">
+
+                {% with ratio_string="7:5:6:6:12" %}
+                   
+                        {% for category in service_categories %} 
+                                <div class="col-12 col-lg-{% calculate_col_ratios forloop.counter ratio_string %} d-flex justify-content-center align-items-center border-2 target-element border border-3 border-secondary front-article" style="background: url({{ category.banner.url }}), var(--bs-primary);">
+                                    <a href="{{ category.get_absolute_url }}" class="btn btn-info text-uppercase fs-6 fw-semibold hidden-button" type="button">View {{category.title}}</a>
+                                    <div class="card bg-transparent border-0">
+                                        <div class="card-body p-4">
+                                            <h2 class="text-uppercase text-light card-title text-start">{{ category.title }}</h2>
+                                            <p class="text-start text-light card-text mb-0">{{ category.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endfor %}
+                  
+                {% endwith %}
+                
+            </div>
+        </div>
+    </section><!-- End: Service Section -->
+    <!-- Start: Hero Banner -->
+    <section class="bg-danger"><b class="text-nowrap text-uppercase text-start text-white d-xl-flex  absolute-bold-18vw">articles</b>
+        <div class="container-fluid h-100">
+            <div class="row text-center d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start pt-30-pb-5">
+                    <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                        <h3 class="text-uppercase fw-bold text-center text-white mb-3 h25vw">News Hub</h3>
+                        <h3 class="text-uppercase fw-bold text-white mb-3 target-element h55vw">Stay Informed!</h3>
+                        <p class="text-center text-white mb-4 p3vw"> Stay connected and be the first to know! </p><a class="link-light a3vw" href="{% url 'cms:latest_blogs' %}">Latest Articles</a>
+                    </div> 
+                </div>
+            </div>
+        </div><!-- Start: Articles Cards -->
+        <div class="container py-4 py-xl-5">
+            <!-- Start: Articles_Sharma -->
+            <div class="row gx-0 gy-0 pt5pt15 pt-0">
+                {% with ratio_string="7:5:12" %}
+                {% for news in latest_news %} 
+                {% include 'includes/news.html' with news=news ratio_string=ratio_string border="border-danger" %}
+                {% endfor %}
+                {% endwith %}           
+            </div><!-- End: Articles_Sharma -->
+        </div><!-- End: Articles Cards -->
+    </section><!-- End: Hero Banner -->
+    {% endblock %}

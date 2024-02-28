@@ -1,0 +1,533 @@
+{% extends 'layouts/base_dashboard.html' %}
+{% load static %}
+{% load core %}
+{% block robotindex %} <meta name="robots" content="noindex">  {% endblock %}
+{% block adsencecode %} {% endblock %}
+
+{% block extra_head %}
+
+
+{% endblock %}  
+
+ 
+
+{% block middle %}
+
+<!-- Start: sh_top -->
+<section class="bg-sh-4th">
+    <div class="container-fluid h-100">
+        <div class="row text-center d-flex justify-content-center align-items-center h-100 pb5pt10 pb5">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start">
+                <div class="text-start d-flex justify-content-start align-items-start align-content-start">
+                    <strong class="fs-1 op05 font-aldrich">Order #{{ order.order_number }}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+<!-- Start: sh_top -->
+<section class="bg-sh-4th pt-2">
+    <div class="container-fluid h-100">
+        <div class="card bg-transparent border-0">
+            {% if messages %}                                      
+                {% for message in messages %}        
+                <div class="alert alert-warning" role="alert">
+                    <span>
+                        <strong>Alert:</strong> {{ message }}.
+                    </span>
+                </div>
+                {% endfor %}  
+            {% endif %}
+            <div class="row gx-2 gy-0 text-center pb-3">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 d-flex justify-content-center pb-2">
+                    <div class="card text-primary bg-secondary flex-fill">
+                        <div class="card-body">
+                            <h5 class="text-success card-title">Confirmed</h5>
+                            <p>Order Status</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 d-flex justify-content-center pb-2">
+                    <div class="card text-secondary bg-primary flex-fill">
+                        <div class="card-body">
+                            <h5 class="text-light card-title">Assigned</h5>
+                            <p>Project Status</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 d-flex justify-content-center pb-2">
+                    <div class="card text-light bg-success flex-fill">
+                        <div class="card-body">
+                            <h5 class="card-title">100%</h5>
+                            <p>Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card bg-transparent border-0">
+            <h2>Transactions</h2>
+            <div class="row text-center d-flex justify-content-center align-items-center pb-3">
+                <div class="col-12 pb-2">
+                    <!-- Start: table_with_footer -->
+                    <div class="card text-light bg-light d-flex">
+                        <div class="card-body text-start p-1">
+                            <div class="table-responsive fs-6">
+                                <table class="table table-striped-columns table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Cell 1</td>
+                                            <td>Cell 1</td>
+                                            <td>Cell 1</td>
+                                            <td>Cell 1</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm d-xl-flex justify-content-xl-end" role="group"><button class="btn btn-primary btn-sm" type="button">view</button><button class="btn btn-dark btn-sm" type="button">pdf</button><button class="btn btn-warning btn-sm" type="button">project</button></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cell 3</td>
+                                            <td>Cell 3</td>
+                                            <td>Cell 3</td>
+                                            <td>Cell 3</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm d-xl-flex justify-content-xl-end" role="group"><button class="btn btn-primary btn-sm" type="button">view</button><button class="btn btn-dark btn-sm" type="button">pdf</button><button class="btn btn-warning btn-sm" type="button">projectt</button></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- Start: pgination_sharma -->
+                            <nav class="p-3 px-0">
+                                <ul class="pagination pagination-sm">
+                                    <li class="page-item"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                </ul>
+                            </nav><!-- End: pgination_sharma -->
+                        </div>
+                    </div><!-- End: table_with_footer -->
+                </div>
+            </div>
+        </div><!-- Start: TimeLine_Haradhan -->
+
+
+        {% if order.order_project %}
+
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="pills-html-tab" data-bs-toggle="pill" data-bs-target="#pills-html" type="button" role="tab" aria-controls="pills-html" aria-selected="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-flower2" viewBox="0 0 16 16">
+                    <path d="M8 16a4 4 0 0 0 4-4 4 4 0 0 0 0-8 4 4 0 0 0-8 0 4 4 0 1 0 0 8 4 4 0 0 0 4 4m3-12c0 .073-.01.155-.03.247-.544.241-1.091.638-1.598 1.084A2.987 2.987 0 0 0 8 5c-.494 0-.96.12-1.372.331-.507-.446-1.054-.843-1.597-1.084A1.117 1.117 0 0 1 5 4a3 3 0 0 1 6 0m-.812 6.052A2.99 2.99 0 0 0 11 8a2.99 2.99 0 0 0-.812-2.052c.215-.18.432-.346.647-.487C11.34 5.131 11.732 5 12 5a3 3 0 1 1 0 6c-.268 0-.66-.13-1.165-.461a6.833 6.833 0 0 1-.647-.487m-3.56.617a3.001 3.001 0 0 0 2.744 0c.507.446 1.054.842 1.598 1.084.02.091.03.174.03.247a3 3 0 1 1-6 0c0-.073.01-.155.03-.247.544-.242 1.091-.638 1.598-1.084m-.816-4.721A2.99 2.99 0 0 0 5 8c0 .794.308 1.516.812 2.052a6.83 6.83 0 0 1-.647.487C4.66 10.869 4.268 11 4 11a3 3 0 0 1 0-6c.268 0 .66.13 1.165.461.215.141.432.306.647.487M8 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                  </svg>
+            </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-calender-tab" data-bs-toggle="pill" data-bs-target="#pills-calender" type="button" role="tab" aria-controls="pills-calender" aria-selected="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                    <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                    <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                  </svg>
+            </button>
+            </li>            
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-html" role="tabpanel" aria-labelledby="pills-html-tab">
+            <section class="py-5">
+                <h2>Project Timeline from {{order.order_project.created_at.date}}</h2>
+                <ul class="timeline">
+                    {% for milestone in milestones %}
+                    <div id ="milestone_block{{milestone.id}}">
+                        {% include 'registration/milestone_block.html' %}
+                    </div>
+                    {% endfor %}
+                    
+                    <li class="timeline-item mb-5">
+                        <div class="card">
+                            <h3 class="display-3 text-uppercase text-center text-light py-3 op05 bg-secondary">step-1</h3>
+                            <div class="card-overlay"></div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h4 class="text-primary font-aldrich">Template Design and Confirmation (Re: 7 days)</h4><span class="fs-5 text-info">Target: 10 july, 2024</span>
+                                </div>
+                                <h5 class="text-secondary card-title font-aldrich">Awaiting Confirmation (for 1 days)</h5>
+                                <p class="fs-6 card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                                <section>
+                                    <div class="container px-0 my-2">
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-md-12">
+                                                <div class="card text-dark border-0">
+                                                    <p class="fw-light mb-4 pb-2">Interactions</p>
+                                                    <div class="card-body p-4">
+                                                        <div class="d-flex flex-start"><img class="rounded-circle shadow-1-strong me-3" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp" alt="avatar" width="60" height="60">
+                                                            <div>
+                                                                <div class="d-flex justify-content-between">
+                                                                    <h6 class="fw-bold mb-1">Maggie Marsh</h6><span class="fs-6">Awaited: 0 days</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                                    <p class="fs-5 mb-0"> March 07, 2021 </p><span><a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a><a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a></span>
+                                                                </div>
+                                                                <p class="fs-6 mb-0"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it. </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="my-0">
+                                                    <div class="card-body p-4">
+                                                        <div class="d-flex flex-start"><img class="rounded-circle shadow-1-strong me-3" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp" alt="avatar" width="60" height="60">
+                                                            <div>
+                                                                <div class="d-flex justify-content-between">
+                                                                    <h6 class="fw-bold mb-1">Maggie Marsh</h6><span class="fs-6">Awaited: 0 days</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                                    <p class="fs-5 mb-0"> March 07, 2021 </p><span><a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a><a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a></span>
+                                                                </div>
+                                                                <p class="fs-6 mb-0"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it. </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="my-0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section><!-- Start: reply_form -->
+                                <form>
+                                    <div class="d-flex flex-column"><textarea class="form-control form-control-sm"></textarea></div>
+                                    <div class="d-flex justify-content-between text-end">
+                                        <div><a class="fs-6 border rounded m-2 p-2 pt-2" href="#">O Like</a></div>
+                                        <div><a class="fs-6 border rounded m-2 p-2 pt-2" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil-square">
+                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                                </svg>Reply</a></div>
+                                    </div>
+                                </form><!-- End: reply_form -->
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-item mb-5">
+                        <div class="card">
+                            <h3 class="display-3 text-uppercase text-center text-light py-3 op05" style="background: var(--bs-primary-bg-subtle);">step-1</h3>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h4 class="text-primary font-aldrich">Template Design and Confirmation (Re: 7 days)</h4><span class="fs-5 text-info">Target: 10 july, 2024</span>
+                                </div>
+                                <h5 class="text-secondary card-title font-aldrich">Awaiting Confirmation (for 1 days)</h5>
+                                <p class="fs-6 card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                                <section>
+                                    <div class="container px-0 my-2">
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-md-12">
+                                                <div class="card text-dark border-0">
+                                                    <p class="fw-light mb-4 pb-2">Interactions</p>
+                                                    <div class="card-body p-4">
+                                                        <div class="d-flex flex-start"><img class="rounded-circle shadow-1-strong me-3" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp" alt="avatar" width="60" height="60">
+                                                            <div>
+                                                                <div class="d-flex justify-content-between">
+                                                                    <h6 class="fw-bold mb-1">Maggie Marsh</h6><span class="fs-6">Awaited: 0 days</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                                    <p class="fs-5 mb-0"> March 07, 2021 </p><span><a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a><a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a></span>
+                                                                </div>
+                                                                <p class="fs-6 mb-0"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it. </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="my-0">
+                                                    <div class="card-body p-4">
+                                                        <div class="d-flex flex-start"><img class="rounded-circle shadow-1-strong me-3" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp" alt="avatar" width="60" height="60">
+                                                            <div>
+                                                                <div class="d-flex justify-content-between">
+                                                                    <h6 class="fw-bold mb-1">Maggie Marsh</h6><span class="fs-6">Awaited: 0 days</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                                    <p class="fs-5 mb-0"> March 07, 2021 </p><span><a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a><a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a></span>
+                                                                </div>
+                                                                <p class="fs-6 mb-0"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it. </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="my-0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section><!-- Start: reply_form -->
+                                <form>
+                                    <div class="d-flex flex-column"><textarea class="form-control form-control-sm"></textarea></div>
+                                    <div class="d-flex justify-content-between text-end" style="text-align: right;">
+                                        <div><a class="fs-6 border rounded m-2 p-2 pt-2" href="#"><i class="far fa-heart"></i></a></div>
+                                        <div><a class="fs-6 border rounded m-2 p-2 pt-2" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil-square">
+                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                                </svg>Reply</a></div>
+                                    </div>
+                                </form><!-- End: reply_form -->
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-item mb-5">
+                        <div class="card">
+                            <h3 class="display-3 text-uppercase text-center text-light py-3 op05" style="background: var(--bs-primary-bg-subtle);">step-1</h3>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h4 class="text-primary font-aldrich">Template Design and Confirmation (Re: 7 days)</h4><span class="fs-5 text-info">Target: 10 july, 2024</span>
+                                </div>
+                                <h5 class="text-secondary card-title font-aldrich">Awaiting Confirmation (for 1 days)</h5>
+                                <p class="fs-6 card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                                <section>
+                                    <div class="container px-0 my-2">
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-md-12">
+                                                <div class="card text-dark border-0">
+                                                    <p class="fw-light mb-4 pb-2">Interactions</p>
+                                                    <div class="card-body p-4">
+                                                        <div class="d-flex flex-start"><img class="rounded-circle shadow-1-strong me-3" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp" alt="avatar" width="60" height="60">
+                                                            <div>
+                                                                <div class="d-flex justify-content-between">
+                                                                    <h6 class="fw-bold mb-1">Maggie Marsh</h6><span class="fs-6">Awaited: 0 days</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                                    <p class="fs-5 mb-0"> March 07, 2021 </p><span><a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a><a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a></span>
+                                                                </div>
+                                                                <p class="fs-6 mb-0"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it. </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="my-0">
+                                                    <div class="card-body p-4">
+                                                        <div class="d-flex flex-start"><img class="rounded-circle shadow-1-strong me-3" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp" alt="avatar" width="60" height="60">
+                                                            <div>
+                                                                <div class="d-flex justify-content-between">
+                                                                    <h6 class="fw-bold mb-1">Maggie Marsh</h6><span class="fs-6">Awaited: 0 days</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                                    <p class="fs-5 mb-0"> March 07, 2021 </p><span><a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a><a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a></span>
+                                                                </div>
+                                                                <p class="fs-6 mb-0"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it. </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="my-0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section><!-- Start: reply_form -->
+                                <form>
+                                    <div class="d-flex flex-column"><textarea class="form-control form-control-sm"></textarea></div>
+                                    <div class="d-flex justify-content-between text-end" style="text-align: right;">
+                                        <div><a class="fs-6 border rounded m-2 p-2 pt-2" href="#">O Like</a></div>
+                                        <div><a class="fs-6 border rounded m-2 p-2 pt-2" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil-square">
+                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                                </svg>Reply</a></div>
+                                    </div>
+                                </form><!-- End: reply_form -->
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section><!-- End: TimeLine_Haradhan -->    
+            
+        </div>
+        <div class="tab-pane fade" id="pills-calender" role="tabpanel" aria-labelledby="pills-calender-tab">
+            
+            <section class="py-5">
+                <div class="card" id="calendar"></div>
+            </section>
+        </div>
+
+        </div>
+        {% else %}
+        <div>Project will be initiate soon</div>
+        {% endif %}
+
+        
+
+        
+    
+                
+           
+        
+                
+      
+    </div>
+</section><!-- End: sh_top -->
+
+
+
+{% endblock %}
+{% block right_sidebar %}
+<!-- Start: Sidebar With List -->
+<div class="offcanvas-sm offcanvas-start" tabindex="-1" data-bs-scroll="true" data-bs-backdrop="false" id="offcanvas-list-1" style="position: relative;">
+    <div class="offcanvas-header"><a class="link-body-emphasis d-flex align-items-center me-md-auto mb-3 mb-md-0 text-decoration-none" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-bootstrap-fill me-3" style="font-size: 25px;">
+                <path d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375v2.725z"></path>
+                <path d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4h-8zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396H5.062z"></path>
+            </svg><span class="fs-4">Sidebar</span></a><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button></div>
+    <div class="offcanvas-body d-flex flex-column justify-content-between p-0">
+        <!-- Start: recent_activity -->
+        <div>
+            
+            <div class="d-flex pt-3">
+                <h2 class="text-primary">Order's Todo</h2>
+            </div>
+            <hr class="my-0">
+            {% for ordertex in order.order_req_texts.all %}
+            <div class="accordion" role="tablist" id="accordion-{{ordertex.id}}">
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header" role="tab">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-{{ordertex.id}} .item-{{ordertex.id}}" aria-expanded="true" aria-controls="accordion-{{ordertex.id}} .item-{{ordertex.id}}">{{ ordertex.data }}</button>
+                    </h2>
+                    <div class="accordion-collapse collapse item-{{ordertex.id}}" role="tabpanel" data-bs-parent="#accordion-{{ordertex.id}}">
+                        <div class="accordion-body px-1">
+                            <p class="fs-6 fw-lighter">Assigned to below issues of the project.</p>
+
+                            {% for issue in ordertex|get_project_issues %}
+                            <a class="p-2" href="#issue{{issue.id}}" rel="nofollow">
+                                <span class="badge bg-primary text-uppercase fs-6 fw-lighter">
+                                    {{ issue.milestone }}
+                                </span>
+                            </a>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            {% endfor %}
+        </div><!-- End: recent_activity -->
+        <div>
+            <div class="d-flex pt-3">
+                <h2 class="text-primary">Order Images</h2>
+            </div>
+            {% for orderimg in order.order_req_images.all %}
+            {% if orderimg.images %}
+            <div class="border rounded border-1 border-secondary p-2 mb-2">
+                <img class="img-fluid" width="100%" src="{{orderimg.images.url}}" loading="lazy">
+            </div>
+            {% endif %}
+            {% endfor %}
+      
+        </div>
+        <div>
+            <div class="d-flex pt-3">
+                <h2 class="text-primary">Order Files</h2>
+            </div>
+            {% for orderfile in order.order_req_files.all %}
+            {% if orderfile.file %}
+            <div class="border-1 border-secondary p-2 mb-2">
+                <iframe src="{{orderfile.file.url}}" width="100%" height="300" type="application/pdf"  title="Document" allowfullscreen allow="fullscreen"></iframe>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        {% include "includes/recent_and_howto.html" %}
+        
+
+    </div>
+</div><!-- End: Sidebar With List -->
+
+{% endblock %}
+
+{% block extra_body %} 
+
+
+    <script>
+
+        
+
+        document.addEventListener('DOMContentLoaded', function() {          
+            var calendarEl = document.getElementById('calendar');
+
+            var events = [
+            {% for event in events %}
+            {
+                'title': '{{ event.title|escapejs }}',
+                'start': '{{ event.start }}',
+                'end': '{{ event.end }}',
+                'description': '{{ event.description|escapejs }}',
+                {% if event.url %}
+                    'url': '{{ event.url }}',
+                {% endif %}
+                {% if event.display %}
+                    'display': '{{ event.display }}',
+                {% endif %}
+                {% if event.color %}
+                    'color': '{{ event.color }}',
+                {% endif %}
+            },
+            {% endfor%}
+            
+            ]
+          
+            var calendar = new FullCalendar.Calendar(calendarEl, {                
+                themeSystem: 'bootstrap5',
+                timeZone: '{{timezone}}',
+                
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'multiMonthYear,dayGridYear,dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                  },
+                initialDate: '{{ order.order_project.created_at|date:"Y-m-d" }}',
+                //height: 'auto',
+                initialView: 'multiMonthYear',
+                //weekends: true,
+                
+                navLinks: true, // can click day/week names to navigate views
+                businessHours: true, // display business hours
+                //editable: true,
+                selectable: true,
+                selectMirror: true,
+                dayMaxEvents: true,
+                nowIndicator: true,                
+
+                businessHours: {
+                    // Adjust business hours to exclude Friday and Saturday
+                    daysOfWeek: '{{business_days}}', // Monday to Thursday
+                    startTime: '{{office_start}}',
+                    endTime: '{{office_end}}',    
+                },
+                eventDidMount: function(info) {     
+                    var description = info.event.extendedProps.description;
+                    if (description && typeof description === 'string') {               
+                        var tooltip = new bootstrap.Tooltip(info.el, {
+                            title: description,
+                            placement: 'top',
+                            trigger: 'hover',
+                            container: 'body'
+                        });
+                    }
+                },
+                
+                events: events
+            });
+          
+            calendar.render();
+
+            // Event listener for tab change
+            var calendarTab = document.getElementById('pills-calender-tab');
+            calendarTab.addEventListener('click', function() {
+                // If the calendar tab is clicked, render the calendar
+                calendar.render();
+            });
+
+           
+          });
+
+    </script>
+{% endblock %}
+
+ 

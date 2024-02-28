@@ -1,0 +1,12 @@
+<!-- currency_selection.html -->
+<form method="post" action="{% url 'shcurrency:change_currency' %}" id="currency-form">
+    {% csrf_token %}  
+    <select class="form-select bg-transparent border-0" name="currency" id="currency-select">
+        {% for currency in currencies %}
+            <option value="{{ currency.code }}" {% if request.currency == currency.code %}selected{% endif %}>
+                {{ currency.code }} ({{ currency.symbol }})
+            </option> 
+        {% endfor %}
+    </select>    
+</form>
+

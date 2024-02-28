@@ -1,0 +1,37 @@
+{% load core %}
+
+{% if page_obj.has_other_pages %}
+<nav class="p-3 px-0">
+<ul class="pagination {% if pagination_class %} {{pagination_class}} {% else %} pagination-lg {% endif %}">
+  {% if page_obj.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for key, values in filters.items %}&{{ key }}={% for value in values %}{{ value }}{% endfor %}{% endfor %}">&laquo;</a></li>
+  {% else %}
+    <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+  {% endif %}
+
+  
+  {% for i in page_obj.paginator.page_range %}
+      {% if i == 1 %}
+        <li class="page-item"><a class="page-link" href="?page=1{% for key, values in filters.items %}&{{ key }}={% for value in values %}{{ value }}{% endfor %}{% endfor %}">1</a></li>
+      {% elif i == page_obj.number %}
+        <li class="active page-item"><span class="page-link">{{ i }}</span></li>
+      {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}{% for key, values in filters.items %}&{{ key }}={% for value in values %}{{ value }}{% endfor %}{% endfor %}">{{ i }}</a></li>
+      {% elif i == page_obj.paginator.num_pages %}
+        <li class="disabled page-item"><span class="page-link">&hellip;</span></li>
+      {% endif %}
+    {% endfor %}
+
+
+  {% if page_obj.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key, values in filters.items %}&{{ key }}={% for value in values %}{{ value }}{% endfor %}{% endfor %}">&raquo;</a></li>
+  {% else %}
+    <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+  {% endif %}
+</ul>
+</nav>
+{% endif %}
+
+
+
+

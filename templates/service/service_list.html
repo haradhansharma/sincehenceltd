@@ -1,0 +1,98 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load core %}
+{% block extra_head %}
+
+{% endblock %}   
+
+{% block hero %}
+{% endblock %}
+
+{% block content %}
+
+  <!-- Start: Hero Banner -->
+  <section class="bg-sh-4th">
+    <b class="text-nowrap text-uppercase text-start d-flex absolute-bold-18vw">services</b>
+    <div class="container-fluid h-100">
+        {% if messages %}                                      
+            {% for message in messages %}        
+            <div class="alert alert-warning" role="alert">
+                <span>
+                    <strong>Alert:</strong> {{ message }}.
+                </span>
+            </div>
+            {% endfor %}  
+        {% endif %}
+        <div class="row text-center d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start pt10pb10">
+                <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                    <h3 class="text-uppercase fw-bold text-center mb-3 h25vw">ALL SERVICES</h3>
+                    <h3 class="text-uppercase fw-bold mb-3 h55vw">HAS BEEN LISTED BELOW</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: Hero Banner -->
+<!-- Start: Hero Banner -->
+<section class="bg-sh-4th overflow-hidden">
+    <!-- Start: Articles Cards -->
+    <div class="container py-4 py-xl-5">
+        <form id="service_category_form" method = 'get' action="{% url 'service:service_list' %}" class="text-center w-100 overflow-hidden">
+            {% csrf_token %}
+            <select 
+            class="bg-transparent border rounded-pill border-2 border-danger form-select-lg target-element form-select-transparent" 
+            name="q" id="service_category">
+                <optgroup label="Service Categories">
+                    {% for sc in service_categories %}
+                    <option value="{{sc.id}}" {% if sc.id == q %} selected {% endif %}>{{sc.title}}</option>
+                    {% endfor %}
+                </optgroup>
+            </select>
+        </form>
+        <div class="row gy-0 justify-content-center align-items-stretch">
+            <div class="col-11 col-lg-10 px-0">
+                <div class="row gx-2 gy-2">
+                 
+                    {% for service in services %}
+                        {% if forloop.counter|divisibleby:2 %}
+                            {% include 'includes/service_col.html' with service=service background="bg-transparent" %}                    
+                        {% else %}
+                            {% include 'includes/service_col.html' with service=service background="bg-light" %}                    
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <div class="col">
+
+                        {% include 'includes/pagination.html' with services=page_obj filters=filters %}
+                       
+                       
+         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End: Articles Cards -->
+</section><!-- End: Hero Banner -->
+
+
+
+
+
+
+
+        {% endblock %}
+
+        {% block extra_body %}   
+        <script>
+            $(document).ready(function() {              
+                $('#service_category').change(function() {
+                    $('#service_category_form').submit();             
+                });
+
+            });
+
+
+        </script> 
+        {% endblock %}
+
+        

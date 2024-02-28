@@ -1,0 +1,178 @@
+{% extends "layouts/base_print.html" %}
+{% load static %}
+{% load core %}
+
+{% block extra_head %}
+
+{% endblock %}   
+
+
+    {% block about %}
+    <main>
+
+        <div class="section pt-3">
+            <div class="container p-4">   
+                <div id="labeldata" class="row justify-content-center mb-4">
+                    <div class="col-12">
+                        <div class="col-report p-5 card text-center">
+
+
+                            <div class="card-header bg-transparent d-flex justify-content-between align-items-center pb-5">
+                                <div class="text-start">
+                                    QUOTE</br>
+                                    <b class="fs-2">{{quotation.quotation_data.header|upper}}</b>
+                                </div>
+
+                                <div class="text-center">
+                                    STATUS</br>
+                                    <b class="fs-2">{{quotation.status|remove_dash_hyphen_capital}}</b>
+                                </div>
+
+                                <div class="text-end">
+                                    Valid untill {{quotation.quotation_data.valid_till|date:"Y-m-d"}}</br>
+                                    <b class="fs-2">{{ quotation.prices_of_quotation|convert_amount:request.currency|upper }}</b>
+                                </div>                                
+                            </div>
+                            
+                            
+                            <div class="card-body pt-5 text-start">
+                                <b>{{ site_name.name|upper }}</b> </br>
+                                {{ site_name.email }}
+                            </div>
+
+                            <div class="card-body pt-5 text-end d-flex justify-content-between align-items-center">
+                                <div>
+                                </div>
+                                <div>
+                                    <table class="table table-borderless">                                    
+                                        <tbody>
+                                            <tr>
+                                                <td>QUOTE NUMBER</td>
+                                                <td>{{quotation.quotation_data.quotation_number}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ISSUE DATE</td>
+                                                <td>{{quotation.quotation_data.created_at|date:"Y-m-d"}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>EXPIRATION DATE</td>
+                                                <td>{{quotation.quotation_data.valid_till|date:"Y-m-d"}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="card-body pt-5 text-start">
+                                <style>
+                                    
+                                    .quote_for td:first-child {
+                                        width: 30%;
+                                    }
+                                </style>
+                                <table class="quote_for table table-borderless">
+                                    QUOTE FOR
+                                    <tbody>
+                                        <tr>
+                                            <td class="test-start">{{ quotation.creator|get_user_identity|safe }}</td>
+                                            <td><small>{{ quotation.quotation_data.memo }}</small></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="card-body pt-5 text-start">
+                                
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Service And Description</th>
+                                            <th>Price Information</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="test-start">
+                                                {{ quotation.name|upper }}<br>
+                                                <small class="text-muted">{{ quotation.explanations }}</small><br>
+
+                                            </td>
+                                            <td><small>{{ quotation.prices_of_quotation|formatedprice:request.currency|safe }}</small></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                     
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+
+                            
+                            <div class="card-body d-flex justify-content-between align-items-center pb-5">
+
+                                {% if quotation.status == 'open' or quotation.status == 'rejected_by_client' or quotation.status == 'response_sent'   %}
+                                <div class="text-start">                                   
+                                    <form action="{% url 'shop:web_quotation' quotation.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        {{ reject_form }}                                    
+                                        <button class="btn btn-lg btn-outline-danger mt-0" type="submit">Reject</button>
+                                    </form>
+                                    <small>If rejected it will not be avialable further. Although if you are not going to accept it will expire automatically at exire date.</small>
+                                </div>
+                                {% endif %}
+
+                                {% if quotation.status == 'open' or quotation.status == 'response_sent'  %}
+                                <div class="text-end">
+                                    <form action="{% url 'shop:web_quotation' quotation.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        {{ form }}                                    
+                                        <button class="btn btn-lg btn-outline-success mt-0" type="submit">Accept</button>
+                                    </form>
+                                    
+                                    <small>We will forward move through the payment processing. Although you have time till Expire date to accept</small>                                    
+                                </div>   
+                                {% endif %}                             
+                            </div>
+
+                            <div class="card-body d-flex justify-content-center align-items-center pb-5">
+                                                              
+                                    <a href="{% url 'shop:pdf_quotation' quotation.pk  %}" target="_blank" class="btn btn-lg btn-outline-warning">Download PDF</a><br>
+                                    
+
+                                                                
+                            </div>
+
+
+                            <div class="card-footer bg-transparent d-flex justify-content-between align-items-center pb-5">
+                                <div class="text-start">                                   
+                                    <small class="text-muted">{{quotation.quotation_data.footer}}</small>
+                                </div>
+
+                                <div class="text-end">
+                                    {{quotation.quotation_data.quotation_number|upper}}
+                                    
+                                </div>                                
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+    {% endblock %}
+
+
+    {% block extra_body %}
+  
+    {% endblock extra_body %}

@@ -1,0 +1,17 @@
+
+    <form id="verification_form" method="post">
+        {% csrf_token %}
+        {{form.as_div}}
+        <div class="col-12 input-group m-auto font-aldrich">
+            <button class="btn btn-primary btn-lg border rounded-0 flex-fill font-aldrich" 
+            type="submit"
+            hx-post="{{action_url}}" 
+            hx-target="#verification_block" 
+            hx-encoding='multipart/form-data'
+            hx-swap="innerHTML"
+            hx-indicator="#loading-spinner">
+                {{btn_text}}
+            </button>
+        </div>
+        <div id="loading-spinner" class="htmx-indicator">Submitting...</div>
+    </form>    

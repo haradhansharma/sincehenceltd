@@ -1,0 +1,389 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load core %}
+
+{% block extra_head %}
+
+{% endblock %}   
+
+{% comment %} ##############THIS IS IO OF CHECKOUT PAGE###################### {% endcomment %}
+
+{% block hero %}
+{% endblock %}
+
+{% block content %}
+<!-- Start: Hero Banner -->
+<section class="bg-sh-4th">
+    <b class="text-nowrap text-uppercase text-start d-xl-flex justify-content-start align-items-start align-content-start justify-content-xl-start absolute-bold-12vw">requirements</b>
+    <div class="container-fluid h-100">
+        {% if messages %}                                      
+            {% for message in messages %}        
+            <div class="alert alert-warning" role="alert">
+                <span>
+                    <strong>Alert:</strong> {{ message }}.
+                </span>
+            </div>
+            {% endfor %}  
+        {% endif %}
+        <div class="row text-center d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start pt8pb3">
+                <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                    <h3 class="text-uppercase fw-bold text-center mb-3 h25vw">ordering</h3>
+                    <h3 class="text-uppercase fw-bold mb-3 target-element h55vw">{{ title_and_price|safe }}</h3>
+                    <h5>{{price_msg|safe}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: Hero Banner -->
+<section class="pb5pt10 pt-0">
+    <div class="container-fluid">
+        <form method="POST" enctype="multipart/form-data" id="order-form">
+            {% csrf_token %}
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-12 col-xl-8">
+                    <h2 class="display-1 text-center font-aldrich fs6vw">Share Requirements</h2>
+                    <div class="card">
+                        <div class="card-body font-alexandria" style="font-family: Alexandria, sans-serif;">
+                            <p class="card-text fs-5">The following information is crucial in helping us better understand and fulfill your requirements. Please provide it in an organized and comprehensive manner to ensure a seamless customization process.</p>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="card-body font-alexandria">
+                            <h4 class="card-title">What to do please write in sequence:</h4>
+                            <div id="order-text-forms">
+                                {{ order_text_forms.management_form }}
+                                {% for form in order_text_forms.forms %}
+                                    <div class = "order-text-form">
+                                        <div id="delbtn" class="text-end"></div>
+                                        <div class="input-group">
+                                            <span class="text-uppercase input-group-text">
+                                                <label class="form-label d-flex mb-0" for="{{ form.data.id_for_label }}">
+                                                    {{ form.data.label }}
+                                                    
+                                                </label>
+                                            </span>
+                                            {{ form.data }}
+                                        </div>
+                                        {% if form.data.errors %}
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ form.data.errors }}
+                                            </div>
+                                        {% endif %}
+                                        <div class="input-group my-3">
+                                            <small class="form-text text-muted">{{ form.data.help_text }}</small>
+                                        </div>
+                                    </div>
+                                {% endfor %}       
+                            </div>  
+                                
+                            <div class="input-group d-flex justify-content-end">                                  
+                                <button type="button" class="btn btn-warning" id="add-order-text">Add More</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="card-body font-alexandria">
+                            <h4 class="card-title">Upload PDF Documents</h4>
+                            <div id="order-file-forms">
+                                {{ order_file_forms.management_form }}
+                                {% for form in order_file_forms.forms %}
+                                    <div class = "order-file-form">
+                                        <div id="delbtn" class="text-end"></div>
+                                        <div class="input-group">                                            
+                                            {{ form.file }}
+                                        </div>
+                                        {% if form.file.errors %}
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ form.file.errors }}
+                                            </div>
+                                        {% endif %}
+                                        <div class="input-group my-3">
+                                            <small class="form-text text-muted">{{ form.file.help_text }}</small>
+                                        </div>
+                                    </div>
+                                {% endfor %}       
+                            </div>  
+                                
+                            <div class="input-group d-flex justify-content-end">                                  
+                                <button type="button" class="btn btn-warning" id="add-order-file">Add More</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="card-body font-alexandria">
+                            <h4 class="card-title">Upload Reference Images</h4>
+                            <div id="order-image-forms">
+                                {{ order_image_forms.management_form }}
+                                {% for form in order_image_forms.forms %}
+                                    <div class = "order-image-form">
+                                        <div id="delbtn" class="text-end"></div>
+                                        <div class="input-group">                                           
+                                            {{ form.image }}
+                                        </div>
+                                        {% if form.image.errors %}
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ form.image.errors }}
+                                            </div>
+                                        {% endif %}
+                                        <div class="input-group my-3">
+                                            <small class="form-text text-muted">{{ form.image.help_text }}</small>
+                                        </div>
+                                    </div>
+                                {% endfor %}       
+                            </div>  
+                                
+                            <div class="input-group d-flex justify-content-end">                                  
+                                <button type="button" class="btn btn-warning" id="add-order-image">Add More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center align-content-center">
+                <div class="col-12 col-xl-8">
+                    <div class="card mt-3">
+                        <div class="card-body font-alexandria">
+                            <h4 class="card-title">Payment Methods</h4>
+                            <div class="row gx-2 gy-2">
+
+                                {% for key, value in payment_gateways_form.payment_gateway.field.choices %}
+                                <div class="col-12 col-md-6 col-lg-4 d-flex">
+                                    <div class="card flex-fill">
+                                        <div class="card-body d-flex justify-content-between">
+                                            <div>
+                                                <input class="{{ payment_gateways_form.payment_gateway.field.widget.attrs.class }}" type="radio" name="{{ payment_gateways_form.payment_gateway.name }}" id="url_{{ key }}" value="{{ key }}">
+                                                <label class="form-check-label h5 text-muted" for="url_{{ key }}">
+                                                    {{ key.upper }}
+                                                </label>
+                                                
+                                            </div>
+                                            <img src="/static/assets/{{key}}.svg" alt="{{key}}" title="{{key}}" class="img-fluid float-end" loading="lazy" width="50%" height="auto">
+                                        </div>
+                                        
+                                        <div class="payment-help-text-{{ key }} text-muted fs-6 px-2 mb-2 border-top border-2">{{ value  }}</div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                {% if payment_gateways_form.payment_gateway.errors %}
+                                    {% for error in payment_gateways_form.payment_gateway.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ error }}
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="row d-flex justify-content-center align-items-center align-content-center">
+                <div class="col-12 col-xl-8">
+                    {% if email_collection_form %}
+                    <div class="card target-element mt-3">
+                        <div class="card-body font-alexandria" style="font-family: Alexandria, sans-serif;">
+                                    
+                       
+                                <div class="input-group my-3">
+                                    {{email_collection_form}}
+                                </div>
+
+                                {% if email_collection_form.errors %}
+                                    {% for error in email_collection_form.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ error }}
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+
+
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="card border-0 mt-3">
+                        <div class="card-body d-flex font-alexandria px-0">
+                            <input class="btn btn-primary btn-lg text-uppercase flex-fill justify-content-center align-items-center target-element" type="submit" value="continue to the order">
+                  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+
+        </form>
+    </div>
+</section>
+
+{% endblock %}
+{% block extra_body %}   
+
+        <script>
+            $(document).ready(function() {
+
+                const orderTextPrefix = "{{ order_text_forms.prefix|safe }}";  
+                let orderTextTotalFormElement = $("#id_" + orderTextPrefix + "-TOTAL_FORMS");
+                let orderTextFormTotal = parseInt(orderTextTotalFormElement.val()); 
+                const maxOrderTextForms = parseInt($("#id_" + orderTextPrefix + "-MAX_NUM_FORMS").val());
+          
+         
+                const orderFilePrefix = "{{ order_file_forms.prefix|safe }}";  
+                let orderFileTotalFormElement = $("#id_" + orderFilePrefix + "-TOTAL_FORMS");
+                let orderFileFormTotal = parseInt(orderFileTotalFormElement.val()); 
+                const maxOrderFileForms = parseInt($("#id_" + orderFilePrefix + "-MAX_NUM_FORMS").val());
+
+
+                const orderImagePrefix = "{{ order_image_forms.prefix|safe }}";  
+                let orderImageTotalFormElement = $("#id_" + orderImagePrefix + "-TOTAL_FORMS");
+                let orderImageFormTotal = parseInt(orderImageTotalFormElement.val()); 
+                const maxOrderImageForms = parseInt($("#id_" + orderImagePrefix + "-MAX_NUM_FORMS").val());
+               
+                $("#add-order-text").click(function() { 
+                    console.log('clicked');
+                    if (orderTextFormTotal < maxOrderTextForms) {
+                        var new_form = $("#order-text-forms .order-text-form:first").clone(true);
+                        // Generate a new index for the cloned form fields
+                        var new_index = orderTextFormTotal;
+                        // Update the name and id attributes of the cloned form fields
+                        new_form.find('input, label').each(function() {
+                            var old_name = $(this).attr('name');
+                            var old_id = $(this).attr('id');
+
+                            // Check if the attributes exist before updating them
+                            if (old_name !== undefined) {
+                                var new_name = old_name.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('name', new_name);
+                            }
+
+                            if (old_id !== undefined) {
+                                var new_id = old_id.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('id', new_id);
+                            }                       
+
+                        });
+
+                        orderTextFormTotal += 1;
+                        orderTextTotalFormElement.val(orderTextFormTotal);                                        
+
+                        var delete_button = '<button type="button" class="btn btn-danger delete-order-text">X</button>';                       
+                        new_form.find('#delbtn').append(delete_button);                        
+
+                        new_form.appendTo("#order-text-forms");
+                    } else {
+                        alert("You have reached the maximum number of forms.");
+                    }
+                    return false;
+                });
+
+                // Delete OrderText forms
+                $("#order-text-forms").on('click', '.delete-order-text', function() {
+                    $(this).closest('.order-text-form').remove();
+                    orderTextFormTotal -= 1;
+                    orderTextTotalFormElement.val(orderTextFormTotal);
+                });
+
+                $("#add-order-file").click(function() {                   
+                    if (orderFileFormTotal < maxOrderFileForms) {
+                        var new_form = $("#order-file-forms .order-file-form:first").clone(true);
+                        // Generate a new index for the cloned form fields
+                        var new_index = orderFileFormTotal;
+                        // Update the name and id attributes of the cloned form fields
+                        new_form.find('input, label').each(function() {
+                            var old_name = $(this).attr('name');
+                            var old_id = $(this).attr('id');
+
+                            // Check if the attributes exist before updating them
+                            if (old_name !== undefined) {
+                                var new_name = old_name.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('name', new_name);
+                            }
+
+                            if (old_id !== undefined) {
+                                var new_id = old_id.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('id', new_id);
+                            }                       
+
+                        });
+
+                        orderFileFormTotal += 1;
+                        orderFileTotalFormElement.val(orderFileFormTotal);                                        
+
+                        var delete_button = '<button type="button" class="btn btn-danger delete-order-file">X</button>';                       
+                        new_form.find('#delbtn').append(delete_button);                        
+
+                        new_form.appendTo("#order-file-forms");
+                    } else {
+                        alert("You have reached the maximum number of forms.");
+                    }
+                    return false;
+                });
+
+                // Delete OrderText forms
+                $("#order-file-forms").on('click', '.delete-order-file', function() {
+                    $(this).closest('.order-file-form').remove();
+                    orderFileFormTotal -= 1;
+                    orderFileTotalFormElement.val(orderFileFormTotal);
+                });
+                
+
+                $("#add-order-image").click(function() { 
+                    console.log('clicked');
+                    if (orderImageFormTotal < maxOrderImageForms) {
+                        var new_form = $("#order-image-forms .order-image-form:first").clone(true);
+                        // Generate a new index for the cloned form fields
+                        var new_index = orderImageFormTotal;
+                        // Update the name and id attributes of the cloned form fields
+                        new_form.find('input, label').each(function() {
+                            var old_name = $(this).attr('name');
+                            var old_id = $(this).attr('id');
+
+                            // Check if the attributes exist before updating them
+                            if (old_name !== undefined) {
+                                var new_name = old_name.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('name', new_name);
+                            }
+
+                            if (old_id !== undefined) {
+                                var new_id = old_id.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('id', new_id);
+                            }                       
+
+                        });
+
+                        orderImageFormTotal += 1;
+                        orderImageTotalFormElement.val(orderImageFormTotal);                                        
+
+                        var delete_button = '<button type="button" class="btn btn-danger delete-order-image">X</button>';                       
+                        new_form.find('#delbtn').append(delete_button);                        
+
+                        new_form.appendTo("#order-image-forms");
+                    } else {
+                        alert("You have reached the maximum number of forms.");
+                    }
+                    return false;
+                });
+
+                // Delete OrderText forms
+                $("#order-image-forms").on('click', '.delete-order-image', function() {
+                    $(this).closest('.order-image-form').remove();
+                    orderImageFormTotal -= 1;
+                    orderImageTotalFormElement.val(orderImageFormTotal);
+                });
+                
+                
+    
+                 
+                
+                
+               
+                
+            });
+        </script>
+            
+        {% endblock %}

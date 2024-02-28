@@ -1,0 +1,262 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load core %}
+{% block extra_head %}
+
+{% endblock %}   
+
+{% block hero %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Start: Hero Banner -->
+<section class="bg-sh-4th"><b class="text-nowrap text-uppercase text-start d-xl-flex justify-content-start align-items-start align-content-start justify-content-xl-start target-element absolute-bold-18vw">articles</b>
+    <div class="container-fluid h-100">
+        {% if messages %}                                      
+            {% for message in messages %}        
+            <div class="alert alert-warning" role="alert">
+                <span>
+                    <strong>Alert:</strong> {{ message }}.
+                </span>
+            </div>
+            {% endfor %}  
+        {% endif %}
+        <div class="row text-center d-flex justify-content-center align-items-center h-100 pb5pt10">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start">
+                <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                    <h3 class="text-uppercase fw-bold text-center mb-3 h25vw">LATEST</h3>
+                    <h3 class="text-uppercase fw-bold mb-3 h55vw">BY PUBLISHED</h3>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section><!-- End: Hero Banner -->
+<!-- Start: Hero Banner -->
+<section class="bg-secondary"><b class="text-nowrap text-uppercase text-start text-white d-flex absolute-bold-18vw">latest</b>
+    <div class="container h-100">
+        <div class="row text-center justify-content-center align-items-center align-content-center m-auto h-100 py5">
+            <div class="col-12 text-start m-auto py-0"><em class="fs3vw">Search by......</em>
+            
+                <form id="news_search_form"  method="get">
+             
+                    <div class="col-lg-3 input-group m-auto">
+                        {{ search_form.q }}
+                    </div>
+                    <div class="col-lg-3 input-group bg-transparent border rounded-0 border-1 input-color-form">                        
+                        {{ search_form.selected_category }}
+                  
+                    </div>
+                    <div class="col-lg-3 input-group bg-transparent border rounded-0 border-1 input-color-form">                        
+
+                        {{ search_form.selected_archive  }}
+                     
+                    </div>
+                    <div class="col-lg-3 input-group m-auto font-aldrich">
+                        <button class="btn btn-primary btn-lg border rounded-0 flex-fill font-aldrich" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container h-100">
+        <div class="row g-2 h-100 pt5pb5">
+            <div class="col-lg-6 d-flex text-start target-element">
+                <div class="card flex-fill" style="background: url({% static 'assets/img/featured.svg' %}) bottom right / auto no-repeat, linear-gradient(var(--bs-primary-bg-subtle), white);">
+                    <div class="card-body">
+                        <h4 class="card-title font-aldrich fs80">STICKY</h4>
+                        <h6 class="text-muted card-subtitle mb-2">Featured Articles</h6>
+                        {% for fb in featured_blogs %}
+                        <div class="d-flex p-3">
+                            <div class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                                </svg>
+                            </div>
+                            <div class="px-2">
+                                <h5 class="mb-0 mt-1">{{fb.title}}</h5>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 d-flex text-start target-element">
+                <div class="card flex-fill" style="background: url({% static 'assets/img/viewed.svg' %}) top right / auto repeat-y, linear-gradient(var(--bs-light-border-subtle), var(--bs-primary-bg-subtle));">
+                    <div class="card-body">
+                        <h4 class="card-title font-aldrich fs80">VIEWED</h4>
+                        <h6 class="text-muted card-subtitle mb-2">Most viewed articles over time</h6>
+                        {% for tp in top_views %}
+                        <div class="d-flex p-3">
+                            <div class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
+                                <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
+                                </svg>
+                            </div>
+                            <div class="px-2">
+                                <h5 class="mb-0 mt-1">{{ tp.title }}</h5>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- Start: Articles Cards -->
+    <div class="container-fluid py-4 py-xl-5">
+        <div class="row gx-0 gy-0 justify-content-center">
+            
+
+            {% with ratio_string="7:5:5:7:6:6" %}
+            {% for news in blogs %} 
+            {% include 'includes/news.html' with news=news ratio_string=ratio_string border="border-secondary" %}
+            {% endfor %}
+            {% endwith %}    
+
+
+            <div class="col-8 text-center d-flex justify-content-end align-self-center m-auto">
+                {% include 'includes/pagination.html' with page_obj=blogs filters=filters %}
+            </div>
+        </div>
+    </div><!-- End: Articles Cards -->
+</section><!-- End: Hero Banner -->
+
+
+
+        {% comment %} <div class="breadcrumb-area breadcarumb-style-1 ptb--120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-inner text-center">
+                            <h1 class="title theme-gradient h2">{{site_data.title}}</h1>
+                            <p class="descriptiion">{{site_data.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="rainbow-gradient-circle"></div>
+            <div class="rainbow-gradient-circle theme-pink"></div>
+        </div>
+
+        <div class="main-content">
+            <div class="rainbow-blog-area rainbow-section-gap">
+                <div class="container">
+                    <div class="row row--30">
+                        <div class="col-lg-8">
+                            <div class="row mt_dec--30">
+                                {% for blog in blogs %}
+                                <div class="col-lg-12 mt--30">
+                                    <div class="rainbow-card box-card-style-default card-list-view">
+                                        <div class="inner">
+                                            <div class="thumbnail">
+                                                <a class="image" href="{{blog.get_absolute_url}}">
+                                                    <img src="{{blog.feature.url}}" alt="{{blog.title}}" title="{{blog.title}}">
+                                                </a>
+                                            </div>
+                                            <div class="content">
+                                                <h4 class="title">
+                                                    <a href="{{blog.get_absolute_url}}">{{blog.title}}</a>
+                                                </h4>
+                                                <ul class="rainbow-meta-list">
+                                                    <li><a href="{% url 'core:user_blogs' blog.creator.username %}">{{ blog.creator.username }}</a></li>
+                                                    <li class="separator">/</li>
+                                                    <li>{{blog.updated_at|date:"F j, Y" }}</li>
+                                                </ul>
+                                                {{ blog.body|safe|truncatechars:250 }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                {% endfor %}        
+                            </div>
+                            {% include 'includes/pagination.html' with page=blogs %}  
+                        </div>
+                        <div class="col-lg-4 mt_md--40 mt_sm--40">
+                            <aside class="rainbow-sidebar">
+                                <div class="rbt-single-widget widget_search mt--40">
+                                    <div class="inner">
+                                        <form class="blog-search" method="GET">
+                                            {{ search_form.as_p }}                                            
+                                            <button type="submit" class="search-button">
+                                                <i class="feather-search"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="rbt-single-widget widget_categories mt--40">
+                                    <h3 class="title">Categories</h3>
+                                    <div class="inner">
+                                        <ul class="category-list ">
+                                            {% for cat in categories %}
+                                            
+                                            <li>
+                                                <a class="{% if cat.get_absolute_url == request.path %} active {% endif %}" href="{{cat.get_absolute_url}}">
+                                                    <span class="left-content">{{cat.title}}</span>
+                                                    <span class="count-text">{{ cat.blog_count }}</span>
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="rbt-single-widget widget_recent_entries mt--40">
+                                    <h3 class="title">Top Views</h3>
+                                    <div class="inner">
+                                        <ul>
+                                            {% for b in top_views %}
+                                            <li><a class="d-block" href="{{b.get_absolute_url}}">{{b.title}}({{b.total_view_count}}).</a>
+                                            </li>
+                                            {% endfor %}
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="rbt-single-widget widget_archive mt--40">
+                                    <h3 class="title">Archives</h3>
+                                    <div class="inner">
+                                        <ul>
+                                            
+                                            {% for ba in blog_archive %}
+                                            {% url 'core:archive_detail' year=ba.month|date:'Y' month=ba.month|date:'m' as archive_url %}                                          
+                                            <li>
+                                                <a href="{{ archive_url }}" class="cate {% if archive_url == request.path %}active{% endif %}">
+                                                    {{ ba.month|date:"F Y" }}
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                             
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> {% endcomment %}
+   
+
+        {% endblock %}
+        {% block extra_body %}    
+
+
+
+        
+        <script>
+            $(document).ready(function() {
+                $('#selected_category, #selected_archive').select2();                
+            });
+        </script>
+        {% endblock %}
+    

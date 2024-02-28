@@ -1,0 +1,71 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load core %}
+{% block extra_head %}
+
+{% endblock %}   
+
+{% block hero %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Start: Hero Banner -->
+<section class="bg-sh-4th">
+    <b class="text-nowrap text-uppercase text-start d-xl-flex justify-content-start align-items-start align-content-start justify-content-xl-start target-element absolute-bold-18vw">profiles</b>
+    <div class="container-fluid h-100">
+        {% if messages %}                                      
+            {% for message in messages %}        
+            <div class="alert alert-warning" role="alert">
+                <span>
+                    <strong>Alert:</strong> {{ message }}.
+                </span>
+            </div>
+            {% endfor %}  
+        {% endif %}
+        <div class="row text-center d-flex justify-content-center align-items-center h-100 pb5pt10">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start">
+                <div class="text-center d-block align-content-center m-auto align-items-xl-center">
+                    <h3 class="text-uppercase fw-bold text-center mb-3 h25vw">Experties</h3>
+                    <h3 class="text-uppercase fw-bold mb-3 h55vw">PROFILES</h3>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section><!-- End: Hero Banner -->
+<!-- Start: Hero Banner -->
+<section class="bg-secondary">
+    <b class="text-nowrap text-uppercase text-start text-white d-flex absolute-bold-18vw z-0">Add</b>
+    <div class="container" style="z-index: 1050!important;position: relative;" id="approval_request_block">
+        <div class="h-100">
+            <div class="row text-center justify-content-center align-items-center align-content-center m-auto h-100 py5">
+                <div class="col-12 text-start m-auto py-0"><em class="fs3vw">Add New</em>
+                    <div id="expert_profiles_form">
+                        {% include 'registration/ex_profile_form.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h-100" id="expert_profiles">
+            {% include 'registration/ex_profile_blocks.html' %}
+        </div>
+    </div>
+    
+</section><!-- End: Hero Banner -->
+
+
+
+        {% endblock %}
+        {% block extra_body %}    
+
+
+
+        
+        <script>
+            $(document).ready(function() {
+                $('#select_skills').select2();                
+            });
+        </script>
+        {% endblock %}
+    

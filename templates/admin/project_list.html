@@ -1,0 +1,22 @@
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+<div class="extra-info">
+    {% if setup_pending %}
+        <div class="errornote">
+            ###### PEDING TO SETUP AND SEND ######
+            <ul>
+                {% for q in setup_pending %}
+                    <li>{{q}},</li>
+                {% endfor %}
+            </ul>
+          
+        </div>
+    {% endif %}
+</div>
+    
+
+    {{ block.super }} 
+
+    
+{% endblock %}

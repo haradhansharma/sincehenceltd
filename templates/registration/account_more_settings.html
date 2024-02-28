@@ -1,0 +1,50 @@
+{% extends 'layouts/base_dashboard.html' %}
+{% load static %}
+{% block robotindex %} <meta name="robots" content="noindex">  {% endblock %}
+{% block adsencecode %} {% endblock %}
+
+{% block extra_head %}
+
+{% endblock %}    
+
+{% block middle %}
+<!-- Start: sh_top -->
+<section class="bg-sh-4th">
+    <div class="container-fluid h-100">
+        <div class="row text-center d-flex justify-content-center align-items-center h-100 pb5pt10 pb5">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start">
+                <div class="text-start justify-content-start align-items-start align-content-start"><strong class="fs-1 op05 font-aldrich">More Settings</strong></div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+<!-- Start: sh_top -->
+<section class="bg-sh-4th pt-2">
+    <div class="container-fluid h-100">
+        <div class="card bg-transparent border-0">
+            <div class="row text-center d-flex justify-content-center align-items-center pb-3">
+                <div class="col-12 pb-2">
+                    <div class="alert alert-success" role="alert"><span><strong>Alert</strong> text.</span></div>
+                    <div class="card text-light bg-light d-flex">
+                        <div class="card-body text-start p-1">
+                            <h4 class="text-primary card-title">Notification Settings</h4>
+                            <form>
+                                <div class="form-check text-primary"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Receive Abandoned Order Email</label></div>
+                                <div class="form-check text-primary"><input class="form-check-input" type="checkbox" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Receive Marketing Email</label></div>
+                                <div class="form-check text-primary"><input class="form-check-input" type="checkbox" id="formCheck-3"><label class="form-check-label" for="formCheck-3">Receive Newsletter</label></div>
+                                <div class="form-check text-primary"><input class="form-check-input" type="checkbox" id="formCheck-2"><label class="form-check-label" for="formCheck-2">Receive anouncement</label></div>
+                                <div class="input-group d-flex justify-content-end"><button class="btn btn-primary" type="button"><i class="far fa-save"></i>&nbsp;SAVE</button></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card text-light bg-light d-flex">
+                        <div class="card-body text-start p-1">
+                            <p class="fs-5 text-primary">Paragraph there should some text.&nbsp;Paragraph there should some text.&nbsp;Paragraph there should some text. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+{% endblock %}

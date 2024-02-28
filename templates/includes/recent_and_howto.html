@@ -1,0 +1,39 @@
+{% load humanizelib %}
+{% if latest_activities %}
+<div>
+    <div class="d-flex justify-content-between align-items-end pt-3">
+        <h2 class="text-primary">Recent Activity</h2>
+        <a class="fs-5 text-decoration-none" href="{% url 'accounts:user_recents_activity' %}">View All</a>
+    </div>
+    <hr class="my-0">
+    <div class="list-group list-group-flush border-bottom scrollarea">
+        {% for activity in latest_activities %}
+        <a class="list-group-item list-group-item-action py-3 lh-tight" href="{{activity.path}}" aria-current="true">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <b class="fs-5 mb-1">{{activity}}</b>
+                <small class="fs-6">{{activity.timestamp|naturaltime}}</small>
+            </div>
+            <small class="fs-6">{{ activity.description|truncatechars:250 }}</small>
+        </a>
+        {% endfor %}
+        
+    </div>
+</div>
+{% endif %}
+<div class="pt-3">
+    <div>
+        <h2 class="text-primary">How To</h2>
+    </div>
+    <div>
+        <hr class="my-0">
+        <div class="list-group list-group-flush border-bottom scrollarea"><a class="list-group-item list-group-item-action py-3 lh-tight" href="#" aria-current="true">
+                <div class="d-flex justify-content-between align-items-center w-100"><b class="fs-6 mb-1">Payment Related</b></div>
+            </a><a class="list-group-item list-group-item-action py-3 lh-tight" href="#" aria-current="true">
+                <div class="d-flex justify-content-between align-items-center w-100"><b class="fs-6 mb-1">Execution Related</b></div>
+            </a><a class="list-group-item list-group-item-action py-3 lh-tight" href="#" aria-current="true">
+                <div class="d-flex justify-content-between align-items-center w-100"><b class="fs-6 mb-1">Support Related</b></div>
+            </a><a class="list-group-item list-group-item-action py-3 lh-tight" href="#" aria-current="true">
+                <div class="d-flex justify-content-between align-items-center w-100"><b class="fs-6 mb-1">Service related</b></div>
+            </a></div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+
+
+{% if not request.COOKIES.sincehence_cookie_consent %}
+<div class="modal fade " id="cookie-consent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="concentBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Coockie Consent</h5>    
+            </div>
+            <form method="post" action="{% url 'policy_concent:cookie_consent' %}">
+                <div class="modal-body">                
+                    <p>We use cookies to improve your experience on our site. By using our site, you consent to our use of cookies.</p>
+                    <div> Please review our
+                    <a class="link-primary py-2 px-2" target="_blank" href="#"><small>Terms of Service</small> </a>
+                    and
+                    <a class="link-primary py-2 px-2" target="_blank" href="#"><small>GDPR Policy</small> </a>
+                    </div>
+                    {% csrf_token %} 
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" name="consent" value="accept">Accept</button>           
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+
+

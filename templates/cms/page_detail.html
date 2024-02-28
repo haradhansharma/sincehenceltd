@@ -1,0 +1,60 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load core %}
+{% block extra_head %}
+
+{% endblock %}   
+
+{% block hero %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Start: Hero Banner -->
+<section class="bg-sh-4th">
+    <b class="text-nowrap text-uppercase text-start absolute-bold-18vw">WEBPAGE</b>
+    <div class="container-fluid h-100">
+
+        {% if messages %}                                      
+            {% for message in messages %}        
+            <div class="alert alert-warning" role="alert">
+                <span>
+                    <strong>Alert:</strong> {{ message }}.
+                </span>
+            </div>
+            {% endfor %}  
+        {% endif %}
+
+        <div class="row text-center d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 d-flex m-auto pt8pb3">
+                <div class="d-block align-content-center m-auto align-items-center">
+                    <h3 class="text-uppercase fw-bold mb-3 h25vw">PAGE</h3>
+                    <h3 class="text-uppercase fw-bold mb-3 h55vw">{{ page.title }} </h3>
+                </div>
+            </div>
+            <div class="col-12 d-flex m-auto border-2 border-top border-primary pt5pt15">
+                <div class="container">
+                    <div class="d-flex justify-content-center align-items-center row text-start">
+                        {{ page.body|safe|check_parameter:request|safe }}
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!-- End: Hero Banner -->
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block consent %} 
+    {% if page.consent_required %}
+        {% include 'policy_concent/consent_dialog.html' %}       
+    {% endif %}
+{% endblock %}

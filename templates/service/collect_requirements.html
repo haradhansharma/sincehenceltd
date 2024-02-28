@@ -1,0 +1,459 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load core %}
+
+
+{% block extra_head %}
+
+{% endblock %}   
+
+
+
+{% block content %} 
+        <div class="breadcrumb-area breadcarumb-style-1 ptb--50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12"> 
+                        <div class="breadcrumb-inner text-center">
+                            <h1 class="title theme-gradient h2">{{site_data.title}}</h1>
+                            <p class="descriptiion">{{site_data.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <div>
+            <div class="rainbow-gradient-circle"></div>
+            <div class="rainbow-gradient-circle theme-pink"></div>
+        </div>
+
+        <!-- Start Portfolio Details area  -->
+        <div class="rainbow-portfolio-details rainbow-section-gap">
+            <div class="container">
+                <div class="row mt-top-10em">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="inner">
+                            <div class="details-list">                              
+                                <div class="row mt--40 row--30">   
+
+                                    <h5 class="d-none d-lg-block">The following information is crucial in helping us better understand and fulfill your requirements. 
+                                        Please provide it in an organized and comprehensive manner to ensure a seamless customization process.</h5>
+                                    <form method="POST" enctype="multipart/form-data" id="order-form">
+                                        {% csrf_token %}
+                                        <div class="col-12 mb-3 border rounded-3 border-warning p-3">
+                                            <div class="rainbow-card border-1 rounded p-3">                                        
+                                                <!-- OrderText forms -->
+                                                <div id="order-text-forms">
+                                                    {{ order_text_forms.management_form }}
+                                                    {% for form in order_text_forms.forms %}
+                                                        <div class="order-text-form">
+                                                            
+                                                            <label class="form-label d-flex" for="{{ form.data.id_for_label }}">
+                                                                {{ form.data.label }}
+                                                                
+                                                            </label>
+                                                            <div class="form-group">
+                                                            {{ form.id }}
+                                                            {{ form.data }}
+                                                            </div>
+                                                            {% if form.data.errors %}
+                                                                <div class="alert alert-danger" role="alert">
+                                                                    {{ form.data.errors }}
+                                                                </div>
+                                                            {% endif %}
+                                                            <small class="form-text text-muted">{{ form.data.help_text }}</small>
+                                                        </div>                                              
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-end">
+                                                <button type="button" class="btn btn-warning" id="add-order-text">Add More</button>
+                                            </div>
+                                            {% if order_text_forms.errors %}
+                                                <div class="alert alert-danger" role="alert">                                                 
+                                                    {% for error in order_text_forms.errors %}
+                                                   {{ error }}
+                                                    {% endfor %}                                               
+                                                </div>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="col-12 mb-3 border rounded-3 border-warning p-3">
+                                            <div class="rainbow-card border-1 rounded p-3">                                           
+                                                <!-- OrderFile forms -->
+                                                <div id="order-file-forms">
+                                                    {{ order_file_forms.management_form }}
+                                                    {% for form in order_file_forms.forms %}
+                                                        <div class="order-file-form">
+                                                            <label class="form-label" for="{{ form.file.id_for_label }}">
+                                                                {{ form.file.label }}
+                                                            </label>
+                                                            <div class="form-group">
+                                                                {{ form.id }}
+                                                            {{ form.file }}
+                                                            </div>
+                                                            {% if form.file.errors %}
+                                                                <div class="alert alert-danger" role="alert">
+                                                                    {{ form.file.errors }}
+                                                                </div>
+                                                            {% endif %}
+                                                            <small class="form-text text-muted">{{ form.file.help_text }}</small>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-end">
+                                                <button type="button" class="btn btn-warning" id="add-order-file">Add More</button>
+                                            </div>
+
+                                            {% if order_file_forms.errors %}
+                                                <div class="alert alert-danger" role="alert">                                                 
+                                                    {% for error in order_file_forms.errors %}
+                                                   {{ error }}
+                                                    {% endfor %}                                               
+                                                </div>
+                                            {% endif %}
+
+                                        </div>
+
+
+                                        <div class="col-12 mb-3 p-3 border rounded-3 border-warning">
+                                            <div class="rainbow-card border-1 rounded p-3">    
+                                        
+                                                <!-- OrderImage forms -->
+                                                <div id="order-image-forms">
+                                                    {{ order_image_forms.management_form }}
+                                                    {% for form in order_image_forms.forms %}
+                                                        <div class="order-image-form">
+                                                            
+                                                            <label class="form-label" for="{{ form.image.id_for_label }}">
+                                                                {{ form.image.label }}
+                                                            </label>
+                                                            <div class="form-group">
+                                                            {{ form.id }}
+                                                            {{ form.image }}                                                      
+                                                            </div>
+
+
+                                                            {% if form.images.errors %}
+                                                                <div class="alert alert-danger" role="alert">
+                                                                    {{ form.image.errors }}
+                                                                </div>
+                                                            {% endif %}
+                                                            <small class="form-text text-muted">{{ form.image.help_text }}</small>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-end">
+                                                <button type="button" class="btn btn-warning" id="add-order-image">Add More</button>
+                                            </div>
+
+                                            {% if order_image_forms.errors %}
+                                                <div class="alert alert-danger" role="alert">                                                 
+                                                    {% for error in order_image_forms.errors %}
+                                                   {{ error }}
+                                                    {% endfor %}                                               
+                                                </div>
+                                            {% endif %}
+
+                                        </div>
+
+
+                                   
+                                        <div class="service-price">
+                                            <div class="title">Select Payment Method</div>
+                                            <div class='row row--15 service-wrapper'>
+                                                
+                                                    {% for key, value in payment_gateways_form.payment_gateway.field.choices %}
+                                                        <div class="col-lg-4 col-md-6 col-sm-6 col-12 sal-animate pt-4 rounded">
+                                                            <div class="form-check card gradient-card pe-4 ps-2">
+                                                                <input class="{{ payment_gateways_form.payment_gateway.field.widget.attrs.class }}" type="radio" name="{{ payment_gateways_form.payment_gateway.name }}" id="url_{{ key }}" value="{{ key }}">
+                                                                <label class="form-check-label card-body" for="url_{{ key }}">
+                                                                    <div class="fs-3">
+                                                                        <img class="img-fluid" src="/static/assets/{{key}}.svg" alt="{{key}}" title="{{key}}">                                                                    
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                            <div class="payment-help-text-{{ key }} text-success fs-3">{{ value  }}</div>
+                                                        </div>                                                        
+                                                    {% endfor %}
+
+                                                    {% if payment_gateways_form.payment_gateway.errors %}
+                                                        {% for error in payment_gateways_form.payment_gateway.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            {{ error }}
+                                                        </div>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                
+                                            </div>
+                                        </div>
+                                        {% comment %} as email email_collection_form passing conditionally {% endcomment %}
+                                        {% if email_collection_form %}
+                                        <div class="service-price mt-5">                                            
+                                            <div class='row row--15 service-wrapper'>   
+                                                <div class="form-group">
+                                                    {{ email_collection_form }}
+                                                </div>
+                                                {% if email_collection_form.errors %}
+                                                    {% for error in email_collection_form.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ error }}
+                                                    </div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        
+                                        <input type="submit" value="Checkout">
+                                    </form>
+                                    
+                                </div>
+                            </div>
+
+                            
+
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Portfolio Details area  -->
+
+        
+
+        {% endblock %}
+        {% block extra_body %}   
+
+        <script>
+            $(document).ready(function() {
+
+                const orderTextPrefix = "{{ order_text_forms.prefix|safe }}";  
+                let orderTextTotalFormElement = $("#id_" + orderTextPrefix + "-TOTAL_FORMS");
+                let orderTextFormTotal = parseInt(orderTextTotalFormElement.val()); 
+                const maxOrderTextForms = parseInt($("#id_" + orderTextPrefix + "-MAX_NUM_FORMS").val());
+          
+         
+                const orderFilePrefix = "{{ order_file_forms.prefix|safe }}";  
+                let orderFileTotalFormElement = $("#id_" + orderFilePrefix + "-TOTAL_FORMS");
+                let orderFileFormTotal = parseInt(orderFileTotalFormElement.val()); 
+                const maxOrderFileForms = parseInt($("#id_" + orderFilePrefix + "-MAX_NUM_FORMS").val());
+
+
+                const orderImagePrefix = "{{ order_image_forms.prefix|safe }}";  
+                let orderImageTotalFormElement = $("#id_" + orderImagePrefix + "-TOTAL_FORMS");
+                let orderImageFormTotal = parseInt(orderImageTotalFormElement.val()); 
+                const maxOrderImageForms = parseInt($("#id_" + orderImagePrefix + "-MAX_NUM_FORMS").val());
+               
+                $("#add-order-text").click(function() { 
+                    if (orderTextFormTotal < maxOrderTextForms) {
+                        var new_form = $("#order-text-forms .order-text-form:first").clone(true);
+                        // Generate a new index for the cloned form fields
+                        var new_index = orderTextFormTotal;
+                        // Update the name and id attributes of the cloned form fields
+                        new_form.find('input, label').each(function() {
+                            var old_name = $(this).attr('name');
+                            var old_id = $(this).attr('id');
+
+                            // Check if the attributes exist before updating them
+                            if (old_name !== undefined) {
+                                var new_name = old_name.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('name', new_name);
+                            }
+
+                            if (old_id !== undefined) {
+                                var new_id = old_id.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('id', new_id);
+                            }                       
+
+                        });
+
+                        orderTextFormTotal += 1;
+                        orderTextTotalFormElement.val(orderTextFormTotal);
+                                        
+
+                        // Add a div to contain label and button
+                        var container_div = $('<div class="d-flex justify-content-between align-items-center"></div>');
+                        
+                        // Clone the label and append it to the container
+                        var label_clone = new_form.find('label').clone();
+                        container_div.append(label_clone);
+                        
+                        // Add the "Delete" button to the container
+                        var delete_button = '<button type="button" class="btn btn-danger delete-order-text"><i class="icon feather-x-circle"></i></button>';
+                        container_div.append(delete_button);
+
+                        // Replace the original label with the container
+                        new_form.find('label').replaceWith(container_div);
+
+                        new_form.appendTo("#order-text-forms");
+                    } else {
+                        alert("You have reached the maximum number of forms.");
+                    }
+                    return false;
+                });
+
+                // Delete OrderText forms
+                $("#order-text-forms").on('click', '.delete-order-text', function() {
+                    $(this).closest('.order-text-form').remove();
+                    orderTextFormTotal -= 1;
+                    orderTextTotalFormElement.val(orderTextFormTotal);
+                });
+                
+    
+                // Add more OrderFile forms
+                $("#add-order-file").click(function() {
+                    if (orderFileFormTotal < maxOrderFileForms) {
+                        var new_form = $("#order-file-forms .order-file-form:first").clone(true);
+
+                        // Generate a new index for the cloned form fields
+                        var new_index = orderFileFormTotal;
+
+                        // Update the name and id attributes of the cloned form fields
+                        new_form.find('input, label').each(function() {
+                            var old_name = $(this).attr('name');
+                            var old_id = $(this).attr('id');
+
+                            // Check if the attributes exist before updating them
+                            if (old_name !== undefined) {
+                                var new_name = old_name.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('name', new_name);
+                            }
+
+                            if (old_id !== undefined) {
+                                var new_id = old_id.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('id', new_id);
+                            }
+                        });
+
+                        orderFileFormTotal += 1;
+                        orderFileTotalFormElement.val(orderFileFormTotal);
+                        
+
+                        // Add a div to contain label and button
+                        var container_div = $('<div class="d-flex justify-content-between align-items-center"></div>');
+                        
+                        // Clone the label and append it to the container
+                        var label_clone = new_form.find('label').clone();
+                        container_div.append(label_clone);
+                        
+                        // Add the "Delete" button to the container
+                        var delete_button = '<button type="button" class="btn btn-danger delete-order-file"><i class="icon feather-x-circle"></i></button>';
+                        container_div.append(delete_button);
+
+                        // Replace the original label with the container
+                        new_form.find('label').replaceWith(container_div);
+
+                        new_form.appendTo("#order-file-forms");
+                    } else {
+                        alert("You have reached the maximum number of forms.");
+                    }
+                    return false;
+                });
+
+                // Delete OrderText forms
+                $("#order-file-forms").on('click', '.delete-order-file', function() {
+                    $(this).closest('.order-file-form').remove();
+                    orderFileFormTotal -= 1;
+                    orderFileTotalFormElement.val(orderFileFormTotal);
+                });
+    
+                // Add more OrderImage forms
+                $("#add-order-image").click(function() {  
+                    if (orderImageFormTotal < maxOrderImageForms) {                 
+                        var new_form = $("#order-image-forms .order-image-form:first").clone(true);
+
+                        // Generate a new index for the cloned form fields
+                        var new_index = orderImageFormTotal;
+
+                        // Update the name and id attributes of the cloned form fields
+                        new_form.find('input, label').each(function() {
+                            var old_name = $(this).attr('name');
+                            var old_id = $(this).attr('id');
+
+                            // Check if the attributes exist before updating them
+                            if (old_name !== undefined) {
+                                var new_name = old_name.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('name', new_name);
+                            }
+
+                            if (old_id !== undefined) {
+                                var new_id = old_id.replace('-0-', '-' + new_index + '-');
+                                $(this).attr('id', new_id);
+                            }
+                        });
+
+                        orderImageFormTotal += 1;
+                        orderImageTotalFormElement.val(orderImageFormTotal);
+                        
+
+                        // Add a div to contain label and button
+                        var container_div = $('<div class="d-flex justify-content-between align-items-center"></div>');
+                        
+                        // Clone the label and append it to the container
+                        var label_clone = new_form.find('label').clone();
+                        container_div.append(label_clone);
+                        
+                        // Add the "Delete" button to the container
+                        var delete_button = '<button type="button" class="btn btn-danger delete-order-image"><i class="icon feather-x-circle"></i></button>';
+                        container_div.append(delete_button);
+
+                        // Replace the original label with the container
+                        new_form.find('label').replaceWith(container_div);
+
+                        new_form.appendTo("#order-image-forms");
+                    } else {
+                        alert("You have reached the maximum number of forms.");
+                    }
+                    return false;
+                });
+
+                // Delete OrderText forms
+                $("#order-image-forms").on('click', '.delete-order-image', function() {
+                    $(this).closest('.order-image-form').remove();
+                    orderImageFormTotal -= 1;
+                    orderImageTotalFormElement.val(orderImageFormTotal);
+                });   
+                
+                
+                $('.service-price .form-check-input').change(function () {
+                    $('.service-price .form-check.card').removeClass('gradient-card-selected');
+                    $(this).closest('.service-price .form-check.card').addClass('gradient-card-selected');
+                });
+
+
+                // Hide all payment-help-text elements initially
+                $("[class^='payment-help-text-']").hide();
+
+                // Listen for changes in the radio buttons
+                $("input[name='payment_gateway']").on("change", function() {
+                    // Get the ID of the selected radio button
+                    var selectedId = $(this).attr("id");
+                    
+                    // Extract the key from the ID
+                    var key = selectedId.replace("url_", "");
+                    
+                    // Hide all payment-help-text elements
+                    $("[class^='payment-help-text-']").hide();
+                    
+                    // Show the corresponding payment-help-text element
+                    $(".payment-help-text-" + key).show();
+
+                    // Remove 'border' class from all divs
+                    $(".sal-animate").removeClass("border border-success");
+
+                    // Add 'border' class to the parent div of the selected radio button
+                    $(this).closest(".sal-animate").addClass("border border-success");
+                });
+                
+            });
+        </script>
+            
+        {% endblock %}
+

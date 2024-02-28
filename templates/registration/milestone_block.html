@@ -1,0 +1,89 @@
+<li class="timeline-item mb-5">
+    <div class="card">                                
+        <h3 id="issue{{milestone.id}}" class="display-3 text-uppercase text-center text-light py-3 op05 bg-secondary">milestone-{{milestone.sort_order}}</h3>
+        
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h4 class="text-primary font-aldrich">{{milestone.milestone}} (Re: {{ milestone.required_days }} days)</h4>
+                <span class="fs-5 text-info">Target: {{milestone.target_date}}</span>
+            </div>
+            <h5 class="text-secondary card-title font-aldrich">Awaiting Interaction from customer (for {{milestone.total_awaiting}} days)</h5>
+            <p class="fs-6 card-text">
+                {{milestone.description}}
+            </p>
+            <section>
+                <div class="container px-0 my-2">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12">
+                            <div class="card text-dark border-0">
+                                <p class="fw-light mb-4 pb-2">Interactions</p>
+                               
+                                {% for interaction in milestone.interactions %}
+                                <div id="interaction{{interaction.id}}" class="card-body p-4 border-bottom">
+                                    <div class="d-flex flex-start">
+                                        <div>
+                                        <img class="rounded-circle shadow-1-strong me-3" src="{{interaction.user.avatar}}" alt="{{interaction.user.username}}" width="60" height="60">
+                                        
+                                        </div>
+                                        <div>
+                                            {% include "registration/interactions_ans_required.html" %}
+                                            
+                                            {% if interaction.waited_for_reply %}
+                                            <div class="d-flex justify-content-between">
+                                                <h6 class="fw-bold mb-1">{{interaction.user}}</h6>
+                                                <div class="fs-6">Awaited: {{interaction.waited_for_reply}} days</div>
+                                            </div>
+                                            {% endif %}
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <p class="fs-5 mb-0"> {{interaction.created_at}} </p>
+                                                
+                                            </div>
+                                            <p class="fs-6 mb-0">{{interaction.body}} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!-- Start: reply_form -->
+            <form>
+                {% csrf_token %}
+                {% for field in interaction_form.visible_fields  %}
+                <div class="d-flex flex-column">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                    {% if field.help_text %}
+                    <p class="help" id="{{ field.auto_id }}_helptext">
+                        {{ field.help_text|safe }}
+                    </p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <div class="d-flex justify-content-between text-end">
+                    
+                    <div>
+                        <button 
+                        type="submit" 
+                        hx-post="{% url 'accounts:submit_interaction' order.pk milestone.id %}" 
+                        hx-target="#milestone_block{{milestone.id}}" 
+                        hx-encoding='multipart/form-data'
+                        hx-swap="innerHTML"
+                        hx-indicator="#loading-spinner"
+                        class="fs-6 border rounded m-2 p-2 pt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil-square">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                            </svg>
+                            Interact
+                        </button>
+                    </div>
+                </div>
+                <div id="loading-spinner" class="htmx-indicator">Submitting...</div>
+            </form><!-- End: reply_form -->
+        </div>
+    </div>
+</li>

@@ -1,0 +1,20 @@
+<div class="row mb-3">        
+  <div class="col">     
+    <div class="card mb-3">
+      <div class="card-header py-3">
+          <p class="text-primary m-0 fw-bold">Edit Sourcing Order</p>
+      </div>
+      <div class="card-body"> 
+
+  <form hx-post="{% url 'sourcing:edit_order' order.id %}" hx-target="#hxpanel" hx-swap="innerHTML" hx-encoding="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success"  type="submit">Save Changes</button>
+  </form>
+
+</div>
+<p><a class="btn btn-success"  hx-target="#hxpanel" hx-swap="innerHTML" hx-get="{% url 'sourcing:view_supplier' order.proforma_invoice.product_link.supplier.id %}">Back to Supplier</a></p>
+
+</div>
+</div>
+</div>

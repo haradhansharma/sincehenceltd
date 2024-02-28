@@ -1,0 +1,146 @@
+{% extends 'layouts/base_dashboard.html' %}
+{% load static %}
+{% load core %}
+{% load humanizelib %}
+{% block extra_head %}
+
+{% endblock %}   
+
+{% block middle %}
+
+<!-- Start: sh_top -->
+<section class="bg-sh-4th">
+    <div class="container-fluid h-100">
+        <div class="row text-center d-flex justify-content-center align-items-center h-100 pb5pt10 pb5">
+            <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start">
+                <div class="text-start d-flex justify-content-start align-items-start align-content-start"><strong class="fs-1 op05 font-aldrich">Dashboard</strong></div>
+            </div>
+        </div>
+    </div>
+</section><!-- End: sh_top -->
+<!-- Start: sh_top -->
+<section class="bg-sh-4th pt-2">
+    <div class="container-fluid h-100">
+        <div class="card bg-transparent border-0">
+            {% if messages %}                                      
+                {% for message in messages %}        
+                <div class="alert alert-warning" role="alert">
+                    <span>
+                        <strong>Alert:</strong> {{ message }}.
+                    </span>
+                </div>
+                {% endfor %}  
+            {% endif %}
+            <div class="row text-center d-flex justify-content-center align-items-center pt-3">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 pb-2">
+                    <div class="card text-light bg-primary d-flex justify-content-center align-items-center m-auto">
+                        <div class="card-body">
+                            <h2 class="card-title">888</h2>
+                            <p>Active Order</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 pb-2">
+                    <div class="card text-light bg-dark d-flex justify-content-center align-items-center m-auto">
+                        <div class="card-body">
+                            <h2 class="card-title">888</h2>
+                            <p>Active Order</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 pb-2">
+                    <div class="card text-light bg-warning d-flex justify-content-center align-items-center m-auto">
+                        <div class="card-body">
+                            <h2 class="text-primary card-title">888</h2>
+                            <p class="text-primary">Active Order</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if due_orders %}
+        <div class="card bg-transparent border-0">            
+            <div class="d-flex justify-content-between border-bottom border-2 border-light mb-3">
+                <h2>Due Service Orders</h2>
+                <a href="{% url 'accounts:due_orders' %}" class="text-decoration-none">View All</a>
+            </div>
+            <div class="row text-center d-flex justify-content-center align-items-center pb-3">
+                {% for order in due_orders %}
+                <div class="col-12 col-lg-6 pb-2">
+                    <div class="card text-light bg-light d-flex">
+                        <div class="card-body text-start p-1">
+                            <h4 class="border-bottom text-success">Order #{{order.order_number}}</h4>   
+                            <h5 class="text-dark">Pending Amount {{order.pending_amount}} out of order value {{order.amount}}</h5>
+                            <h5 class="text-dark">Checking Amount {{order.trans_checking_amount}}</h5>
+                            <h5 class="text-dark">Reject Amount {{order.trans_reject_amount}}</h5>
+
+         
+                                              
+
+                            <p class="text-primary fs-6">{{order.price.name}}</p>
+                            {% if not order.has_transactions %}
+                            <a class="fs-5 border rounded px-1" href="{{ order.invoice.cancel_order_url }}">Cancel</a>
+                            {% endif %}
+
+                            <a class="fs-5 border rounded px-1" href="{{ order.invoice.update_payment_url }}">Update Payment</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+        {% endif %}
+        {% if incomplete_orders %}
+        <div class="card bg-transparent border-0">
+         
+            <div class="d-flex justify-content-between border-bottom border-2 border-light mb-3">
+                <h2>Recent Incomplete Service Orders</h2>
+                <a href="{% url 'accounts:incomplete_orders' %}" class="text-decoration-none">View All</a>
+            </div>
+            <div class="row text-center d-flex justify-content-center align-items-center pb-3">
+                {% for order in incomplete_orders %}
+                <div class="col-12 col-lg-6 pb-2">
+                    <div class="card text-light bg-light d-flex">
+                        <div class="card-body text-start p-1">
+                            <h4 class="text-primary">Pending Amount {{order.pending_amount}}</h4>
+                            <h4 class="text-primary">OIrder Value {{order.amount}}</h4>
+                            <h4 class="text-primary">Order Number {{order.order_number}}</h4>                     
+
+                            <p class="text-primary fs-6">{{ order.price.name }}</p>
+
+                            <a class="fs-5 border rounded px-1" href="{{ order.price.resume_url }}">Resume</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if user_blog_comments_latest %}
+        <div class="card bg-transparent border-0">
+            <div class="d-flex justify-content-between border-bottom border-2 border-light mb-3">
+            <h2>Recent Comments</h2>
+            <a href="{% url 'accounts:user_recents_comments' %}" class="text-decoration-none">View All</a>
+            </div>
+            <div class="row text-center d-flex pb-3">
+                {% for comments in user_blog_comments_latest %}
+                <div class="col-12 pb-2">
+                    <div class="card">
+                        <div class="card-body text-start">
+                            <h4 class="card-title fs-5">{% if not comments.parent %}Commented On Post <a href="{{comments.blog.get_absolute_url}}" class="text-decoration-none">{{comments.blog.title}}</a>{% else %}Replied On comment <a class="text-decoration-none" href="{{comments.parent.get_absolute_url}}">{{comments.parent.comments|truncatechars:100}}</a>{% endif %} </h4>
+                            <h6 class="text-muted card-subtitle mb-2">{{comments.created_at|naturaltime}}</h6>
+                            <p class="card-text fs-6"><a href="{{comments.get_absolute_url}}" class="text-decoration-none fs-6">{{comments.comments}}</a></p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section><!-- End: sh_top -->
+
+{% endblock %}
+
+

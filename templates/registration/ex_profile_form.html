@@ -1,0 +1,45 @@
+{% load static %}
+<form id="expertise_form" method="post">
+    {% csrf_token %}
+
+    <div class="col-12 input-group m-auto">              
+        {{ form.title.errors }}
+        {{ form.title }}
+        <p>{{ form.title.help_text }}</p>
+    </div>
+    <div class="col-12 input-group m-auto">              
+        {{ form.expert_type.errors }}
+        {{ form.expert_type }}
+        <p>{{ form.expert_type.help_text }}</p>
+    </div>
+    <div class="col-12 input-group bg-transparent border rounded-0 border-1 input-color-form">             
+        {{ form.skills.errors }}
+        {{ form.skills }}
+        <p>{{ form.skills.help_text }}</p>
+    </div>
+    <div class="col-12 input-group bg-transparent border rounded-0 border-1 input-color-form">               
+        {{ form.experience_years.errors }}
+        {{ form.experience_years }}
+        <p>{{ form.experience_years.help_text }}</p>
+    </div>
+    <div class="col-12 input-group m-auto font-aldrich">
+        <button class="btn btn-primary btn-lg border rounded-0 flex-fill font-aldrich" 
+        type="submit"
+        hx-post="{{action_url}}" 
+        hx-target="#expert_profiles" 
+        hx-swap="innerHTML"
+        hx-indicator="#loading-spinner">
+            {{btn_text}}
+        </button>
+    </div>
+    <div id="loading-spinner" class="htmx-indicator">Submitting...</div>
+</form>
+
+
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/select2.full.min.js' %}"></script> 
+<script>    
+    $(document).ready(function() {
+        $('#select_skills').select2();                
+    });
+</script>

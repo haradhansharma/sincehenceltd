@@ -1,0 +1,56 @@
+{% load static %}
+<!-- Start: Navbar Centered Links -->
+<nav class="navbar navbar-expand-md sticky-top bg-dark text-nowrap text-uppercase fw-semibold shadow-sm focus-ring py-3 sh-navbar" data-bs-theme="dark">
+    <div class="container-fluid"><a class="navbar-brand d-flex align-items-center" href="#"><img class="img-fluid" src="{{ site_data.logo }}" width="164" height="38"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-3">
+            <ul class="navbar-nav mx-auto">
+                {% for hm in header_menu %}                                
+                    {% if hm.url and not hm.data_set %}                     
+                        <li class="nav-item"><a class="nav-link {% if hm.url == request.path %} active {% endif %}" href="{{hm.url}}">{{hm.title}}</a></li>
+                    {% endif %}                           
+
+                    {% if hm.data_set and not hm.url %} 
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">{{hm.title}}</a>
+                            {% for ds in hm.data_set %}  
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ds.url}}">{{ds.title}}</a>                                    
+                                </div>
+                            {% endfor %}     
+                    </li>
+                    {% endif %}
+                {% endfor %} 
+                
+            </ul>
+            
+
+            <form class="py-2 pe-2" method="post"  action="{% url 'shcurrency:change_currency' %}" id="currency-form">
+                {% csrf_token %}  
+                <select class="form-select w-auto" name="currency" id="currency-select">
+                    {% for currency in currencies %}
+                    <option value="{{ currency.code }}"  {% if request.currency == currency.code %}selected{% endif %}>
+                        {{ currency.code }} ({{ currency.symbol }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </form>
+
+            <div class="dropdown d-flex" style="height: 42px;width: 60px;">
+                <a class="text-center link-light" aria-expanded="false" data-bs-toggle="dropdown" href="#" rel="nofollow">
+                    <img class="rounded img-fluid border" width="42px" height="42px" src="{% if request.user.is_authenticated %}{{ request.user.avatar }}{% else %}{% static 'no_image.png' %}{% endif %}" alt="{{request.user.username}}" />
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg-end">
+                    {% for um in user_menu %} 
+                    {% for uml in um.data_set %}  
+                    <a class="dropdown-item" href="{{uml.url}}">{{uml.title}}</a>
+                    {% endfor %} 
+                    {% endfor %}  
+
+                  
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav><!-- End: Navbar Centered Links -->
+  

@@ -1,0 +1,26 @@
+<div id="ans_required{{interaction.id}}">
+    {% if interaction.ans_required %}
+    {% if err_msg %}
+    <em class="text-danger">{{err_msg}}</em>
+    {% endif %}
+        {% if interaction.reply_accepted %}
+            <em class="text-success">Reply Accepted</em>
+        {% else %}        
+            <div class="text-danger">Answere Required</div>
+            {% if interaction.user_is_project_contributor or request.user.is_staff or request.user.is_superuser %}
+                <form method="post" class="m-1">
+                    {% csrf_token %}
+                    <input type="hidden" name="_method" value="REPLY_ACCEPT">
+                    <button 
+                        type="submit" 
+                        class="btn btn-danger" 
+                        hx-post="{% url 'accounts:accept_reply' order.pk milestone.id interaction.id %}"
+                        hx-target="#ans_required{{interaction.id}}" 
+                        hx-swap="innerHTML">
+                        Accept Interaction to this                        
+                    </button>
+                </form>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+</div>

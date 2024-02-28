@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+{% load static %}
+{% load tz %}
+{% now "Y" as current_year %}
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <meta name="yandex-verification" content="0c14ceb45c140ed9" />
+
+    {% block robotindex %}{% endblock %}
+    {% block adsencecode %} {% endblock %}
+
+    {% include 'includes/meta.html' %}
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{site_data.favicon}}">
+
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}"> 
+    <link rel="stylesheet" href="{% static 'assets/css/Aldrich.css' %}"> 
+    <link rel="stylesheet" href="{% static 'assets/css/Alexandria.css' %}"> 
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}"> 
+    <link rel="stylesheet" href="{% static 'assets/css/Atomic%20Age.css' %}"> 
+    <link rel="stylesheet" href="{% static 'assets/css/bs-theme-overrides.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Navbar-Centered-Links-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Projects-Grid-images.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}"> 
+    
+
+
+    {% block extra_head %}
+    {% endblock %}   
+</head>
+
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="row pt74p">
+
+                    {% block navbar %}
+                        {% include 'layouts/navbar_dashboard.html' %}
+                    {% endblock %}
+                
+                    <div class="col-md-3 col-lg-2 d-flex justify-content-evenly">
+                        {% block left_sidebar %} 
+                            {% include 'layouts/dashboard_left.html' %}
+                        {% endblock %}
+                    </div>
+                
+                    <div class="col-md-6 col-lg-7">
+
+                        {% block middle %}
+                            <!-- Start: sh_top -->
+                            <section class="bg-sh-4th">
+                                <div class="container-fluid h-100">
+                                    <div class="row text-center d-flex justify-content-center align-items-center h-100 pb5pt10 pb5">
+                                        <div class="col-12 text-center d-sm-flex d-md-flex m-auto justify-content-md-start">
+                                            <div class="text-start justify-content-start align-items-start align-content-start"><strong class="fs-1 op05 font-aldrich">Account Settings</strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section><!-- End: sh_top -->
+                            <!-- Start: sh_top -->
+                            <section class="bg-sh-4th pt-2">
+                                <div class="container-fluid h-100">
+                                    <div class="card bg-transparent border-0">
+                                        <div class="row text-center d-flex justify-content-center align-items-center pb-3">
+                                            <div class="col-12 pb-2">
+                                                <div class="alert alert-success" role="alert"><span><strong>Alert</strong> text.</span></div>
+                                                <div class="card text-light bg-light d-flex">
+                                                    <div class="card-body text-start p-1">
+                                                        <h4 class="text-primary card-title">Profile Picture Update</h4>
+                                                        <form>
+                                                            <div class="input-group my-3"><input class="form-control d-block" type="file">
+                                                                <div class="d-flex justify-content-between align-items-center input-group-text"><img class="d-block" width="200px" height="200px"></div>
+                                                            </div>
+                                                            <div class="input-group d-flex justify-content-end"><button class="btn btn-primary" type="button"><i class="far fa-save"></i>&nbsp;SAVE</button></div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="card text-light bg-light d-flex">
+                                                    <div class="card-body text-start p-1">
+                                                        <h4 class="text-primary card-title">Account Settings</h4>
+                                                        <form>
+                                                            <div class="input-group my-3"><span class="text-uppercase input-group-text"><i class="far fa-star"></i>&nbsp;Todo 1</span><input class="form-control form-control-lg" type="text" placeholder="EG: Theme layout development" name="todo"></div>
+                                                            <div class="input-group my-3"><span class="text-uppercase input-group-text"><i class="far fa-star"></i>&nbsp;Todo 2</span><input class="form-control form-control-lg" type="text" placeholder="EG: Theme layout development" name="todo"></div>
+                                                            <div class="input-group my-3"><span class="text-uppercase input-group-text"><i class="far fa-star"></i>&nbsp;Todo 3</span><input class="form-control form-control-lg" type="text" placeholder="EG: Theme layout development" name="todo"></div>
+                                                            <div class="input-group my-3"><span class="text-uppercase input-group-text"><i class="far fa-star"></i>&nbsp;Todo 4</span><input class="form-control form-control-lg" type="text" placeholder="EG: Theme layout development" name="todo"></div>
+                                                            <div class="input-group d-flex justify-content-end"><button class="btn btn-primary" type="button"><i class="far fa-save"></i>&nbsp;SAVE</button></div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="card text-light bg-light d-flex">
+                                                    <div class="card-body text-start p-1">
+                                                        <p class="fs-5 text-primary">Paragraph there should some text.&nbsp;Paragraph there should some text.&nbsp;Paragraph there should some text. </p>
+                                                    </div>
+                                                </div>
+                                                <div class="card text-light bg-light d-flex">
+                                                    <div class="card-body text-start p-1">
+                                                        <h4 class="text-primary card-title">Profile Settings</h4>
+                                                        <form>
+                                                            <div class="input-group my-3"><span class="text-uppercase input-group-text"><i class="far fa-star"></i>&nbsp;Todo 1</span><input class="form-control form-control-lg" type="text" placeholder="EG: Theme layout development" name="todo"></div>
+                                                            <div class="input-group my-3"><span class="text-uppercase input-group-text"><i class="far fa-star"></i>&nbsp;Todo 2</span><input class="form-control form-control-lg" type="text" placeholder="EG: Theme layout development" name="todo"></div>
+                                                            <div class="input-group my-3"><span class="text-uppercase input-group-text"><i class="far fa-star"></i>&nbsp;Todo 3</span><input class="form-control form-control-lg" type="text" placeholder="EG: Theme layout development" name="todo"></div>
+                                                            <div class="input-group my-3"><span class="text-uppercase input-group-text"><i class="far fa-star"></i>&nbsp;Todo 4</span><input class="form-control form-control-lg" type="text" placeholder="EG: Theme layout development" name="todo"></div>
+                                                            <div class="input-group d-flex justify-content-end"><button class="btn btn-primary" type="button"><i class="far fa-save"></i>&nbsp;SAVE</button></div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="card text-light bg-light d-flex">
+                                                    <div class="card-body text-start p-1">
+                                                        <p class="fs-5 text-primary">Paragraph there should some text.&nbsp;Paragraph there should some text.&nbsp;Paragraph there should some text. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section><!-- End: sh_top -->
+                        {% endblock %}
+
+                    </div>  
+                
+                    <div class="col-12 col-md-3">
+                        {% block right_sidebar %}
+                            {% include 'layouts/dashboard_right.html' %}
+                        {% endblock %}
+                    </div>
+                
+
+
+            </div>
+        </div>
+    </section>
+    
+    
+    {% block decline_consent %} 
+    <div class="fixed-bottom justify-content-center d-flex">
+        {% if request.COOKIES.sincehence_cookie_consent %}
+              <form method="post" action="{% url 'policy_concent:cookie_consent' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger" name="consent" value="decline">Decline Cookie Consent</button>         
+              </form>
+        {% endif %}
+    </div>
+    {% endblock %}
+
+
+
+
+    {% block footer %}
+    {% include 'layouts/footer.html' %}    
+    {% endblock %}
+
+    {% block consent %} 
+        {% include 'policy_concent/consent_dialog.html' %}
+    {% endblock %}
+
+
+    {% include 'includes/scripts.html' %}
+
+    {% block extra_body %}    
+    {% endblock %}
+
+
+    <script>
+        $(document).ready(function() {  
+            if ($('#cookie-consent').length) {
+                $('#cookie-consent').modal('show');
+              }
+
+            $('#currency-select').change(function() {
+                $('#currency-form').submit();                   
+                
+            });
+        });
+    </script>
+    <script nonce="{{ CSP_NONCE }}" type="application/javascript">
+        document.body.addEventListener('htmx:configRequest', (e) => {
+            e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+            })
+    </script>
+</body>
+
+</html>

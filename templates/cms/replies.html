@@ -1,0 +1,23 @@
+{% load core %}
+{% for r in replies %}
+    <li id="posted_comments{{r.id}}">
+        <div class="card text-start">
+            <div class="card-body d-flex">
+                <img src="{{ r.user.avatar }}" class="rounded-circle img-fluid border border-1 comment-avatar" width="60" height="60" loading="lazy">
+                <div>
+                    <p class="fs-5">{{ r.comments }}</p>
+                    <div class="d-flex justify-content-between text-end">
+                        <div class="d-flex justify-content-between">
+                            <div id="like_dislike_container{{r.get_content_type|get_striped}}{{r.id}}">
+                            {% include 'cms/like_dislike.html' with obj=r border="border" %}
+                            </div>
+                            {% if request.user == r.user %}
+                            <a class="fs-6 link-danger border rounded m-2 p-2 pt-2" hx-get="{{ r.get_delete_url }}" hx-target = "#replies{{c.id}}" hx-swap="innerHTML">Delete</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+{% endfor %}

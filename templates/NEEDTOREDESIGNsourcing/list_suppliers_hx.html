@@ -1,0 +1,63 @@
+<div class="card-header py-3">
+    <p class="text-primary m-0 fw-bold">Employee Info</p>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-md-6 text-nowrap">
+            <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+                <label class="form-label">Show&nbsp;
+                    <select class="d-inline-block form-select form-select-sm">
+                        <option value="10" selected="">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>&nbsp;
+                </label></div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+        </div>
+    </div>
+    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+        <table class="table my-0" id="dataTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Contact Information</th>
+                    <th>Website</th>
+                    <th>Notes</th>
+                    <th>Creator</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for supplier in suppliers %}
+                <tr>
+                    <td><a hx-delete="{% url 'sourcing:view_supplier' supplier.id %}" hx-target="#hxpanel" hx-swap="innerHTML">{{ supplier.name }}</a></td>
+                    <td>{{ supplier.company }}</td>
+                    <td>{{ supplier.contact_information }}</td>
+                    <td>{{ supplier.website }}</td>
+                    <td>{{ supplier.notes }}</td>
+                    <td>{{ supplier.user.username }}</td>
+
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-outline-warning" hx-get="{% url 'sourcing:edit_supplier' supplier.id %}" hx-target="#hxpanel" hx-swap="innerHTML">Edit</a>
+                            <a class="btn btn-outline-danger" hx-get="{% url 'sourcing:delete_supplier' supplier.id %}" hx-target="#hxpanel" hx-swap="innerHTML">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                    <li>No suppliers available.</li>
+                {% endfor %}
+                
+            </tbody>
+            
+        </table>
+    </div>
+    <div class="row">
+        {% include 'dashboard_layout/pagination.html' with suppliers=suppliers %}
+        
+    </div>
+</div>

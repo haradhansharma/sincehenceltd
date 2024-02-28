@@ -1,0 +1,43 @@
+ 
+<!DOCTYPE html>
+{% load static %}
+{% load tz %}
+{% now "Y" as current_year %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block robotindex %}{% endblock %}
+    {% include 'includes/meta.html' %}
+
+    
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{site_data.favicon}}">    
+    
+    <!-- CSS ============================================ -->
+    
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}"> 
+
+    {% block extra_head %}
+    {% endblock %}    
+  </head>
+
+<body>
+    <main class="page-wrapper">
+
+
+
+{% block about %}
+{% endblock %}
+
+
+{% include 'includes/scripts.html' %}
+{% block extra_body %}
+
+{% endblock extra_body %}
+
+    </main>
+</body>
+</html>

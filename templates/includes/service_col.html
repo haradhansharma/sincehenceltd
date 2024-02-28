@@ -1,0 +1,56 @@
+{% load core %}
+<div class="col-12">
+    <div class="card border-light border rounded-0 border-5 border-light {{background}}">
+        <h1 class="text-capitalize text-start font-atomic fs6vw">{{ service.name }}</h1>
+        <div class="card-body p-4">
+            <p class="text-capitalize text-primary card-text mb-0 font-aldrich fs3vw">{{ service|get_meta_service_type }}</p>
+            <h4 class="text-capitalize card-title fs3vw font-alexandria mb-3 mt28p text-dark">Available options to select:</h4>
+             
+                {% with form=service|get_price_option_form:request %}
+                    <form class="row g-2 fs-5 text-start" action="{% url 'service:service_details' service.pk %}" method="POST">
+                        {% csrf_token %}                 
+                        {% for price_id, formatted_price in form.price_id.field.choices %}
+                        <div class="d-flex col-12 col-lg-6 service-price">
+                            <div class="flex-fill card gradient-card pe-4 ps-2 border-0 rounded-0">
+                           
+                                    <input class="{{ form.price_id.field.widget.attrs.class }}" type="radio" name="{{ form.price_id.name }}" id="price_{{ price_id }}" value="{{ price_id }}"{% if forloop.first %} checked {% endif %}>
+                                    <label class="form-check-label text-start" for="price_{{ price_id }}">
+                                        {{ formatted_price|safe }}
+                                    </label>
+                          
+                            </div>
+                        </div>                                
+                        {% endfor %}                                                 
+              
+                        <div class="row gy-2 m-auto">
+                            <div class="col-6">
+                                <a href="{{ service.get_absolute_url }}" class="btn btn-secondary btn-lg d-flex flex-fill justify-content-center align-items-center align-content-stretch flex-nowrap font-aldrich" role="button">Read More</a>
+                            </div>
+                            <div class="col-6">                                           
+                                <input class="btn btn-primary btn-lg d-flex flex-fill justify-content-center align-items-center align-content-stretch flex-nowrap font-aldrich w-100" type="submit" value="Start Order">  
+                            </div>
+                            <div class="col-12">
+                                <a  href="{% url 'service:quotation_request' service.pk %}" class="btn btn-warning btn-lg d-flex flex-fill justify-content-center align-items-center align-content-stretch flex-nowrap font-aldrich" role="button" >Custom Quotation</a>                                
+                            </div>
+                        </div>                            
+                    </form>
+                {% endwith %}
+                {% if form.errors %}
+                    <div class="row gy-2 justify-content-evenly align-items-stretch mt-3">
+                        <div class="alert alert-danger">
+                            <strong>Errors:</strong>
+                            <ul>
+                                {% for field_name, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>                                
+                    </div>
+                {% endif %}
+        
+                
+        </div>
+    </div>
+</div>

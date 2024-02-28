@@ -1,0 +1,19 @@
+<div class="card p-2">
+    <div class="card-title">Approval Status: {{varification_request.colored_status|safe}}</div>
+    <p> Remarks: {{varification_request.office_remarks}} </p>
+    <div class="card-body">
+        <div class="card-text">
+            <h3>ID proof</h3>
+            <img src="{{varification_request.id_proof.url}}" class="img-fluid">
+            <p>            
+                <a href="{{varification_request.id_proof.url}}" target="_blank">{{varification_request.id_proof}}</a>
+            </p>
+            <h3>Address proof</h3>
+            <img src="{{varification_request.address_proof.url}}" class="img-fluid">
+            <p>
+                <a href="{{varification_request.address_proof.url}}" target="_blank">{{varification_request.address_proof}}</a>
+            </p>
+        </div>
+    </div>
+
+</div>

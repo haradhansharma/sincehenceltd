@@ -1,0 +1,14 @@
+   
+<div  class="d-flex flex-column">                                         
+    <form id="reply_form{{c.id}}" hx-post="{{ c.get_reply_url }}" hx-target="#replies{{c.id}}" hx-swap="innerHTML">
+        {% csrf_token %}
+        <div class="input-group input-group-lg">
+            {{ reply_form }}                       
+        </div>
+        <div class="d-flex justify-content-end pt-2">
+            <input class="btn btn-primary d-block" type="submit">
+        </div>
+    </form>                                      
+</div> 
+
+{% include 'cms/replies.html' %}
