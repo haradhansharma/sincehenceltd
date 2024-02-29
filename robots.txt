@@ -8,6 +8,7 @@ Disallow: /accounts/reset/done/
 Disallow: /accounts/change_pass/
 Disallow: /accounts/logout/
 
-
-
 Sitemap: https://www.sincehence.co.uk/sitemap.xml
+Sitemap: https://www.sincehence.com/sitemap.xml
+Sitemap: https://www.sincehence.ltd/sitemap.xml
+Sitemap: https://www.sincehence.store/sitemap.xml
