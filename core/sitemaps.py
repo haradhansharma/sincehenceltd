@@ -13,7 +13,7 @@ class StaticSitemap(sitemaps.Sitemap):
     changefreq = 'monthly'
 
     def items(self):
-        return ['core:home', 'core:contact', 'core:latest_blogs'] 
+        return ['core:home', 'contact:contact', 'cms:latest_blogs'] 
     
     def lastmod(self, obj):
         return timezone.now()
