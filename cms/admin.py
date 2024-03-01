@@ -40,6 +40,13 @@ class BlogAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
 admin.site.register(Blog, BlogAdmin)
 
 
+class BlogCommentsAdmin(admin.ModelAdmin): 
+    summernote_fields = ('comments',)   
+    list_display = ('parent', 'comments', 'created_at',)
+admin.site.register(BlogComments, BlogCommentsAdmin)
+
+
+
 
 
 class CategoryAdmin(admin.ModelAdmin):     
