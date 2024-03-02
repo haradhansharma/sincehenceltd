@@ -51,8 +51,7 @@ def home(request):
         'site_data' : site,
         'latest_news' : latest_news,
         'about_us_link': about_us_link,
-        'service_categories' : service_categories
-        # 'services' : services
+        'service_categories' : service_categories        
     }
     return render(request, template_name, context=context)
 

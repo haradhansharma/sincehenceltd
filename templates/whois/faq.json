@@ -1,0 +1,54 @@
+{
+  "FAQs": [
+    {
+      "id": 1,
+      "question": "What is a WHOIS Domain Lookup?",
+      "answer": "A WHOIS Domain Lookup is a service that provides detailed information about a registered domain, including ownership details, registration dates, contact information, and data retrieved from RDAP servers."
+    },
+    {
+      "id": 2,
+      "question": "How can I use the WHOIS Domain Lookup tool?",
+      "answer": "To use the WHOIS Domain Lookup tool, simply enter the domain name you want to look up into the provided search field and click 'Get Result'. Our tool will retrieve comprehensive information, including data from RDAP servers."
+    },
+    {
+      "id": 3,
+      "question": "What information does the WHOIS lookup provide?",
+      "answer": "Our WHOIS lookup tool provides a wealth of details about a domain, including registrar information, registration date, expiration date, nameservers, and registrant contact information. Additionally, it retrieves data from RDAP servers, offering further insights into domain ownership."
+    },
+    {
+      "id": 4,
+      "question": "Is the information obtained from the WHOIS lookup accurate?",
+      "answer": "Yes, we strive to provide accurate and up-to-date information sourced directly from domain registrars, WHOIS databases, and RDAP servers."
+    },
+    {
+      "id": 5,
+      "question": "Why should I use the WHOIS Domain Lookup tool?",
+      "answer": "Our tool is essential for gathering comprehensive domain information. Whether you're conducting research, investigating ownership, or ensuring website legitimacy, our WHOIS Domain Lookup, enriched with RDAP server data, provides valuable insights."
+    },
+    {
+      "id": 6,
+      "question": "Is the WHOIS Domain Lookup service free to use?",
+      "answer": "Absolutely! Our WHOIS Domain Lookup service is completely free. By entering a domain name, you'll gain access to extensive registration details and data retrieved from RDAP servers at no cost."
+    },
+    {
+      "id": 7,
+      "question": "Can I use the WHOIS Domain Lookup tool for any domain?",
+      "answer": "Yes, our tool supports lookups for virtually any domain name across different top-level domains (TLDs), including .com, .org, .net, and more. Furthermore, it retrieves additional data from RDAP servers, enhancing the depth of information available."
+    },
+    {
+      "id": 8,
+      "question": "How often should I perform a WHOIS lookup?",
+      "answer": "Performing a WHOIS lookup is advisable whenever you're dealing with a new domain or need to verify ownership information. Regular checks are recommended to ensure the accuracy of registration details, including the data obtained from RDAP servers."
+    },
+    {
+      "id": 9,
+      "question": "Is WHOIS lookup information private?",
+      "answer": "While WHOIS lookup information is typically publicly available, some domain registrants opt to keep their details private by using domain privacy services. However, data retrieved from RDAP servers may offer additional insights, depending on the server's policies."
+    },
+    {
+      "id": 10,
+      "question": "Can I use the WHOIS lookup tool for IP addresses?",
+      "answer": "Our WHOIS lookup tool primarily focuses on domain names. For IP address lookup services, you may need to explore specific IP lookup tools or services. However, our tool does retrieve comprehensive data from RDAP servers, which may include IP-related information for domain records."
+    }
+  ]
+}

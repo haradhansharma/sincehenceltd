@@ -1,5 +1,7 @@
 from django.contrib import sitemaps
 from django.urls import reverse
+
+from whoischeck.models import WhoisResult
 from .models import *
 from cms.models import *
 
@@ -68,6 +70,26 @@ class BlogSitemap(sitemaps.Sitemap):
         
     def location(self, obj):
         return obj.get_absolute_url()
+    
+    
+class WhoisSitemap(sitemaps.Sitemap):
+    changefreq = "daily"
+    priority = 1.0    
+
+    def items(self):
+        whois = WhoisResult.objects.values('domain_name').distinct().order_by('id')
+        return whois
+    
+    def lastmod(self, obj):
+        # Fetch the actual WhoisResult instance based on the domain name
+        domain = obj.get('domain_name')
+        whois_instance = WhoisResult.objects.filter(domain_name=domain).first()
+        return whois_instance.created_at if whois_instance else None
+        
+    def location(self, obj):
+        # Return the URL for the Whois check view
+        domain = obj.get('domain_name')
+        return reverse('whoischeck:check_whois') + f'?dm={domain}'
     
 
     

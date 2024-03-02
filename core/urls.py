@@ -11,7 +11,8 @@ sitemap_list = {
     'static': StaticSitemap,
     'pages' : PageSitemap,
     'category' : CategorySitemap,
-    'BlogSitemap' : BlogSitemap
+    'blogs' : BlogSitemap,
+    'whois' : WhoisSitemap
 }
 
 urlpatterns = [

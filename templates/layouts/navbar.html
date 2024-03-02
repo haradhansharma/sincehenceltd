@@ -1,7 +1,8 @@
 {% load static %}
 <!-- Start: Navbar Centered Links -->
 <nav class="navbar navbar-expand-md sticky-top bg-dark text-nowrap text-uppercase fw-semibold shadow-sm focus-ring py-3 sh-navbar" data-bs-theme="dark">
-    <div class="container-fluid"><a class="navbar-brand d-flex align-items-center" href="#"><img class="img-fluid" src="{{ site_data.logo }}" width="164" height="38"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container-fluid"><a class="navbar-brand d-flex align-items-center" href="#">
+        <img  class="img-fluid" src="{{ site_data.logo }}" alt="{{site_data.name}}" title="{{site_data.name}}" width="165px" height="auto"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-3">
             <ul class="navbar-nav mx-auto">
                 {% for hm in header_menu %}                                
@@ -37,7 +38,7 @@
 
             <div class="dropdown d-flex" style="height: 42px;width: 60px;">
                 <a class="text-center link-light" aria-expanded="false" data-bs-toggle="dropdown" href="#" rel="nofollow">
-                    <img class="rounded img-fluid border" width="42px" height="42px" src="{% if request.user.is_authenticated %}{{ request.user.avatar }}{% else %}{% static 'no_image.png' %}{% endif %}" alt="{{request.user.username}}" />
+                    <img class="rounded img-fluid border" width="42px" height="42px" src="{% if request.user.is_authenticated %}{{ request.user.avatar }}{% else %}{% static 'no_image.png' %}{% endif %}" alt="{{request.user.username}}" title="{{request.user.username}}" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg-end">
                     {% for um in user_menu %} 

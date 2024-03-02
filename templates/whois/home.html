@@ -1,0 +1,165 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load core %}
+{% block extra_head %}
+
+{% endblock %}   
+
+{% block hero %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Start: Hero Banner -->
+<section class="bg-sh-4th">
+    <b class="text-nowrap text-uppercase text-start absolute-bold-18vw">WHOIS</b>
+    <div class="container-fluid h-100">
+
+        {% if messages %}                                      
+            {% for message in messages %}        
+            <div class="alert alert-warning" role="alert">
+                <span>
+                    <strong>Alert:</strong> {{ message }}.
+                </span>
+            </div>
+            {% endfor %}  
+        {% endif %}
+
+        <div class="row text-center d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 pt8pb3">
+                <div class="d-block align-content-center m-auto align-items-center">
+                    <h1>
+                        {% if domain_name %}
+                        <div class="text-uppercase fw-bold mb-3 h25vw">LOOKUP RADP WHOIS</div>
+                        <div class="text-uppercase fw-bold mb-3 h55vw"> OF {{domain_name}} </div>
+                        {% else %}
+                        <div class="text-uppercase fw-bold mb-3 h25vw">LOOKUP RADP</div>
+                        <div class="text-uppercase fw-bold mb-3 h55vw"> WHOIS DOMAIN </div>
+                        {% endif %}
+                    </h1>
+                </div>
+            
+                <div class="col-12 container">      
+                    <form id="whois_check" class="row d-flex align-content-center m-auto align-items-center" method="POST">
+                        {% csrf_token %}
+                        <div class="col-12">
+                            <div class="input-group font-alexandria">
+                                {{ form.domain_name }}                                  
+                                <input name="submit" type="submit" id="submit" class="btn btn-primary btn-lg text-uppercase" value="Get Result"/>                                                       
+                            </div>
+            
+                            <div class="mb-3 font-alexandria text-start">                                                                                             
+                                    {% if form.domain_name.errors %}
+                                        <div class="text-danger text-start">{{ form.domain_name.errors }}</div>
+                                    {% endif %}   
+                                    {% if form.domain_name.help_text %}
+                                        <small class="help text-start text-muted">{{ form.domain_name.help_text|safe }}</small>
+                                    {% endif %}                                                                 
+                                    {% if form.captcha.errors %}
+                                        <div class="text-danger text-start">{{ form.captcha.errors }}</div>
+                                    {% endif %}
+                                    {% if form.captcha.help_text %}
+                                        <small class="help text-start text-muteed">{{ form.captcha.help_text|safe }}</small>
+                                    {% endif %}   
+                                    {{ form.captcha }}                           
+                            </div>
+                        </div>                    
+                    </form>
+                </div>
+            </div>
+            <div class="border-2 border-top border-primary pt5pt15">   
+                <div class="col-12 container">
+                    <h2 class="text-start">{{domain_name|upper}}</h2>
+                    <div class="row text-center d-flex justify-content-center align-items-center h-100">
+                        {% if results %}
+                        <div class="col-12 card px-0 mb-2">  
+                            <div class="card-header h2 text-start">Domain Information</div> 
+                            <div class="card-body">  
+                                <div class="table-responsive text-start">
+                                    <table class="table">                        
+                                    <tbody>
+                                        {% for key, value in results.domain_info.items %}
+                                        <tr>
+                                            <td>{{key|capfirst }}</td>
+                                            <td>{{value}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    </table>
+                                </div>                                  
+                            </div>  
+                        </div> 
+
+                        <div class="col-12 card px-0 mb-2"> 
+                            <div class="card-header h2 text-start">Registrant Contact</div>  
+                            <div class="card-body">          
+                                <div class="table-responsive text-start">
+                                    <table class="table">                        
+                                    <tbody>
+                                        {% for key, value in results.registrant_contact.items %}
+                                        <tr>
+                                            <td>{{key|capfirst }}</td>
+                                            <td>{{value}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>    
+                        </div> 
+
+                        <div class="col-12 card bg-light px-0 mb-2 text-start">   
+                            <div class="card-header h2 text-start">WHOIS RAW DATA</div>    
+                            <div class="card-body">    
+                                {{results.raw_data.raw_data|linebreaks}}     
+                            </div>                          
+                        </div> 
+                        {% endif %}
+
+
+                        <div class="col-12 card px-0 mb-2">
+                            <h1 class="text-center mb-4">FAQs - WHOIS Domain Lookup</h1>
+
+                            <div class="accordion" id="faqAccordion">                             
+
+                                {% for faq in faq_data.FAQs %}
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading{{ faq.id }}">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.id }}" aria-expanded="true" aria-controls="collapse{{ faq.id }}">
+                                            {{ faq.question }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapse{{ faq.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ faq.id }}" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body text-start">
+                                            {{ faq.answer }}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- Add more accordion items for other FAQs -->
+                            </div>
+                        </div>
+
+
+                    </div>     
+                </div>      
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!-- End: Hero Banner -->
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block consent %} 
+    {% if page.consent_required %}
+        {% include 'policy_concent/consent_dialog.html' %}       
+    {% endif %}
+{% endblock %}

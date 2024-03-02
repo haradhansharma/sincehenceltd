@@ -45,7 +45,8 @@ def site_data():
         'instagram_link': site.instagram_link,          
         'email': site.email,   
         'location': site.location,   
-        'phone': site.phone,            
+        'phone': site.phone,   
+                 
     }
 
     cache.set('sh_site_data', data, timeout=3600)
