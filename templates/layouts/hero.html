@@ -1,8 +1,9 @@
 {% load static %}
+{% load cache %}
 <style>
     .sh-cover {
         text-align: left; 
-        background: url({% static 'assets/img/top_b.jpg' %}) top left / cover;
+        background: url({% static 'assets/img/top_b.png' %}) top left / cover;
         background-color: #301112;
       }
 </style>
@@ -19,7 +20,11 @@
             {% endfor %}  
         {% endif %}
         <div class="row justify-content-center align-items-center header-row">
-            <div class="col-auto col-md-12 align-self-center m-auto"><img class="img-fluid target-element" src="{% static 'banner_logo.png' %}" width="100%" loading="auto" alt="{{ site_data.name }}"></div>
+            <div class="col-auto col-md-12 align-self-center m-auto">
+                {% cache 300 banner_logo %}
+                <img class="img-fluid target-element" src="{% static 'banner_logo.png' %}" width="100%" loading="auto" alt="{{ site_data.name }}">
+                {% endcache %}
+            </div>
         </div>
     </div><!-- End: 1 Row 1 Column -->
 </header><!-- Start: Hero Banner -->

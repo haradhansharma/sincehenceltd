@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 {% load core %}
-
+{% load cache %}
  {% block content %}
  <!-- Start: About us sections -->
     <section class="section-bg-light"><b class="text-nowrap text-uppercase text-start d-xl-flex  target-element absolute-bold-18vw">ABOUT US</b>
@@ -16,7 +16,9 @@
                     </div>
                 </div>
                 <div class="col-12 text-center d-flex justify-content-center m-auto pt5pt15">
-                    <img class="img-fluid text-center" loading="lazy" src="{% static 'assets/img/time_less_sh.jpg' %}" alt="SinceHence Timeless" loading="auto">
+                    {% cache 300 time_less_sh %}
+                    <img class="img-fluid text-center" loading="lazy" src="{% static 'assets/img/time_less_sh.png' %}" alt="SinceHence Timeless" loading="auto">
+                    {% endcache %}
                 </div>
             </div>
         </div>
@@ -37,7 +39,10 @@
                     </div>
                 </div>
                 <div class="col-12 text-center d-flex justify-content-center align-self-center m-auto pt5pt15">
-                    <img class="img-fluid d-flex justify-content-center align-items-center text-center" loading="lazy" src="{% static 'assets/img/elegence.jpg' %}"></div>
+                    {% cache 300 elegence %}
+                    <img class="img-fluid d-flex justify-content-center align-items-center text-center" loading="lazy" src="{% static 'assets/img/elegence.png' %}">
+                    {% endcache %}
+                </div>
             </div>
         </div>
     </section><!-- End: Mission Section -->
