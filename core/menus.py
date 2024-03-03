@@ -257,13 +257,13 @@ def header_menu(request):
             )  
         
           
-    tools_menus =[]
-    menu_items.append(
-        {'title': 'Tools', 'url': False, 'data_set': tools_menus },        
-        )   
-    tools_menus.append(
-        {'title': 'Whois Check', 'url': reverse('whoischeck:check_whois'), 'data_set': False},        
-        )  
+        tools_menus =[]
+        menu_items.append(
+            {'title': 'Tools', 'url': False, 'data_set': tools_menus },        
+            )   
+        tools_menus.append(
+            {'title': 'Whois Check', 'url': reverse('whoischeck:check_whois'), 'data_set': False},        
+            )  
         
     
     menu_items.append(
