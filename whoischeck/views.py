@@ -33,10 +33,10 @@ def check_whois(request):
     site = site_data()
     
     if path_domain:
-        site['title'] = f'Whois Lookup RADP record for {path_domain}'   
+        site['title'] = f'Whois Lookup RDAP record for {path_domain}'   
         site['description'] = f'Verified registration info for domain {path_domain} with our free WHOIS lookup service.'
     else: 
-        site['title'] = 'Lookup RADP WHOIS Domain'          
+        site['title'] = 'Lookup RDAP WHOIS Domain'          
         site['description'] = 'Unlock verified registration info with our free WHOIS lookup service. Discover ownership details, reg history & more for any domain. Trust us for accuracy.'
     site['og_image'] = request.build_absolute_uri(static('assets/img/whois_radp.jpg'))
     
