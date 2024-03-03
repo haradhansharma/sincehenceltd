@@ -64,13 +64,13 @@ def check_whois(request):
                         
         if domain_data is not None:      
             # As get request checking cache, so just redirect here to the get request   
-            return redirect(reverse('whoischeck:check_whois') + f'?dm={domain_name}') 
+            return redirect(reverse('whoischeck:check_whois')) 
         else:    
             wq = whois21.WHOIS(domain_name)        
             if not wq.success:
                 messages.warning(request, 'Error happened! Please try again later!')
                 log.warning(f'Warning:{wq.error}')
-                return redirect(reverse('whoischeck:check_whois') + f'?dm={domain_name}') 
+                return redirect(reverse('whoischeck:check_whois')) 
   
             fetched_domain = process_result(wq.whois_data.get('DOMAIN NAME'))
             registrar = process_result(wq.whois_data.get('REGISTRAR'))
@@ -146,7 +146,7 @@ def check_whois(request):
             
             # Set cache
             cache.set(f'domain_data_{domain_name}', domain_data, timeout = 60 * 60)   
-            return redirect(reverse('whoischeck:check_whois') + f'?dm={domain_name}') 
+            return redirect(reverse('whoischeck:check_whois')) 
         
     else:    
         

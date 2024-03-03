@@ -12,7 +12,7 @@ sitemap_list = {
     'pages' : PageSitemap,
     'category' : CategorySitemap,
     'blogs' : BlogSitemap,
-    'whois' : WhoisSitemap
+    # 'whois' : WhoisSitemap
 }
 
 urlpatterns = [
