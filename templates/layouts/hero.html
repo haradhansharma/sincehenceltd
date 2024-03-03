@@ -21,8 +21,8 @@
         {% endif %}
         <div class="row justify-content-center align-items-center header-row">
             <div class="col-auto col-md-12 align-self-center m-auto">
-                {% cache 300 banner_logo %}
-                <img class="img-fluid target-element" src="{% static 'banner_logo.png' %}" width="100%" loading="auto" alt="{{ site_data.name }}">
+                {% cache 30000 banner_logo %}
+                <img class="img-fluid target-element" src="{% static 'banner_logo.png' %}" width="100%" loading="lazy" alt="{{ site_data.name }}">
                 {% endcache %}
             </div>
         </div>
