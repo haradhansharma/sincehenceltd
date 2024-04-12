@@ -8,7 +8,7 @@ from captcha.widgets import ReCaptchaV2Invisible, ReCaptchaV2Checkbox
 from captcha.fields import ReCaptchaField
 
 class ContactUsForm(forms.ModelForm):   
-    captcha = ReCaptchaField( widget=ReCaptchaV2Checkbox)  
+    captcha = ReCaptchaField( widget=ReCaptchaV2Checkbox)   
      
     class Meta:
         model = ContactMessage
