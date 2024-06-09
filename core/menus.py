@@ -246,17 +246,16 @@ def header_menu(request):
         {'title': 'Blogs', 'url': reverse('cms:latest_blogs'), 'data_set': False},        
         ) 
     
-    if settings.SALING_SERVICE:
+    product_menus = []
+    product_menus.append(
+        {'title': 'SinceHence Suppliments', 'url': 'http://sincehence.store', 'target':'_blank', 'data_set': False}       
+    ) 
     
-        product_menus =[]
-        menu_items.append(
-            {'title': 'Products', 'url': False, 'data_set': product_menus },        
-            )   
-        product_menus.append(
-            {'title': 'Digital Products', 'url': reverse('service:service_list'), 'data_set': False},        
-            )  
+    if settings.SALING_SERVICE:      
         
-          
+        product_menus.append(
+            {'title': 'Digital Products', 'url': reverse('service:service_list'), 'data_set': False}        
+            )  
         tools_menus =[]
         menu_items.append(
             {'title': 'Tools', 'url': False, 'data_set': tools_menus },        
@@ -264,6 +263,10 @@ def header_menu(request):
         tools_menus.append(
             {'title': 'Whois Check', 'url': reverse('whoischeck:check_whois'), 'data_set': False},        
             )  
+        
+    menu_items.append(
+        {'title': 'Products', 'url': False, 'data_set': product_menus },        
+    )   
         
     
     menu_items.append(
