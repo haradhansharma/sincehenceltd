@@ -36,7 +36,7 @@ urlpatterns = [
     path('consent/', include('policy_concent.urls')),  
     path('sourcing/', include('sourcing.urls')),
     path('shcurrency/', include('shcurrency.urls')),
-    path('whois/', include('whoischeck.urls')),
+    # path('whois/', include('whoischeck.urls')),
     
     
 ]

@@ -1,7 +1,7 @@
 from django.contrib import sitemaps
 from django.urls import reverse
 
-from whoischeck.models import WhoisResult
+# from whoischeck.models import WhoisResult
 from .models import *
 from cms.models import *
 
