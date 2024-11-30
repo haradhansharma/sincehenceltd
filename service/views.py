@@ -10,6 +10,7 @@ from accounts.models import User
 from core.agent_helper import get_location_info
 from core.context_processor import site_data
 from core.helper import converted_amount, calculate_delivery_date, user_activities
+from core.tasks import custom_send_mail_task
 from core.templatetags.core import formatedprice, price_msg, title_and_price
 from service.forms import  EmailCollectionForm, OrderFileForm, OrderImageForm, OrderTextForm, PaymentForm, PaymentGatewayForm, ServicePriceForm
 from payment_method.gateways.base import PaymentGatewayBase
@@ -694,7 +695,7 @@ def get_or_create_user(email):
         from_email = settings.DEFAULT_FROM_EMAIL     
         recipient_list = [email]
 
-        send_mail(subject, message, from_email, recipient_list)
+        custom_send_mail_task.delay(subject, message, from_email, recipient_list)
         
         return user
 
@@ -806,7 +807,7 @@ def payment_success(request):
     from_email = settings.DEFAULT_FROM_EMAIL     
     recipient_list = [user.email]
 
-    send_mail(subject, message, from_email, recipient_list)
+    custom_send_mail_task.delay(subject, message, from_email, recipient_list) 
 
     context = {
         'order': order,            

@@ -25,6 +25,7 @@ from django.core.files import File
 from payment_method.gateways.rocket import RocketPaymentGateway
 
 from django.core.mail import EmailMessage, send_mail
+from payment_method.tasks import send_email_task
 from service.models import Order, OrderInvoice
 
 
@@ -166,17 +167,20 @@ def create_pdf_invoice(request, order, gateway):
 
     from_email = settings.DEFAULT_FROM_EMAIL     
     recipient_list = [order.customer.email]
-    send_mail(subject, message, from_email, recipient_list)    
-    email = EmailMessage(subject, message, from_email, recipient_list)
-    email.attach_file(pdf_path)  
+    send_email_task.delay(subject, message, from_email, recipient_list, pdf_path)
+    # email = EmailMessage(subject, message, from_email, recipient_list)
+    # email.attach_file(pdf_path)  
 
-    # Send the email
-    email.send()
+    # # Send the email
+    # email.send()
     
     # Return the PDF file
     response = FileResponse(pdf_path, content_type='application/pdf')
     
     return pdf_url, response
+
+
+
 
 
 def bkash_manual(request, order_id):
@@ -363,4 +367,4 @@ def rocket_manual(request, order_id):
     }
 
     
-    return render(request, template, context)
+    return render(request, template, context) 

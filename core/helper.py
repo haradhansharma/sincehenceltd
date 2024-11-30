@@ -52,13 +52,13 @@ def build_full_url(path):
     return full_url
 def get_currencies():   
     
-    currencies = cache.get('currencies')
+    currencies = cache.get('sh_currencies')
     if currencies is not None:
         return currencies
 
     currencies = Currency.objects.all()
     
-    cache.set('currencies', currencies, timeout=60 * 60) 
+    cache.set('sh_currencies', currencies, timeout=60 * 60) 
     return currencies
 
 

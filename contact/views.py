@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 
 from core.context_processor import site_data
 from core.helper import custom_send_mass_mail
+from core.tasks import send_mass_mail_task
 from .forms import *
 from django.contrib import messages
 
@@ -50,8 +51,8 @@ def contact(request):
             
             email_messages.append((visitor_subjct, visitor_message, from_email, visitor_mail, '', '', ''))        
 
-            custom_send_mass_mail(email_messages, fail_silently=False)
-            
+            send_mass_mail_task.delay(email_messages, fail_silently=False) 
+             
             return redirect(request.path)
             
             

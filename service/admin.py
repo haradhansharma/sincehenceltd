@@ -3,6 +3,7 @@ from django.contrib import admin , messages
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from core.helper import custom_send_mass_mail
+from core.tasks import send_mass_mail_task
 from .models import *
 from.forms import *
 from django.core.exceptions import ValidationError
@@ -142,7 +143,7 @@ class QuotationAdmin(admin.ModelAdmin):
     
     def response_add(self, request, obj, post_url_continue=None):    
         if "_send_email" in request.POST:
-            self.send_email(request, None, obj)
+            self.send_email(request, None, obj) 
         return super().response_add(request, obj, post_url_continue)
 
     def response_change(self, request, obj):        
@@ -203,7 +204,8 @@ class QuotationAdmin(admin.ModelAdmin):
             pass
         
         if len(email_messages) > 0:    
-            custom_send_mass_mail(email_messages, fail_silently=False)
+            send_mass_mail_task.delay(email_messages, fail_silently=False)
+            # custom_send_mass_mail(email_messages, fail_silently=False)
         
     actions = [send_email] 
     

@@ -3,7 +3,7 @@ from django.core.cache import cache
 from django.conf import settings
 
 def get_weekends():
-    cache_key = 'weekend_days'
+    cache_key = 'sh_weekend_days'
     weekends = cache.get(cache_key)
     
     if not weekends:
@@ -13,7 +13,7 @@ def get_weekends():
     return weekends
 
 def get_business_days():
-    cache_key = 'business_days'
+    cache_key = 'sh_business_days'
     business_days = cache.get(cache_key)
     
     if not business_days:
@@ -25,7 +25,7 @@ def get_business_days():
     return business_days
 
 def get_offdays():
-    cache_key = 'off_days'
+    cache_key = 'sh_off_days'
     offdays = cache.get(cache_key)
     
     if not offdays:

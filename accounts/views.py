@@ -328,7 +328,7 @@ class SignupView(SuccessMessageMixin, CreateView):
             'token': account_activation_token.make_token(user),
         })
 
-        user.email_user(subject, message)
+        user.email_user(subject, message) 
 
         return super().form_valid(form)
 

@@ -12,10 +12,12 @@ from django.db import models
 from django.template.loader import render_to_string
 from django.db.models import F
 from django.utils.safestring import mark_safe
+from celery import shared_task
 import logging
 log =  logging.getLogger('log')
 
-def update_currency():
+@shared_task
+def update_currency(): 
     base = settings.DEFAULT_CURRENCY_CODE
     app_id = settings.OPEN_EXCHANGE_APP_ID
     url = f"https://openexchangerates.org/api/latest.json?app_id={app_id}&base={base}"
@@ -41,9 +43,12 @@ def update_currency():
             log.warning(f"Error parsing JSON data: {e}")
         except Exception as e:
             log.warning(f"An error occurred: {e}")
+            
+        log.info(f'currency updated with openexchange API')
     else:
         log.warning(f"Error: {response.status_code} - Unable to fetch exchange rates.")
-        
+  
+@shared_task      
 def change_quotation_status():
     """
     This function changes the status of open quotations to 'expired' if their related quotationdata's valid_till date has passed.
@@ -57,12 +62,15 @@ def change_quotation_status():
 
         # Update the status for all expired quotations in a single query
         updated_count = expired_quotations.update(status='expired')
-       
+        
     except Exception as e:
         log.info(f"ERROR FOUND DURING STATUS CHANGE OF QTUOTATION: {e}")
         updated_count = 0
+        
+    log.info(f"Info: {updated_count} - Quotation Expired by celery.")
     return updated_count
 
+@shared_task     
 def send_quotation_reminder():
     """
     This function sends email notifications to the 'creator' of Quotation models
@@ -110,18 +118,12 @@ def send_quotation_reminder():
             continue
         
     custom_send_mass_mail(email_messages, fail_silently=False)
-
+    log.info(f"Info: {len(email_messages)} - Reminder mail sent by celery.")
     return len(email_messages)
 
-# def mark_abandoned():
-#     cutoff_time = timezone.now() - timedelta(minutes=30)
-    
-#     try:
-#         updated_count = Order.objects.filter(status='pending', created_at__lte=cutoff_time).update(status='abandoned')             
-#         return updated_count
-#     except Exception as e:   
-#         return 0
-    
+
+   
+@shared_task      
 def sent_followup():
     try:       
         from_email = settings.DEFAULT_FROM_EMAIL    
@@ -176,13 +178,14 @@ def sent_followup():
                 continue   
         # deleted = Order.objects.filter(status__in=settings.INCOMPLETE_STATUS, total_followup__gte = 3).delete()
         updated_count = Order.objects.filter(status__in=settings.INCOMPLETE_STATUS, total_followup__gte=3).update(status=settings.ABANDONED_STATUS)
-        
+        log.info(f"Info: {mail_sent} - folloup mail sent and {updated_count} marked as abadoned by celery.")
         return mail_sent, updated_count
     
     except Exception as e:   
         log.warning(f'importent: The problem found in cronjobs followup mail: {e}')
         return 0, 0
-    
+ 
+@shared_task        
 def mark_abandoned_orders():
     try:
         # Get a list of order IDs to delete
@@ -195,7 +198,7 @@ def mark_abandoned_orders():
         # Bulk delete orders using their primary keys
         # total_deleted = Order.objects.filter(id__in=order_ids_to_delete).delete()
         updated_count = Order.objects.filter(id__in=order_ids_to_delete).update(status=settings.ABANDONED_STATUS)
-
+        log.info(f"Info: {updated_count} - order abandoned by celery.")
         return updated_count  # Return the number of orders deleted
     except Exception as e:
         log.warning(f'Bulk delete failed due to error: {e}')
@@ -205,36 +208,36 @@ def mark_abandoned_orders():
 
         
         
-class RunSinceHenceCronJobs(CronJobBase):    
+# class RunSinceHenceCronJobs(CronJobBase):    
      
-    RUN_EVERY_MINS = 720  #per 12 hrs
-    RETRY_AFTER_FAILURE_MINS = 1
-    MIN_NUM_FAILURES = 2    
-    ALLOW_PARALLEL_RUNS = True
-    schedule = Schedule(run_every_mins=RUN_EVERY_MINS, retry_after_failure_mins=RETRY_AFTER_FAILURE_MINS)
-    code = 'core.main_cron_job_12_hrs'   
+#     RUN_EVERY_MINS = 720  #per 12 hrs
+#     RETRY_AFTER_FAILURE_MINS = 1
+#     MIN_NUM_FAILURES = 2    
+#     ALLOW_PARALLEL_RUNS = True
+#     schedule = Schedule(run_every_mins=RUN_EVERY_MINS, retry_after_failure_mins=RETRY_AFTER_FAILURE_MINS)
+#     code = 'core.main_cron_job_12_hrs'   
     
-    def do(self):          
-        try:            
-            update_currency()
-            log.info(f'currency updated with openexchange API')
+#     def do(self):          
+#         try:            
+#             update_currency()
+#             log.info(f'currency updated with openexchange API')
             
-            quotation_expired = change_quotation_status()
-            log.info(f"Info: {quotation_expired} - Quotation Expired by cronJOB.")
+#             quotation_expired = change_quotation_status()
+#             log.info(f"Info: {quotation_expired} - Quotation Expired by cronJOB.")
             
-            quotation_remainder = send_quotation_reminder()
-            log.info(f"Info: {quotation_remainder} - Reminder mail sent by cronJOB.")
+#             quotation_remainder = send_quotation_reminder()
+#             log.info(f"Info: {quotation_remainder} - Reminder mail sent by cronJOB.")
             
-            mark_as_abandoned = mark_abandoned_orders()
-            log.info(f"Info: {mark_as_abandoned} - Due Order deleted by cronJOB.")
+#             mark_as_abandoned = mark_abandoned_orders()
+#             log.info(f"Info: {mark_as_abandoned} - Due Order deleted by cronJOB.")
             
-            # abandoned = mark_abandoned()
-            # log.info(f"Info: {abandoned} - order abandoned by cronJOB.")
+#             # abandoned = mark_abandoned()
+#             # log.info(f"Info: {abandoned} - order abandoned by cronJOB.")
             
-            followup_sent, updated_count = sent_followup()
-            log.info(f"Info: {followup_sent} - folloup mail sent and {updated_count} marked as abadoned by cronJOB.")
-        except Exception as e:            
-            log.exception(f'An error occurred while running cronjob: {e}')
+#             followup_sent, updated_count = sent_followup()
+#             log.info(f"Info: {followup_sent} - folloup mail sent and {updated_count} marked as abadoned by cronJOB.")
+#         except Exception as e:            
+#             log.exception(f'An error occurred while running cronjob: {e}')
             
         
         

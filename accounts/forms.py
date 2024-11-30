@@ -151,7 +151,7 @@ class UserCreationFormFront(UserCreationForm):
                         'token': account_activation_token.make_token(is_active_qs),                        
                     })
                     
-                    is_active_qs.email_user(subject, message)                   
+                    is_active_qs.email_user(subject, message)                    
                     raise forms.ValidationError(f'You have an account already with this email. An account activation link has been sent to your mailbox {email}')
         return super(UserCreationFormFront, self).clean(*args, **kwargs)    
 
