@@ -17,7 +17,7 @@ branding
 theme
 staticfiles
 sincehence/bk_settings.py
-sincehence/wsgi.py
+# sincehence/wsgi.py
 # sincehence/settings
 sincehence/settingssss
 templates/NNEEDTOREDESIGNsourcing
