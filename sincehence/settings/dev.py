@@ -11,16 +11,6 @@ SESSION_COOKIE_SECURE = True
 
 from .settings_material_dash import *
 
-# CACHES = {   
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-#         'LOCATION': os.path.join(BASE_DIR, 'cache'),
-#         'TIMEOUT': 3600,
-#         'OPTIONS': {
-#             'MAX_ENTRIES': 1000
-#         }
-#     }
-# }
 
 
 
